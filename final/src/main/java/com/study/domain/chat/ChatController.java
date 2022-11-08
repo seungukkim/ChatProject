@@ -33,9 +33,11 @@ public class ChatController {
 		if(session.getAttribute("info")!=null) {
 			//session에 저장된 info값이 존재한다면 해당 코드를 실행한다.
 			int count=howMany.getCount();
+			
 			 model.addAttribute("count",count);
 			 System.out.println(count+"명입니당");
 	         System.out.println("@ChatController, chat GET()");
+	         
 	         return "chat/chat";
 		}
 		else {

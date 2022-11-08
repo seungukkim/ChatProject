@@ -43,7 +43,7 @@
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										
+
 										<th>제목</th>
 										<th>작성자</th>
 										<th>등록일</th>
@@ -53,12 +53,12 @@
 
 								<tbody>
 									<tr v-for="item in chatrooms" v-bind:key="item.roomId"
-										v-on:click="enterRoom(item.roomId)">
-										
+										v-on:click="enterRoom(item.roomId,item.roomMaker)">
+
 										<th>{{item.roomName}}</th>
-										<th>[[${info.userName}]]</th>
+										<th>{{item.roomMaker}}</th>
 										<th>{{item.createdDate}}</th>
-										<th>{{item.roomId}}</th>
+										<th>{{item.participant}}</th>
 									</tr>
 								</tbody>
 							</table>
@@ -67,7 +67,8 @@
 						<th:block layout:fragment="paging">
 
 
-							<a class="btn btn-sm btn-outline-secondary" th:href="@{/chatroom/makeroom}">방만들기</a>
+							<a class="btn btn-sm btn-outline-secondary"
+								th:href="@{/chatroom/makeroom}">방만들기</a>
 						</th:block>
 					</div>
 
@@ -75,20 +76,22 @@
 				</div>
 			</div>
 
-			<footer class="footer">
-				<ul class="list-inline">
-					<li>여기는 혹시 모르니까 남녀놓자!</li>
-				</ul>
-			</footer>
-		</div>
-	</div>
+			
+
+					<footer class="footer">
+						<ul class="list-inline">
+							<li>여기는 혹시 모르니까 남녀놓자!</li>
+						</ul>
+					</footer>
+				</div>
+			</div>
 
 
 
-	<!-- JavaScript -->
-	<script src="/webjars/vue/2.5.16/dist/vue.min.js"></script>
-	<script src="/webjars/axios/0.17.1/dist/axios.min.js"></script>
-	<script>
+			<!-- JavaScript -->
+			<script src="/webjars/vue/2.5.16/dist/vue.min.js"></script>
+			<script src="/webjars/axios/0.17.1/dist/axios.min.js"></script>
+			<script>
     var vm = new Vue({
         el: '#app',
         data: {
@@ -104,13 +107,15 @@
                 axios.get('/chatroom/rooms').then(response => { this.chatrooms = response.data; });
             },
 
-            enterRoom: function(roomId) {
+            enterRoom: function(roomId,roomMaker) {
             	
                 var sender = '[(${info.userId})]';
                 if(sender !== "") {
                     localStorage.setItem('wschatroom.sender',sender);
                     localStorage.setItem('wschatroom.roomId',roomId);
+                    localStorage.setItem('wschatroom.roomMaker',roomMaker); // roomMaker값 넣기 */
                     location.href="/chatroom/room/enter/"+roomId;
+                    
                 }
             }
         }

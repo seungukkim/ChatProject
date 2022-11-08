@@ -41,14 +41,16 @@ public class ChatRoomController {
 	    // 채팅방 생성
 	    @PostMapping("chatroom/room")
 	    @ResponseBody
-	    public ChatRoom createRoom(@RequestParam String name) throws Exception{
-	        return chatService.createRoom(name);
+	    public ChatRoom createRoom(@RequestParam String name,@RequestParam String maker) throws Exception{
+	        return chatService.createRoom(name,maker);
 	    }
 	    
 	    
 	    // 채팅방 입장 화면
 	    @GetMapping("chatroom/room/enter/{roomId}")
 	    public String roomDetail(Model model, @PathVariable String roomId) throws Exception{
+	    	
+	    	chatService.updateParticipant(roomId);
 	        model.addAttribute("roomId", roomId);
 	        return "/chatroom/roomdetail";
 	    }
@@ -56,7 +58,29 @@ public class ChatRoomController {
 	    @GetMapping("chatroom/room/{roomId}")
 	    @ResponseBody
 	    public ChatRoom roomInfo(@PathVariable String roomId) throws Exception{
+	    	
+	    	
 	        return chatService.findById(roomId);
 	    }
+	    
+	    
+	    
+	    //이게 지우는거 테스트하려고 추가한 것(다짜고짜 다 지우기)
+	    @GetMapping("chatroom/erase")
+	    public String erase() throws Exception{
+	    	chatService.deleteRoom();
+	    	return "/chatroom/room";
+	    }
+	    
+	    
+	    // 지정된 것만 지우기
+	    @PostMapping("chatroom/eraseit")
+	    @ResponseBody
+	    public String erase1(@RequestParam String name) throws Exception{
+	    	chatService.deleteRoom1(name);
+	    	return "/chatroom/room";
+	    }
+	    
+
 
 }

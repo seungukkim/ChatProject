@@ -80,8 +80,12 @@
                 } else {
                     var params = new URLSearchParams();
                     params.append("name",this.room_name);
-                 
                     
+                    //여기는 실험용
+                    params.append("maker",'[(${info.userId})]');
+                    
+                    //
+
                     axios.post('/chatroom/room', params)
                     
                         .then(
@@ -98,8 +102,11 @@
                                 	
                                 	console.log("여기까지는 됨2");
                                 	if(sender !== "") {
+                                	
+                                    localStorage.setItem('wschatroom.roomName',response.data.roomName);  
                                     localStorage.setItem('wschatroom.sender',sender);  
-     			                    localStorage.setItem('wschatroom.roomId',roomId);                                  
+     			                    localStorage.setItem('wschatroom.roomId',roomId);
+     			                   	localStorage.setItem('wschatroom.roomMaker',sender); // roomMaker값 넣기 */
                                     window.location.href="/chatroom/room/enter/"+roomId;
                                 }
                             }
