@@ -25,6 +25,7 @@ public class ChatRoomController {
 	    public String rooms(Model model) throws Exception{
 	        return "/chatroom/room";
 	    }
+	    
 	    // 모든 채팅방 목록 반환
 	    @GetMapping("chatroom/rooms")
 	    @ResponseBody
@@ -79,6 +80,18 @@ public class ChatRoomController {
 	    public String erase1(@RequestParam String name) throws Exception{
 	    	chatService.deleteRoom1(name);
 	    	return "/chatroom/room";
+	    }
+	    
+	    
+	    //나갈 때 어디로 연결될 것인지 + 인원 삭제
+	    @GetMapping("chatroom/room/exit/{roomId}")
+	    @ResponseBody
+	    public int getOut(@PathVariable String roomId) throws Exception{
+	    	//나가니까 인원 -1해야겠지?	    	
+	        System.out.println("여기까지는 됨1");
+	        int b = chatService.minusParticipant(roomId);
+	        return b;
+	      
 	    }
 	    
 

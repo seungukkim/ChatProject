@@ -60,17 +60,13 @@
 			</div>
 
 		</div>
-				<div v-if=localStorage.getItem('wschatroom.sender')==localStorage.getItem('wschatroom.roomMaker')>
+				<!-- <div v-if=localStorage.getItem('wschatroom.sender')==localStorage.getItem('wschatroom.roomMaker')>
 					<button class="btn btn-primary" type="button" @click="exitHere">방없애기</button>
-				</div>
-				
-								
-				
-				
+				</div>																			
 				<div v-else>
 					<button class="btn btn-primary" type="button" @click="printit">나가기</button>
-				</div>
-		
+				</div> -->
+					<button class="btn btn-primary" type="button" @click="getout">나가기</button>
 
 			</div>
 			</div>
@@ -89,14 +85,7 @@
     //alert(document.title);
     // websocket & stomp initialize
 
-window.onpageshow = function(event) {
-      if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
-      // Back Forward Cache로 브라우저가 로딩될 경우 혹은 브라우저 뒤로가기 했을 경우
-      alert("발생!");
-     
-    }
-}
-    
+
     var sock = new SockJS("/ws/chatroom");
     var ws = Stomp.over(sock);
     var reconnect = 0;
@@ -110,6 +99,7 @@ window.onpageshow = function(event) {
             message: '',
             messages: [],
             chatrooms: []
+            
         },
         created() {
             this.roomId = localStorage.getItem('wschatroom.roomId');
@@ -135,9 +125,7 @@ window.onpageshow = function(event) {
             },
             //이게 내가 만들고 있는 것() 
             exitHere: function(){
-            	disconnect();
-            	
-            	
+            	disconnect();           	            	
             	console.log(this.roomName); //roomName을 제대로 받아오고 있는 것 확인           	
             	var params = new URLSearchParams();
                 params.append("name",this.roomId);
@@ -145,16 +133,11 @@ window.onpageshow = function(event) {
                 axios.post("/chatroom/eraseit", params)               
                 .then(
                         response => {
-                            alert("삭제 성공적")                                
-                           	
-                                                               
-                                window.location.href="/chatroom/room"
-                            
+                            alert("삭제 성공적")                                                          	                                                               
+                                window.location.href="/chatroom/room"                           
                         }
                     )
-                    .catch( response => { alert("삭제 실패"); } );
-            	
-            	
+                    .catch( response => { alert("삭제 실패"); } );            	           	
             },
             printit:function(){
             	console.log(this.roomMaker);
@@ -165,6 +148,41 @@ window.onpageshow = function(event) {
             	else{
             		console.log("일치하지 않는다");
             	}
+            },
+            //나가기 버튼 눌렀을 때 일어나는 일
+            getout:function(){
+            	ws.subscribe("/topic/chatroom/room/"+vm.$data.roomId).unsubscribe();            	
+            	ws.disconnect();
+            	
+            	axios.get("/chatroom/room/exit/"+this.roomId)
+            	.then(
+                        response => {                                             
+                            console.log(response.data);
+                            if(response.data ==0){
+                            	//남아 있는 사람이 없기에 방을 폭파해야하는 경우
+                            	alert("방을 폭파합니다");
+                            	var params = new URLSearchParams();
+                                params.append("name",this.roomId);
+                                              
+                                axios.post("/chatroom/eraseit", params)               
+                                .then(
+                                        response => {
+                                            alert("삭제 성공적")                                                          	                                                               
+                                                window.location.href="/chatroom/room"                           
+                                        }
+                                    )
+                                    .catch( response => { alert("삭제 실패"); } ); 
+                            }
+                            else{
+                            	//남아 있는 사람이 있기에 그냥 나간다.
+                            	alert("나만 조용히 나갑니다");
+                            	window.location.href="/chatroom/room"    
+                            }
+                                                          
+                        }
+                    )
+                    .catch( response => { alert("입장 실패"); } );
+            	
             }
             
             

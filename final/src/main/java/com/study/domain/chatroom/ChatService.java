@@ -61,15 +61,20 @@ public class ChatService {
     	
     }
     
-    //입장인원 조회
+    //입장인원 추가
     public void updateParticipant(String roomId) {
-    	int a= chatRooms.get(roomId).getParticipant();
-    	System.out.println(a+"번째");  	
+    	int a= chatRooms.get(roomId).getParticipant();    	  	
     	a+=1;
+    	chatRooms.get(roomId).setParticipant(a);    	      
+    	
+    }
+    
+    //입장인원 없애기
+    public int minusParticipant(String roomId) {
+    	int a= chatRooms.get(roomId).getParticipant();   		
+    	a-=1;
     	chatRooms.get(roomId).setParticipant(a);
-    	
-        
-    	
+    	return a;
     }
 
 }

@@ -15,18 +15,6 @@ public class ChatController {
 	@Autowired
 	ChatHandler howMany;
 
-	//1번째
-	//@GetMapping("/chat/chat")
-	//public String method1(HttpServletRequest request) throws Exception{
-		//HttpSession session=request.getSession();
-		//if(session!=null) {
-			//return "redirect:/success";
-		//}
-		//else {
-		//	return"redirect:/fail";
-		//}		
-	//}
-	//2번쨰
 	@GetMapping("/chat/chat")
 	public String method2(HttpServletRequest request,Model model) throws Exception{
 		HttpSession session=request.getSession();
