@@ -92,6 +92,48 @@
 			<script src="/webjars/vue/2.5.16/dist/vue.min.js"></script>
 			<script src="/webjars/axios/0.17.1/dist/axios.min.js"></script>
 			<script>
+			   window.onpageshow = function(event) {
+			       if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+			    	 	
+			    	 	this.roomId=localStorage.getItem('wschatroom.roomId');
+			    	 	axios.get("/chatroom/room/exit/"+this.roomId)
+		            	.then(
+		                        response => {                                             
+		                            console.log(response.data);
+		                            if(response.data ==0){
+		                            	//남아 있는 사람이 없기에 방을 폭파해야하는 경우
+		                            	alert("방을 폭파합니다");
+		                            	var params = new URLSearchParams();
+		                                params.append("name",this.roomId);
+		                                              
+		                                axios.post("/chatroom/eraseit", params)               
+		                                .then(
+		                                        response => {
+		                                            alert("삭제 성공적")                                                          	                                                               
+		                                                window.location.href="/chatroom/room"                           
+		                                        }
+		                                    )
+		                                    .catch( response => { alert("삭제 실패"); } ); 
+		                            }
+		                            else{
+		                            	//남아 있는 사람이 있기에 그냥 나간다.
+		                            	/* alert("나만 조용히 나갑니다"); */
+		                            	window.location.href="/chatroom/room"    
+		                            }
+		                                                          
+		                        }
+		                    )
+		                    .catch( response => { alert("입장 실패"); } );
+			       }
+			       else{
+			        
+			       }
+			   }
+			
+			
+			
+			
+			
     var vm = new Vue({
         el: '#app',
         data: {

@@ -160,14 +160,14 @@
                             console.log(response.data);
                             if(response.data ==0){
                             	//남아 있는 사람이 없기에 방을 폭파해야하는 경우
-                            	alert("방을 폭파합니다");
+                            	/* alert("방을 폭파합니다"); */
                             	var params = new URLSearchParams();
                                 params.append("name",this.roomId);
                                               
                                 axios.post("/chatroom/eraseit", params)               
                                 .then(
                                         response => {
-                                            alert("삭제 성공적")                                                          	                                                               
+                                            /* alert("삭제 성공적")   */                                                        	                                                               
                                                 window.location.href="/chatroom/room"                           
                                         }
                                     )

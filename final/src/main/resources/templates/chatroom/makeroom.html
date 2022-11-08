@@ -57,44 +57,40 @@
 	<script src="/webjars/vue/2.5.16/dist/vue.min.js"></script>
 	<script src="/webjars/axios/0.17.1/dist/axios.min.js"></script>
 	<script>
-	   window.onpageshow = function(event) {
-	       if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
-	    	 	
-	    	 	this.roomId=localStorage.getItem('wschatroom.roomId');
-	    	 	axios.get("/chatroom/room/exit/"+this.roomId)
-            	.then(
-                        response => {                                             
-                            console.log(response.data);
-                            if(response.data ==0){
-                            	//남아 있는 사람이 없기에 방을 폭파해야하는 경우
-                            	alert("방을 폭파합니다");
-                            	var params = new URLSearchParams();
-                                params.append("name",this.roomId);
-                                              
-                                axios.post("/chatroom/eraseit", params)               
-                                .then(
-                                        response => {
-                                            alert("삭제 성공적")                                                          	                                                               
-                                                window.location.href="/chatroom/room"                           
-                                        }
-                                    )
-                                    .catch( response => { alert("삭제 실패"); } ); 
-                            }
-                            else{
-                            	//남아 있는 사람이 있기에 그냥 나간다.
-                            	alert("나만 조용히 나갑니다");
-                            	window.location.href="/chatroom/room"    
-                            }
-                                                          
-                        }
-                    )
-                    .catch( response => { alert("입장 실패"); } );
-	       }
-	       else{
-	          alert("들어오면?");
-	       }
-	   }
-		
+
+	window.onpageshow = function(event) {
+	    this.roomId=localStorage.getItem('wschatroom.roomId');
+	    if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+	    	deleteChatRoom();
+	        
+	    }
+	}
+
+	let deleteChatRoom = async()=>{
+        try{
+            const response = await axios.get("/chatroom/room/exit/"+this.roomId)
+            if(response.data == 0){	//채팅방에 남아있는 사람이 없다면
+               try{
+                   var params = new URLSearchParams();
+                   params.append("name",this.roomId);
+                
+                   const response1= await axios.post("/chatroom/eraseit", params)	//해당채팅방 db가 아닌 서비스에서 관리하는 rooms에서 제거
+                   window.location.href="/chatroom/room"
+               }
+               catch{
+
+               }
+
+            }
+            else{
+                window.location.href="/chatroom/room"
+            }
+        }
+        catch{
+        }
+    }
+
+
 	
     var vm = new Vue({
         el: '#app',
