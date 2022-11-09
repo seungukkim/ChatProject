@@ -1,0 +1,203 @@
+body {
+  background: radial-gradient(200% 100% at bottom center, #f7f7b6, #e96f92, #75517d, #1b2947);
+  background: radial-gradient(220% 105% at top center, #1b2947 10%, #75517d 40%, #e96f92 65%, #f7f7b6);
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+@keyframes rotate {
+  0% {
+    transform: perspective(400px) rotateZ(20deg) rotateX(-40deg) rotateY(0);
+  }
+  100% {
+    transform: perspective(400px) rotateZ(20deg) rotateX(-40deg) rotateY(-360deg);
+  }
+}
+.stars {
+  transform: perspective(500px);
+  transform-style: preserve-3d;
+  position: absolute;
+  bottom: 0;
+  perspective-origin: 50% 100%;
+  left: 50%;
+  animation: rotate 90s infinite linear;
+}
+
+.star {
+  width: 2px;
+  height: 2px;
+  background: #F7F7B6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0 -300px;
+  transform: translate3d(0, 0, -300px);
+  backface-visibility: hidden;
+}
+
+
+/* 카드 3개 만들기 */
+.card {
+  position: relative;
+  width: 80vw;
+  height: 60vh;
+  top: 28vh;
+  left: 15vw;
+  border-radius: 30px;
+  perspective: 1000px;
+}
+
+.card1{
+  position: relative;
+  width: 20vw;
+  height: 48vh;
+  display: inline-block;
+  border-radius: 30px;
+  background-size: cover;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  animation-fill-mode: forwards;
+  cursor: pointer;
+}
+
+.card2{
+  position: absolute;
+  left: 25vw;
+  width: 20vw;
+  height: 48vh;
+  display: inline-block;
+  background-size: cover;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  animation-fill-mode: forwards;
+  cursor: pointer;
+}
+
+.card3{
+  position: absolute;
+  left: 50vw;
+  width: 20vw;
+  height: 48vh;
+  border-radius: 50px;
+  display: inline-block;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  animation-fill-mode: forwards;
+  cursor: pointer;
+}
+
+.card img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  border: 1px solid #DCCFEC;
+}
+
+.front1, .front2, .front3, .back1, .back2, .back3 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  animation-name: "";
+  animation-duration: 0.7s;
+  animation-fill-mode: forwards;
+}
+
+.front1, .front2, .front3{
+  opacity: 0.75;
+}
+
+.front1:hover, .front2:hover, .front3:hover{
+  transform: translate(0,-5%);
+  transition: 0.3s;
+  opacity: 1;
+}
+
+.back1, .back2, .back3 {
+  background-color: #DCCFEC;
+  transform: rotateY(180deg);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+}
+
+
+@keyframes opacity {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 0.75;
+  }
+}
+
+@keyframes transparent {
+  from{
+    opacity: 0.75;
+  }
+  to{
+    opacity: 0;
+  }
+}
+
+@keyframes bigger {
+  from{
+    width: 100%;
+    height: 100%;
+  }
+  to{
+    transform: translate(-5.5vh, 5vw);
+    width: 60vw;
+    height: 60vh;
+  }
+}
+/* ---------------- */
+/* 휴식방법 상자 */
+.resttime{
+  background-color: #DCCFEC;
+  position: fixed;
+  width: 60vw;
+  height: 60vh;
+  top: 22.5vh;
+  left: 20vw;
+  border-radius: 50px;
+  opacity: 0;
+  z-index: -1;
+}
+
+.resttime img{
+  background-color: #6c5b7b;
+  position: absolute;
+  width: 45%;
+  height: 80%;
+  top: 10%;
+  left: 5%;
+  border-radius: 15px;
+}
+
+@font-face {
+  font-family: 'RIDIBatang';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.resttime #text {
+  font-family: 'RIDIBatang';
+  font-size: 20px;
+  background-color: #393e46;
+  display: inline-block;
+  position: absolute;
+  width: 40%;
+  height: 45%;
+  top: 15%;
+  left: 55%;
+}
