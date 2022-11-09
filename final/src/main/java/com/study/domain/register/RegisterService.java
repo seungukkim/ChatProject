@@ -32,12 +32,12 @@ public class RegisterService {
 	    	return registerMapper.login(params);
 	    	}
 	    
-			
-		public RegisterResponse testit(final RegisterRequest params) { 
+		//처음 로그인할 때 로그인 검증 용도
+		public RegisterResponse loginVerify(final RegisterRequest params) { 
 			System.out.println("이게 service");
 			System.out.println(params);
-			System.out.println(registerMapper.testit(params));
-			return registerMapper.testit(params); }
+			System.out.println(registerMapper.loginVerify(params));
+			return registerMapper.loginVerify(params); }
 		
 		
 		public Integer idconfig(final RegisterRequest params) {

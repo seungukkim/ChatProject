@@ -53,8 +53,8 @@
     
 
     
-
-    <select id="testit"  resultType="com.study.domain.register.RegisterResponse">
+	<!-- 로그인 검증 용도 -->
+    <select id="loginVerify"  resultType="com.study.domain.register.RegisterResponse">
         SELECT 
         	<include refid="registerColumns" />
         FROM

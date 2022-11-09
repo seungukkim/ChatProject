@@ -18,78 +18,85 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RegisterController {
 	private final RegisterService registerService;
-	
-	// 첫 페이지
-	//@GetMapping("/register/first")
-	//public String openRegisterpage1() {
-		// 어차피 그냥 회원가입 페이지니까 아무것도 받을 필요가 없지
-		//return "register/first";
-	//}
-	
-	 @GetMapping("/register/first")
-	 public String openRegisterpage2() throws Exception{
-		
 
-        return "register/first";
-    }
-	 
-	 @GetMapping("/register/mypage")
-	 public String openmypage() throws Exception{
-		
+	// 들어간 이후 첫 페이지
+	@GetMapping("/register/main")
+	public String mainPage() throws Exception {
+		return "register/main";
+	}
 
-        return "register/mypage";
-    }
-	 //탈퇴하기
-	 @GetMapping("/register/resign")
-	 public String resign() throws Exception{
-		
+	// 로그인 정보를 받고 그 다음 단계로 넘어가기 위한 중간단계
+	@PostMapping("/register/loginVerify")
+	public String loginVerify(final RegisterRequest params, HttpServletRequest request, RedirectAttributes rttr) {
+		HttpSession session = request.getSession();
+		RegisterResponse info = registerService.loginVerify(params);
 
-        return "register/resign";
-    }
-	 
-	 //닉네임 바꾸기 화면
-	 @GetMapping("/register/rename")
-	 public String rename() throws Exception{		
-        return "register/rename";
-    }
-	 	 
-	 //우왕!!
-	 
-	 
-	 
+		// 만약에 info에 값이 들어있다면?(로그인을 완료해서 info안에 값이 들어가 있다면) 코드를 실행한다.
+		if (info != null) {
+			session.setAttribute("info", info);
+			return "redirect:/register/main";
+		}
+
+		return "redirect:/register/loginfail";
+
+	}
+
+	// 로그아웃 구현 (session에 있는 값을 삭제한다)
 	@GetMapping("/register/logout")
 	public String logout(SessionStatus sessionStatus) {
+		// session 값을 초기화하는 코드
 		sessionStatus.setComplete();
-		return "redirect:/register/first"; 
+		return "redirect:/register/main";
 	}
-	
-	
-	
-	
-	
-	//@PostMapping("/register/first") 
-	  //public String test1(@SessionAttribute(name="info", required=false) RegisterResponse info,Model model) { 
-		  //model.addAttribute("info",info);
 
-	  //return "register/first"; }
+	// 회원&로그인 페이지
+		@GetMapping("/register/finalLogin")
+		public String finalLogin() {
+			return "register/finalLogin";
+		}
 	
 	
-	// @GetMapping("/chat/chat")
-	    //public String chatGET(HttpServletRequest request) throws Exception{
-			//HttpSession session=request.getSession();
-			//String name = (String)session.getAttribute("info.userId");
-			//System.out.println(name);
-	        //System.out.println("@ChatController, chat GET()");
-	        //return "chat/chat";
-	    //}
 	
+	
+	
+	
+	
+	// 로그인 이후 들어갈 화면
+	@GetMapping("/register/secondMain")
+	public String secondMain() throws Exception {
+		return "register/secondMain";
+	}
+
+	@GetMapping("/register/first")
+	public String openRegisterpage2() throws Exception {
+		return "register/first";
+	}
+
+	@GetMapping("/register/mypage")
+	public String openmypage() throws Exception {
+
+		return "register/mypage";
+	}
+
+	// 탈퇴하기
+	@GetMapping("/register/resign")
+	public String resign() throws Exception {
+
+		return "register/resign";
+	}
+
+	// 닉네임 바꾸기 화면
+	@GetMapping("/register/rename")
+	public String rename() throws Exception {
+		return "register/rename";
+	}
+
 	// 회원가입페이지
 	@GetMapping("/register/register")
 	public String openRegisterpage() {
 		// 어차피 그냥 회원가입 페이지니까 아무것도 받을 필요가 없지
 		return "register/register";
 	}
-	
 
 	// 로그인 페이지
 	@GetMapping("/register/login")
@@ -104,20 +111,9 @@ public class RegisterController {
 		registerService.saveRegister(params);
 		return "redirect:/register/login";
 	}
-	//아이디와 비밀번호가 맞는지
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	// 아이디와 비밀번호가 맞는지
 
-	//integer를 반환받는 방식으로 로그인 자체만을 구현하기 위한 것.
+	// integer를 반환받는 방식으로 로그인 자체만을 구현하기 위한 것.
 	@PostMapping("/register/confirm")
 	public String loginsuccess(final RegisterRequest params) {
 
@@ -126,78 +122,51 @@ public class RegisterController {
 		}
 		return "redirect:/register/loginfail";
 	}
-	
-	//로그인 정보를 받고 그 다음 단계로 넘어가기 위한 중간단계
-	  @PostMapping("/register/middle1")
-	  public String testit(final RegisterRequest params,HttpServletRequest request,RedirectAttributes rttr) { 
-		  HttpSession session = request.getSession();
-		  RegisterResponse info = registerService.testit(params);
-		  
-		
-		  if(info!=null) { 
-			  session.setAttribute("info", info); 
-			  return "redirect:/register/first";
-		} 
-	  
-	  return "redirect:/register/loginfail";
-	  
-	  }
 
-		
-	  //아이디중복검사용
-	  @PostMapping("/register/checkid")
-	  @ResponseBody
-	  public int idCheck(final RegisterRequest params) {
-		  
-	      
-	      int cnt = registerService.idconfig(params);
-	      System.out.println(cnt);
-	      return cnt;
-	  }
-	  
-	  //탈퇴할 때 아이디와 비밀번호가 매칭되는지 확인하기 위해
-	  @PostMapping("register/bothconfig")
-	  @ResponseBody
-	  public int bothconfig(final RegisterRequest params) {
-		  int cnt = registerService.bothconfig(params);
-		  System.out.println(cnt);
-		  return cnt;
-	  }
-	  
-	  
-	//탈퇴하기 구현
-	  @PostMapping("/register/delete")
-	  @ResponseBody
-	  public int delete(final RegisterRequest params) {
-		  	int cnt = registerService.delete(params);
-	      if(cnt==1) {
-	    	  return 1;
-	      }
-	      
-	      else {
-	    	  return 0;
-	      }
-	      
-	  }
-	  //닉네임 바꾸기 구현
-	  @PostMapping("/register/changename")
-	  @ResponseBody
-	  public int changename(final RegisterRequest params) {
-		  int cnt = registerService.changename(params);
-		  if(cnt==1) {
-			  return 1;
-		  }
-		  else {
-			  return 0;
-		  }
-	  }
-	
-	 
-	 
-	  
-		
-		  
-		 
-	  
-	 
+	// 아이디중복검사용
+	@PostMapping("/register/checkid")
+	@ResponseBody
+	public int idCheck(final RegisterRequest params) {
+
+		int cnt = registerService.idconfig(params);
+		System.out.println(cnt);
+		return cnt;
+	}
+
+	// 탈퇴할 때 아이디와 비밀번호가 매칭되는지 확인하기 위해
+	@PostMapping("register/bothconfig")
+	@ResponseBody
+	public int bothconfig(final RegisterRequest params) {
+		int cnt = registerService.bothconfig(params);
+		System.out.println(cnt);
+		return cnt;
+	}
+
+	// 탈퇴하기 구현
+	@PostMapping("/register/delete")
+	@ResponseBody
+	public int delete(final RegisterRequest params) {
+		int cnt = registerService.delete(params);
+		if (cnt == 1) {
+			return 1;
+		}
+
+		else {
+			return 0;
+		}
+
+	}
+
+	// 닉네임 바꾸기 구현
+	@PostMapping("/register/changename")
+	@ResponseBody
+	public int changename(final RegisterRequest params) {
+		int cnt = registerService.changename(params);
+		if (cnt == 1) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
 }
