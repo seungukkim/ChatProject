@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 public class RegisterService {
 	private final RegisterMapper registerMapper;
 	
+	//회원가입 할 때!
 	 @Transactional
 	    public void saveRegister(final RegisterRequest params) {
 	        registerMapper.register(params);

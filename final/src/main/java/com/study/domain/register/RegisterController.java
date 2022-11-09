@@ -50,17 +50,18 @@ public class RegisterController {
 	}
 
 	// 회원&로그인 페이지
-		@GetMapping("/register/finalLogin")
-		public String finalLogin() {
-			return "register/finalLogin";
-		}
-	
-	
-	
-	
-	
-	
-	
+	@GetMapping("/register/finalLogin")
+	public String finalLogin() {
+		return "register/finalLogin";
+	}
+
+	// 회원가입 이후 정보가 db로 전달되기 위한 필요한 것
+	@PostMapping("/register/save")
+	public String saveRegister(final RegisterRequest params) {
+		registerService.saveRegister(params);
+		return "redirect:/register/finalLogin";
+	}
+
 	// 로그인 이후 들어갈 화면
 	@GetMapping("/register/secondMain")
 	public String secondMain() throws Exception {
@@ -105,12 +106,6 @@ public class RegisterController {
 		return "register/login";
 	}
 
-	// 회원가입 이후 정보가 db로 전달되기 위한 필요한 것
-	@PostMapping("/register/save")
-	public String saveRegister(final RegisterRequest params) {
-		registerService.saveRegister(params);
-		return "redirect:/register/login";
-	}
 	// 아이디와 비밀번호가 맞는지
 
 	// integer를 반환받는 방식으로 로그인 자체만을 구현하기 위한 것.
