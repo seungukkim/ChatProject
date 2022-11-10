@@ -24,12 +24,15 @@ let card3 = document.querySelector('.card3');
 let front1 = document.querySelector('.front1');
 let front2 = document.querySelector('.front2');
 let front3 = document.querySelector('.front3');
+let back1 = document.querySelector('.back1');
 card1.addEventListener('click', click);
 card2.addEventListener('click', click);
 card3.addEventListener('click', click);
 
 
-
+function delay(){
+  back1.style.animationName = 'test1';
+}
 
 function click(event) {
   let elem = event.currentTarget;
@@ -37,6 +40,8 @@ function click(event) {
   //부모 객체의 자식들 배열 가져옴
   //클릭한 요소는 위에서 가져옴
   //배열에서 클릭한 요소 빼고, 배열의 요소들을 dom에서 제거
+
+  // 카드가 뒷면일때
   if (elem.style.transform == "rotateY(180deg)") {
     elem.style.transform = "rotateY(0deg)";
     switch (className) {
@@ -59,13 +64,17 @@ function click(event) {
         front2.style.animationName = 'opacity';
         break;
     }
-    
-  } else {
+  } 
+  // 카드가 앞면일때
+  else {
     elem.style.transform = "rotateY(180deg)";
     switch (className) {
       case 'card1':
         front2.style.animationName = 'transparent';
         front3.style.animationName = 'transparent';
+        setTimeout(function(){
+          back1.style.animationName = 'test1';
+        },1000);
         break;
       case 'card2':
         front1.style.animationName = 'transparent';
@@ -77,14 +86,4 @@ function click(event) {
         break;
     }
   }
-  
-
-  let card1 = document.querySelector(".card1");
-  // console.log(card1.style);
-  // if (card1.style.left == "") {
-  //   card1.style.left = "20vw";
-  // }
-  // else {
-  //   card1.style.left = "";
-  // }
 }
