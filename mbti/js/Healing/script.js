@@ -18,72 +18,40 @@ $(document).ready(function () {
   })
 })
 
-let card1 = document.querySelector('.card1');
-let card2 = document.querySelector('.card2');
-let card3 = document.querySelector('.card3');
-let front1 = document.querySelector('.front1');
-let front2 = document.querySelector('.front2');
-let front3 = document.querySelector('.front3');
-let back1 = document.querySelector('.back1');
-card1.addEventListener('click', click);
-card2.addEventListener('click', click);
-card3.addEventListener('click', click);
-
+let card = document.querySelectorAll('.card');
+let toBack = document.querySelector('#toBack');
+let front = document.querySelectorAll('.front');
+let back = document.querySelectorAll('.back');
+console.log(front);
+front.forEach(element => {
+  element.addEventListener('click', click);
+});
 
 function delay(){
   back1.style.animationName = 'test1';
 }
 
 function click(event) {
-  let elem = event.currentTarget;
-  var className = $(elem).attr('class');
+  var elem = event.currentTarget;
+  var className = $(elem).attr('class'); 
   //부모 객체의 자식들 배열 가져옴
   //클릭한 요소는 위에서 가져옴
   //배열에서 클릭한 요소 빼고, 배열의 요소들을 dom에서 제거
 
-  // 카드가 뒷면일때
-  if (elem.style.transform == "rotateY(180deg)") {
-    elem.style.transform = "rotateY(0deg)";
-    switch (className) {
-      case 'card1':
-        front2.style.animationName = '';
-        front2.style.animationName = 'opacity';
-        front3.style.animationName = '';
-        front3.style.animationName = 'opacity';
-        break;
-      case 'card2':
-        front1.style.animationName = '';
-        front1.style.animationName = 'opacity';
-        front3.style.animationName = '';
-        front3.style.animationName = 'opacity';
-        break;
-      case 'card3':
-        front1.style.animationName = '';
-        front1.style.animationName = 'opacity';
-        front2.style.animationName = '';
-        front2.style.animationName = 'opacity';
-        break;
-    }
-  } 
   // 카드가 앞면일때
-  else {
     elem.style.transform = "rotateY(180deg)";
-    switch (className) {
-      case 'card1':
-        front2.style.animationName = 'transparent';
-        front3.style.animationName = 'transparent';
-        setTimeout(function(){
-          back1.style.animationName = 'test1';
-        },1000);
-        break;
-      case 'card2':
-        front1.style.animationName = 'transparent';
-        front3.style.animationName = 'transparent';
-        break;
-      case 'card3':
-        front1.style.animationName = 'transparent';
-        front2.style.animationName = 'transparent';
-        break;
-    }
-  }
+    document.querySelector(".resttime").style.zIndex = '0';
 }
+// 주어.행동()
+// 행동(목적어)
+// 행동(); 
+//안에서 누구에게 행동할건지를 정의해줘야하니까 하드코딩이 되는거고
+
+function toback(asdf) {
+  elem.style.transform = "rotateY(0deg)";
+
+}
+
+
+// 1. 클릭했을때 클릭한 객체 가져오는 함수 연동
+// 1. 클릭한 객체 가져오는 함수 구현

@@ -38,13 +38,4 @@ function click(event) {
   } else {
     elem.style.transform = "rotateY(180deg)";
   }
-
-  let card1 = document.querySelector(".card1");
-  // console.log(card1.style);
-  // if (card1.style.left == "") {
-  //   card1.style.left = "20vw";
-  // }
-  // else {
-  //   card1.style.left = "";
-  // }
 }
