@@ -33,7 +33,7 @@ public interface PostMapper {
      * @param id - PK
      */
     void deleteById(Long id);
-
+    
     /**
      * 게시글 리스트 조회
      * @return 게시글 리스트
@@ -50,5 +50,21 @@ public interface PostMapper {
      * @return 게시글 수
      */
     void viewCount(Long id);
+    
+    /**
+     * 댓글 등록
+     * @return 댓글 등록 성공 여부
+     * 성공하면 1반환 그렇지 않으면 0반환?
+     */
+    int commentRegister(PostRequest params);
+    
+    
+    /**
+     * 게시글 수 카운팅
+     * @return 게시글 수
+     */
+    List<PostResponse> findallComment(Long id);
+   
+  
 
 }

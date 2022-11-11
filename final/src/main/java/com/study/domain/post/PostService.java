@@ -73,5 +73,26 @@ public class PostService {
         List<PostResponse> list = postMapper.findAll(params);
         return new PagingResponse<>(list, pagination);
     }
+    
+    
+    /**
+     * 댓글 저장
+     * @param params - 댓글 작성자, 댓글 내용
+     * @return 제대로 들어갔는지 안 들어갔는지 확인
+     */
+    @Transactional
+    public int commentRegister(final PostRequest params) {
+        int result= postMapper.commentRegister(params);
+        return result;
+    }
+    
+    
+    /**
+     * 게시글 리스트 조회
+     * @return 게시글 리스트
+     */
+    public List<PostResponse> findallComment(final Long id) {
+        return postMapper.findallComment(id);
+    }
 
 }
