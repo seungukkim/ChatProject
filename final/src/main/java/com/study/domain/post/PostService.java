@@ -94,5 +94,11 @@ public class PostService {
     public List<PostResponse> findallComment(final Long id) {
         return postMapper.findallComment(id);
     }
+    
+    @Transactional
+    public int commentDelete(final PostRequest params) {
+    	int result = postMapper.commentDelete(params);
+    	return result;
+    }
 
 }

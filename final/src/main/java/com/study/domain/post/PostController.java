@@ -137,6 +137,14 @@ public class PostController {
  		return cnt;
  	}
  	
+ 	//댓글 삭제용도
+ 	@PostMapping("/post/commentDelete")
+ 	@ResponseBody
+ 	public int commentDelete(final PostRequest params) {
+ 		System.out.println("컨트롤러 실행완료");
+ 		int cnt = postService.commentDelete(params);
+ 		return cnt;
+ 	}
  	
  	
  	

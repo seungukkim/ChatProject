@@ -81,7 +81,7 @@
 				method="post">
 				<div class="input-group margin-bottom-20">
 					<input type="text" id="comment" class="form-control"
-						placeholder="이거거든~">
+						placeholder="">
 					<div class="input-group-btn">
 						<button type="button" class="btn waves-effect waves-light"
 							onclick="commentRegister();">
@@ -90,18 +90,14 @@
 					</div>
 				</div>				
 				<ul class="notice-list">
-                        <li>
-                            <span class="name">Betty Simmons</span>
-                            <span class="desc">There are new settings available</span>
-                            <span class="time">2019.03.26</span>
-                            <button type="button" class="btn btn-xs btn-circle"><i class="fa fa-close" aria-hidden="true"></i></button>
+                        <li th:each ="row :${commentPost}">
+                            <span th:text="${row.commentWriter}"class="name"></span>
+                            <span th:text="${row.comment}" class="desc"></span>
+                            <span th:text="${row.commentDate}" class="time"></span>
+                            <button type="button" class="btn btn-xs btn-circle" th:onclick="commentDelete([[${row.commentDate}]]);"><i class="fa fa-close" aria-hidden="true"></i></button>
                         </li>
-                        <li>
-                            <span class="name">Betty Kim</span>
-                            <span class="desc">There are new settings available</span>
-                            <span class="time">2019.03.15</span>
-                            <button type="button" class="btn btn-xs btn-circle"><i class="fa fa-close" aria-hidden="true"></i></button>
-                        </li>
+                        
+
                   </ul>
 
 			</form>
@@ -148,13 +144,15 @@
             
             // 게시글 수정 페이지로 이동
             function goWritePage() {
+            	
                 location.href = '/post/write' + location.search;
             }
             
           
     		function commentRegister() {
+    			
     			let commentId = [[ ${post.id} ]];
-    			let commentWriter = [[ ${post.writer} ]];
+    			let commentWriter = '[(${info.userName})]'; 
     			let comment = $('#comment').val(); //id값이 "comment"인 입력란의 값을 저장
 
     			/* ajax로 구현 */
@@ -169,7 +167,7 @@
     				success : function(outcome) {//성공하면 해당 함수를 실행한다.
     					console.log(outcome); // 받아온 값이 무엇인지 확인(값을 제대로 받고 있는지 확인용)
     					if (outcome == 1) { // 내가 받아온 값이 1이라면, 즉 db에 이미 해당 아이디가 존재한다면
-    						alert("성공적으로 댓글 등록");
+    						window.location.reload();
     					} else {
     						alert("댓글 등록 실패.");
     						
@@ -180,11 +178,37 @@
     				}
     			});
     		}
-
+	
+    		
+         /*   const commentDelete = (commentDate)=>{
+        	   
+        	   console.log(commentDate);
+           } */
             
-            
-            
-
+		
+           //댓글 삭제용도
+           function commentDelete(commentDate){
+        	   console.log(commentDate);
+        	   $.ajax({
+   				url : '/post/commentDelete', //Controller에서 인식할 주소
+   				type : 'post', //POST 방식으로 전달
+   				data : {
+   					commentDate : commentDate   					
+   				},
+   				success : function(outcome) {//성공하면 해당 함수를 실행한다.
+   					console.log(outcome); // 받아온 값이 무엇인지 확인(값을 제대로 받고 있는지 확인용)
+   					if (outcome == 1) { // 내가 받아온 값이 1이라면, 즉 db에 이미 해당 아이디가 존재한다면
+   						alert("댓글 삭제 성공.");
+   					} else {
+   						alert("댓글 삭제 실패.");
+   						
+   					}
+   				},
+   				error : function() {
+   					alert("에러입니다");
+   				}
+   			});
+           }
         /*]]>*/
         </script>
 </th:block>

@@ -172,5 +172,12 @@
 	</select>
 	
 	
+	<!-- 게시글 삭제 -->
+	<delete id="commentDelete">
+		DELETE
+		FROM
+		tb_comment
+		WHERE commentDate = #{value}
+	</delete>
 
 </mapper>

@@ -41,7 +41,7 @@ public class RegisterService {
 			return registerMapper.loginVerify(params); }
 		
 		
-		public Integer idconfig(final RegisterRequest params) {
+		public int idconfig(final RegisterRequest params) {
 			return registerMapper.idconfig(params);
 		}
 		//아이디 삭제 구현

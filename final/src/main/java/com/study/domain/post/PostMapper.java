@@ -65,6 +65,7 @@ public interface PostMapper {
      */
     List<PostResponse> findallComment(Long id);
    
-  
+    
+    int commentDelete(PostRequest params);
 
 }
