@@ -18,6 +18,7 @@
 
 	<!-- tb_comment 테이블 전체 컬럼 -->
 	<sql id="commentColumns">
+		commentIdentifier,
 		commentId,
 		commentWriter,
 		comment,
@@ -150,17 +151,18 @@
 
 
 	<!-- 댓글 저장 -->
-	<insert id="commentRegister">
+	<insert id="commentRegister" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO tb_comment (
 		<include refid="commentColumns" />
 		) VALUES (
+		#{commentIdentifier},
 		#{commentId},
 		#{commentWriter}
 		, #{comment}
 		, NOW()
 		)
 	</insert>
-	
+		
 	<!-- 댓글 리스트 조회 -->
 	<select id="findallComment" parameterType="long" resultType="com.study.domain.post.PostResponse">
 		SELECT
@@ -177,7 +179,8 @@
 		DELETE
 		FROM
 		tb_comment
-		WHERE commentDate = #{value}
+		WHERE commentId = #{commentId}
+		AND commentIdentifier = #{commentIdentifier}
 	</delete>
 
 </mapper>

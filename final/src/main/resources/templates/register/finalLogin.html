@@ -80,46 +80,70 @@
 												<h4 class="mb-4 pb-3">회원가입</h4>
 												<!-- 회원가입 - 아이디 -->
 												<div class="form-group">
-													<input type="text" name="userId" class="form-style"
-														placeholder="아이디를 입력해주세요" id="userId" autocomplete="off">
-
-													<i class="input-icon uil uil-user"></i>
+													<input type="text" name="registerId" class="form-style"
+														placeholder="아이디를 입력해주세요" id="registerId" autocomplete="off">
+								
+													<i class="input-icon uil uil-user">
+													<button type="button" onclick="checkId()"class="ID-Check" name="dbCheckId"><p style="font-size: 11px;">중복확인</p></button>
+													</i>
 												</div>
 
 
 
 												<!-- 회원가입 -비밀번호 -->
 												<div class="form-group mt-2">
-													<input type="password" name="userPw" class="form-style"
-														placeholder="비밀번호를 입력해주세요" id="userPw" autocomplete="off">
+													<input type="password" name="registerPw" class="form-style"
+														placeholder="비밀번호를 입력해주세요" id="registerPw" autocomplete="off">
 													<i class="input-icon uil uil-lock-alt"></i>
 												</div>
 
 												<!-- 회원가입 - 닉네임 -->
 												<div class="form-group mt-2">
-													<input type="text" name="userName" class="form-style"
-														placeholder="닉네임을 입력해주세요" id="userName" autocomplete="off">
-													<i class="input-icon uil uil-user"></i>
+													<input type="text" name="registerName" class="form-style"
+														placeholder="닉네임을 입력해주세요" id="registerName" autocomplete="off">
+													<i class="input-icon uil uil-user">
+													<button type="button" onclick="checkNickName()"class="ID-Check" name="dbCheckNickName"><p style="font-size: 11px;">중복확인</p></button>
+													</i>
 												</div>
 
 												<!-- 회원가입 - MBTI -->
 												<div class="form-group mt-2">
-													<input type="text" name="userMbti" class="form-style"
-														placeholder="MBTI를 입력해주세요" id="userMbti"
-														autocomplete="off"> <i
-														class="input-icon uil uil-user"></i>
+													<div class="MbtiTable">
+													<i class="input-icon uil uil-user">
+													<select name="MbtiOption" class="select">
+														<option disabled selected>MBTI</option>
+														<option value="ISTJ">ISTJ</option>
+														<option value="ISFJ">ISFJ</option>
+														<option value="INFJ">INFJ</option>
+														<option value="INTJ">INTJ</option>
+														<option value="ISTP">ISTP</option>
+														<option value="ISFP">ISFP</option>
+														<option value="INFP">INFP</option>
+														<option value="INTP">INTP</option>
+														<option value="ESTP">ESTP</option>
+														<option value="ESFP">ESFP</option>
+														<option value="ENFP">ENFP</option>
+														<option value="ENTP">ENTP</option>
+														<option value="ESTJ">ESTJ</option>
+														<option value="ESFJ">ESFJ</option>
+														<option value="ENFJ">ENFJ</option>
+														<option value="ENTJ">ENTJ</option>
+													</select>
+													<span class="icoArrow"><img src="https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png" alt=""></span>
+													</i>
+													<button type="button" onclick="checkId()"class="MBTI-Check" name="dbCheckId"><p style="font-size: 11px;">MBTI 검사</p></button>
+													</div>
 												</div>
 
 												<div class="form-group mt-2">
-													<input type="email" name="userEmail" class="form-style"
-														placeholder="Email을 입력해주세요" id="userEmail"
+													<input type="email" name="registerEmail" class="form-style"
+														placeholder="Email을 입력해주세요" id="registerEmail"
 														autocomplete="off"> <i
 														class="input-icon uil uil-at"></i>
 												</div>
 
 												<button type="button" class="btn mt-4" onclick="register();">회원가입하기</button>
-												<button type="button" class="btn mt-4" onclick="checkId()"
-													name="dbCheckId">아이디 중복검사</button>
+												
 											</div>
 										</div>
 									</form>
@@ -140,33 +164,33 @@
 	/*<![CDATA[*/
 	let idConfig = 0;
 
-	// 일단 로그인
+	// 회원가입
 	function register() {
 		var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
 		var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 		// 이메일이 적합한지 검사할 정규식
-		var name = document.getElementById("userName");
+		var name = document.getElementById("registerName");
 		const form = document.getElementById('registerForm');
-		const fields = [ form.userId, form.userPw, form.userName,form.userMbti,form.userEmail ];
+		const fields = [ form.registerId, form.registerPw, form.registerName,form.registerMbti,form.registerEmail ];
 
-		if (!check(re, form.userId, "아이디는 4~12자의 영문 대소문자와 숫자로만 입력")) {
+		if (!check(re, form.registerId, "아이디는 4~12자의 영문 대소문자와 숫자로만 입력")) {
 			return false;
 		}
-		if (!check(re, form.userPw, "비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력")) {
+		if (!check(re, form.registerPw, "비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력")) {
 			return false;
 		}
-		if (!check(re2, form.userEmail, "이메일은 example@naver.com 형식을 지켜주세요")) {
+		if (!check(re2, form.registerEmail, "이메일은 example@naver.com 형식을 지켜주세요")) {
 			return false;
 		}
-		if (form.userName.value == "") {
+		if (form.registerName.value == "") {
 			alert("닉네임을 입력해주세요");
-			form.userName.focus();
+			form.registerName.focus();
 			return false;
 
 		}
 		if (idConfig == 0) {
 			alert("아아디 중복검사를 해주세요");
-			form.userId.focus();
+			form.registerId.focus();
 			return false;
 		}
 
@@ -188,7 +212,7 @@
 	//아이디 중복 확인을 위한 코드
 	function checkId() {
 
-		let id = $('#userId').val(); //id값이 "userId"인 입력란의 값을 저장
+		let id = $('#registerId').val(); //id값이 "userId"인 입력란의 값을 저장
 		console.log(id);
 
 		/* ajax로 구현 */
@@ -196,7 +220,7 @@
 			url : '/register/checkid', //Controller에서 인식할 주소
 			type : 'post', //POST 방식으로 전달
 			data : {
-				userId : id
+				registerId : id
 			},
 			success : function(outcome) {//성공하면 해당 함수를 실행한다.
 				console.log(outcome); // 받아온 값이 무엇인지 확인(값을 제대로 받고 있는지 확인용)
@@ -213,6 +237,7 @@
 		});
 	}
 	
+	//로그인 용도
     function login() {
         const form = document.getElementById('loginForm');
         const fields = [form.userId, form.userPw];

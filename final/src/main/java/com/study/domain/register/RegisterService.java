@@ -28,10 +28,6 @@ public class RegisterService {
 	        return registerMapper.findByuserno(user_no);
 	    }
 	    
-	    public Integer loginconfirm(final RegisterRequest params) {
-	    	System.out.println(registerMapper.login(params));
-	    	return registerMapper.login(params);
-	    	}
 	    
 		//처음 로그인할 때 로그인 검증 용도
 		public RegisterResponse loginVerify(final RegisterRequest params) { 

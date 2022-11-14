@@ -17,8 +17,6 @@ public interface RegisterMapper {
     RegisterResponse findByuserno(Integer userNo);
     
     
-    int login(RegisterRequest params);
-    
     //처음 로그인할 때 로그인 검증 용도
 	RegisterResponse loginVerify(RegisterRequest params); 
 	

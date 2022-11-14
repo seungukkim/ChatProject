@@ -25,4 +25,5 @@ public class PostResponse {
     private String commentWriter; // 댓글 작성자
     private String comment; //댓글 내용
     private LocalDateTime commentDate; // 댓글 생성일시
+    private Long commentIdentifier; //댓글 식별
 }

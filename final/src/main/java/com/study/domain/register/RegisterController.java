@@ -106,17 +106,7 @@ public class RegisterController {
 		return "register/login";
 	}
 
-	// 아이디와 비밀번호가 맞는지
 
-	// integer를 반환받는 방식으로 로그인 자체만을 구현하기 위한 것.
-	@PostMapping("/register/confirm")
-	public String loginsuccess(final RegisterRequest params) {
-
-		if (registerService.loginconfirm(params) == 1) {
-			return "redirect:/post/list";
-		}
-		return "redirect:/register/loginfail";
-	}
 
 	// 아이디중복검사용
 	@PostMapping("/register/checkid")

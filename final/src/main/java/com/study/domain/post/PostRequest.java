@@ -19,4 +19,5 @@ public class PostRequest {
     private String comment; //댓글 내용
     private Long commentId;             // 
     private LocalDateTime commentDate; // 댓글 생성일시
+    private Long commentIdentifier; //댓글 식별
 }

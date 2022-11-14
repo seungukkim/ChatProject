@@ -88,8 +88,8 @@ public class PostService {
     
     
     /**
-     * 게시글 리스트 조회
-     * @return 게시글 리스트
+     * 댓글 리스트 조회
+     * @return 댓글 리스트
      */
     public List<PostResponse> findallComment(final Long id) {
         return postMapper.findallComment(id);

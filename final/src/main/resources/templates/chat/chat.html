@@ -75,7 +75,7 @@
             }
         })
         
-        const websocket = new WebSocket('ws://58.72.151.126:8080/ws/chat');
+        const websocket = new WebSocket('ws://localhost:8080/ws/chat');
         //여기에는 일단 ip주소를 넣어줌
         websocket.onmessage = onMessage;
         websocket.onopen = onOpen;
