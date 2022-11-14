@@ -30,9 +30,6 @@ card3.addEventListener('click', click);
 
 function click(event) {
   let elem = event.currentTarget;
-  //부모 객체의 자식들 배열 가져옴
-  //클릭한 요소는 위에서 가져옴
-  //배열에서 클릭한 요소 빼고, 배열의 요소들을 dom에서 제거
   if (elem.style.transform == "rotateY(180deg)") {
     elem.style.transform = "rotateY(0deg)";
   } else {

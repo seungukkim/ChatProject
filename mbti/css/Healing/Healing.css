@@ -200,7 +200,6 @@ table th {
 /* 테이블 영역에 있는 img만 적용시키는 방법 배우기 */
 
 img {
-    border-radius: 10px;
     width: 90px;
     height: 90px;
 }

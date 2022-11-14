@@ -48,6 +48,14 @@ body {
   perspective: 1000px;
 }
 
+.card:nth-of-type(3) {
+  left: 20vw;
+}
+
+.card:nth-of-type(4) {
+  left: 25vw;
+}
+
 .front {
   width: 100%;
   height: 100%;
@@ -58,7 +66,7 @@ body {
   justify-content: center;
   align-items: center;
   border-radius: 30px;
-  transition: transform 0.8s;
+  transition: transform 1.2s;
   transform-style: preserve-3d;
   transform: rotateY(0deg);
   animation-name: "";
@@ -67,47 +75,40 @@ body {
   opacity: 0.75;
 }
 
-.card:nth-child(1) .front{
-  width: 20vw;
-  height: 48vh;
+.card:nth-of-type(2) > .front{
   background-image: url("../../img/card.png");
 }
 
-.card:nth-child(2) .front{
-  left: 25vw;
-  width: 20vw;
-  height: 48vh;
+.card:nth-of-type(3) > .front{
   background-image: url("../../img/card1.png");
 }
 
-.card:nth-child(3) .front{
-  left: 50vw;
-  width: 20vw;
-  height: 48vh;
+.card:nth-of-type(4)  > .front{
   background-image: url("../../img/card2.png");
 }
 
 .front:hover {
   transform: translate(0,-5%);
-  transition: 0.3s;
   opacity: 1;
 }
 
 .back {
   width: 100%;
   height: 100%;
-  background-color: #DCCFEC;
+  background-color: #FAF0FE;
   border-radius: 30px;
-  position: absolute;
-  display: flex;
+  position: inherit;
+  display: inline-block;
   justify-content: center;
   align-items: center;
   backface-visibility: hidden;
   animation-name: "";
   animation-duration: 1.5s;
-  animation-fill-mode: both;
+  animation-fill-mode: forwards;
   transform: rotateY(180deg);
+  transition: transform 1.2s;
 }
+
 
 @keyframes test1{
   from{
@@ -152,20 +153,20 @@ body {
 /* ---------------- */
 /* 휴식방법 상자 */
 .resttime{
-  background-color: #614a7e;
+  background-color: #FAF0FE;
   position: fixed;
   width: 60vw;
   height: 60vh;
-  top: 22.5vh;
+  top: 22vh;
   left: 20vw;
   right: 20vw;
-  border-radius: 50px;
-  opacity: 0.7;
+  border-radius: 30px;
+  opacity: 0;
   z-index: -1;
 }
 
-.resttime img{
-  background-color: #6c5b7b;
+.resttime > img{
+  background-color: #DB76A6;
   position: absolute;
   width: 45%;
   height: 80%;
@@ -184,7 +185,7 @@ body {
 .resttime #text {
   font-family: 'RIDIBatang';
   font-size: 20px;
-  background-color: #393e46;
+  background-color: #FAC0DB;
   display: inline-block;
   position: absolute;
   width: 40%;
