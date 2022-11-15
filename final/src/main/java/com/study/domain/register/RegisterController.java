@@ -117,6 +117,15 @@ public class RegisterController {
 		System.out.println(cnt);
 		return cnt;
 	}
+	
+	// 닉네임 중복 검사용
+	@PostMapping("/register/checkName")
+	@ResponseBody
+	public int nameCheck(final RegisterRequest params) {
+		int cnt = registerService.nameCheck(params);
+		System.out.println(cnt);
+		return cnt;
+	}
 
 	// 탈퇴할 때 아이디와 비밀번호가 매칭되는지 확인하기 위해
 	@PostMapping("register/bothconfig")

@@ -67,6 +67,17 @@
     		user_id=#{registerId}  
     </select>
     
+    
+      <!-- 회원 가입 할 때 닉네임 중복 조회 -->
+    <select id="nameCheck" resultType="Integer">
+    	SELECT
+    		count(*)
+    	FROM
+    		tb_user2
+    	WHERE
+    		user_name=#{registerName}  
+    </select>
+    
     <!-- 회원 삭제-->
     <!-- insert,update,delete는 자동으로 int 타입의 값을 반환해준다. -->
     <delete id="delete">

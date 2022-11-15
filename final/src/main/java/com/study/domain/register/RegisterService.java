@@ -36,10 +36,17 @@ public class RegisterService {
 			System.out.println(registerMapper.loginVerify(params));
 			return registerMapper.loginVerify(params); }
 		
-		
+		//아이디 중복 검사용
 		public int idconfig(final RegisterRequest params) {
 			return registerMapper.idconfig(params);
 		}
+		
+		//닉네임 중복 검사용
+		public int nameCheck(final RegisterRequest params) {
+			return registerMapper.nameCheck(params);
+		}
+		
+		
 		//아이디 삭제 구현
 		public Integer delete(final RegisterRequest params) {
 			return registerMapper.delete(params);

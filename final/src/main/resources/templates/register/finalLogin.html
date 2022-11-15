@@ -107,10 +107,10 @@
 												</div>
 
 												<!-- 회원가입 - MBTI -->
-												<div class="form-group mt-2">
-													<div class="MbtiTable">
+												<div  class="form-group mt-2">
+													<div  class="MbtiTable">
 													<i class="input-icon uil uil-user">
-													<select name="MbtiOption" class="select">
+													<select name="registerMbti" id="registerMbti" class="select">
 														<option disabled selected>MBTI</option>
 														<option value="ISTJ">ISTJ</option>
 														<option value="ISFJ">ISFJ</option>
@@ -163,13 +163,72 @@
 <script th:inline="javascript">
 	/*<![CDATA[*/
 	let idConfig = 0;
-
+	let nickConfig =0;
 	// 회원가입
 	function register() {
 		var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
 		var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 		// 이메일이 적합한지 검사할 정규식
 		var name = document.getElementById("registerName");
+		
+		const form = document.getElementById('registerForm');
+
+		if (!check(re, form.registerId, "아이디는 4~12자의 영문 대소문자와 숫자로만 입력")) {
+			return false;
+		}
+		if (!check(re, form.registerPw, "비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력")) {
+			return false;
+		}
+		if (!check(re2, form.registerEmail, "이메일은 example@naver.com 형식을 지켜주세요")) {
+			return false;
+		}
+		if (form.registerName.value == "") {
+			alert("닉네임을 입력해주세요");
+			form.registerName.focus();
+			return false;
+
+		}
+		if (idConfig == 0) {
+			alert("아이디 중복검사를 해주세요");
+			form.registerId.focus();
+			return false;
+		}
+		if(nickConfig==0){
+			alert("닉네임 중복검사를 해주세요");
+			form.registerName.focus();
+			return false;
+		}
+		
+
+		alert("회원가입완료");
+		//넘어갈 때는 name 으로 넘어간다! ㅋㅋㅋ
+		form.action = '/register/save'
+		form.submit();
+	}
+
+	function check(re, what, message) {
+		if (re.test(what.value)) {
+
+			return true;
+		}
+		alert(message);
+		what.value = "";
+		what.focus();
+	}
+	
+	
+	
+	
+	
+	
+	//회원가입 ajax로 구현(미완성)
+	function register1() {
+		var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
+		var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+			// 이메일이 적합한지 검사할 정규식
+		var name = document.getElementById("registerName");
+		
+			
 		const form = document.getElementById('registerForm');
 		const fields = [ form.registerId, form.registerPw, form.registerName,form.registerMbti,form.registerEmail ];
 
@@ -194,19 +253,42 @@
 			return false;
 		}
 
-		alert("회원가입완료");
-		form.action = '/register/save'
-		form.submit();
-	}
+		let id = $('#registerId').val(); //id값이 "userId"인 입력란의 값을 저장
+		let pw = $('#registerPw').val(); 
+		let name1 = $('#registerName').val(); 
+		let mbti = $('#registerMbti').val(); 
+		let email = $('#registerEmail').val(); 
+		
+		console.log(id);
+		console.log(pw);
+		console.log(name1);
+		console.log(mbti);
+		console.log(email);
 
-	function check(re, what, message) {
-		if (re.test(what.value)) {
-
-			return true;
-		}
-		alert(message);
-		what.value = "";
-		what.focus();
+		/* ajax로 구현 */
+		$.ajax({
+			url : '/register/save', //Controller에서 인식할 주소
+			type : 'post', //POST 방식으로 전달
+			data : {
+				registerId : id,
+				registerPw: pw,
+				registerName :name1,
+				registerMbti : mbti,
+				registerEmail : email
+			},
+			success : function(outcome) {//성공하면 해당 함수를 실행한다.
+				console.log(outcome); // 받아온 값이 무엇인지 확인(값을 제대로 받고 있는지 확인용)
+				if (outcome == 1) { // 내가 받아온 값이 1이라면, 즉 db에 이미 해당 아이디가 존재한다면
+					alert("이미 있는 아이디입니다");
+				} else {
+					alert("아이디를 사용해도 됩니다.");
+					idConfig = 1;
+				}
+			},
+			error : function() {
+				alert("에러입니다");
+			}
+		});
 	}
 
 	//아이디 중복 확인을 위한 코드
@@ -255,6 +337,34 @@
         }
      
     }
+	
+	//닉네임 중복확인 부분
+	function checkNickName() {
+
+		let name = $('#registerName').val(); //id값이 "userId"인 입력란의 값을 저장
+		console.log(name);
+
+		/* ajax로 구현 */
+		$.ajax({
+			url : '/register/checkName', //Controller에서 인식할 주소
+			type : 'post', //POST 방식으로 전달
+			data : {
+				registerName : name
+			},
+			success : function(outcome) {//성공하면 해당 함수를 실행한다.
+				console.log(outcome); // 받아온 값이 무엇인지 확인(값을 제대로 받고 있는지 확인용)
+				if (outcome == 1) { // 내가 받아온 값이 1이라면, 즉 db에 이미 해당 아이디가 존재한다면
+					alert("이미 있는 닉네임입니다");
+				} else {
+					alert("닉네임을 사용해도 됩니다");
+					nickConfig = 1;
+				}
+			},
+			error : function() {
+				alert("에러입니다");
+			}
+		});
+	}
 
 	/*]]>*/
 </script>
