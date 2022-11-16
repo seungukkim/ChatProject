@@ -95,7 +95,7 @@ body {
 .back {
   width: 100%;
   height: 100%;
-  background-color: #FAF0FE;
+  background-color: #eeccbb;
   border-radius: 30px;
   position: inherit;
   display: inline-block;
@@ -153,7 +153,7 @@ body {
 /* ---------------- */
 /* 휴식방법 상자 */
 .resttime{
-  background-color: #FAF0FE;
+  background-color: #eeccbb;
   position: fixed;
   width: 60vw;
   height: 60vh;
