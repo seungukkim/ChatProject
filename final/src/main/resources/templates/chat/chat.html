@@ -12,7 +12,7 @@
 
 <th:block layout:fragment="title">
 	<h1 class="page-title">		
-		<!-- <span th:text="${count}+명이채팅에참여하고있습니다"></span> -->
+		 <span th:text="${count}+명이채팅에참여하고있습니다"></span> 
 	</h1>
 </th:block>
 
@@ -37,6 +37,7 @@
                         <div class="input-group mb-3">
                             <input type="text" id="msg" class="form-control m-1" size=150% maxlength=50>
                             <button class="btn btn-outline-secondary m-1"  type="button" id="button_send">전송</button>
+                            
                             <!-- <button class="btn btn-outline-secondary m-1" type="button" id="disconn">퇴장하기</button> -->      
                         </div>
                     </div>
@@ -61,7 +62,9 @@
     crossorigin="anonymous"></script>
 <script th:inline="javascript">
     /*<![CDATA[*/
+    	/* DOMContentLoaded 이벤트는 초기 HTML 문서를 완전히 불러오고 분석했을 때 발생합니다. 스타일 시트, 이미지, 하위 프레임의 로딩은 기다리지 않습니다. */
     document.addEventListener('DOMContentLoaded', function () {
+    	
     	let usernum=[[${count}]]
     	console.log(usernum+'이다');
         const username = /*[[${info.userName}]]*/
@@ -75,12 +78,16 @@
                 send();
             }
         })
-        
-        const websocket = new WebSocket('ws://58.72.151.126:8090/ws/chat');
+        //websocket 생성
+        const websocket = new WebSocket('ws://localhost:8080/ws/chat');
         //여기에는 일단 ip주소를 넣어줌
-        websocket.onmessage = onMessage;
-        websocket.onopen = onOpen;
-        websocket.onclose = onClose;
+        websocket.onmessage = onMessage; // 소켓이 메세지를 받을 때
+        websocket.onopen = onOpen; // 소켓이 생성될 때
+        websocket.onclose = onClose; // 소켓이 닫힐 때
+        
+        
+        
+        
         function send() {
             let msg = document.getElementById('msg');
             if(msg.value.length==0){
@@ -97,51 +104,26 @@
         
         function disconnect(){
         	window.location.href="/register/first"
+        	
         	 
         	
         }
+        
+      	
         // 채팅창에서 나갔을 때
-        function onClose(evt) {
-        	usernum-=1;
-        	var str = username + '님이 퇴장하셨습니다.'+'현재 입장인원은'+usernum+'입니다';
+        function onClose(evt) {   
+        	
+        	var str = username + '님이 퇴장하셨습니다.';
             websocket.send(str);
-			$.ajax({
-				url : '/chat/leave ', //Controller에서 인식할 주소
-				type : 'post', //POST 방식으로 전달
-				data : {
-					count : usernum
-				},
-				success : function() {
-				},
-				error : function() {
-					alert("에러입니다");
-				}
-			});
         }
         
         // 채팅창에 들어왔을 때
         function onOpen(evt) {
-        	usernum+=1;
-
-            var str = username + '님이 입장하셨습니다.'+'현재 입장인원은'+usernum+'입니다';
-            
-            websocket.send(str);
-            
-			$.ajax({
-				url : '/chat/add  ', //Controller에서 인식할 주소
-				type : 'post', //POST 방식으로 전달
-				data : {
-					count : usernum
-				},
-				success : function() {//성공하면 해당 함수를 실행한다.
-					 // 받아온 값이 무엇인지 확인(값을 제대로 받고 있는지 확인용)
-					
-				},
-				error : function() {
-					alert("에러입니다");
-				}
-			});
+        	
+            var str = username + '님이 입장하셨습니다.';            
+            websocket.send(str);        
            
+        	
         }
         function onMessage(msg) {
             var data = msg.data;
@@ -193,6 +175,8 @@
                 document.querySelector('#msgArea').innerHTML += str;
             }
         }
+        
+        
     })
     /*<![CDATA[*/
 </script>

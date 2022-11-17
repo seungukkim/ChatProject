@@ -131,7 +131,7 @@
 													</select>
 													<span class="icoArrow"><img src="https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png" alt=""></span>
 													</i>
-													<button type="button" onclick="checkId()"class="MBTI-Check" name="dbCheckId"><p style="font-size: 11px;">MBTI 검사</p></button>
+													<button type="button" onclick="mbtiTest()"class="MBTI-Check" name="dbCheckId"><p style="font-size: 11px;">MBTI 검사</p></button>
 													</div>
 												</div>
 
@@ -372,6 +372,11 @@
 			}
 		});
 	}
+	
+	function mbtiTest(){
+		location.href = '/register/mbtiTest' ;
+	}
+	
 
 	/*]]>*/
 </script>
