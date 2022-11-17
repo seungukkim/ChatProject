@@ -108,7 +108,7 @@
 
 												<!-- 회원가입 - MBTI -->
 												<div  class="form-group mt-2">
-													<div  class="MbtiTable">
+													<div class="MbtiTable">
 													<i class="input-icon uil uil-user">
 													<select name="registerMbti" id="registerMbti" class="select">
 														<option disabled selected>MBTI</option>
@@ -170,6 +170,7 @@
 		var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 		// 이메일이 적합한지 검사할 정규식
 		var name = document.getElementById("registerName");
+		var mbti = document.getElementById("registerMbti").value;
 		
 		const form = document.getElementById('registerForm');
 
@@ -198,6 +199,12 @@
 			form.registerName.focus();
 			return false;
 		}
+		if(form.registerMbti.value=="MBTI"){
+			alert("MBTI를 선택해주세요")
+			form.registerMbti.focus();
+			return false;
+		}
+		
 		
 
 		alert("회원가입완료");
