@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+      <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.js"
+	crossorigin="anonymous"></script>
+      <py-config type="json">
+        {
+          "packages": ["numpy", "matplotlib","pandas"]
+        }
+      </py-config>
+    </head>
+
+  <body>
+    <h1>검사 결과</h1>
+    <div id="plot"></div>
+    
+        <script>
+     	first = window.localStorage.getItem('first');
+     	two = window.localStorage.getItem('two');
+     	three = window.localStorage.getItem('three');
+     	four = window.localStorage.getItem('four');
+     	five = window.localStorage.getItem('five');
+     	six = window.localStorage.getItem('six');
+     	seven = window.localStorage.getItem('seven');
+     	eight = window.localStorage.getItem('eight');     	     	
+    	console.log(first);
+    	console.log(two);
+    	console.log(three);
+    	console.log(four);
+    	console.log(five);
+    	console.log(six);
+    	console.log(seven);
+    	console.log(eight);
+    </script>
+    <py-script output="plot">
+from js import first,two,three,four,five,six,seven,eight,console
+
+console.log(first)
+console.log(two)
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+fig=plt.figure()
+df = pd.DataFrame({'MBTI' :['E&I','S&N','T&F','J&P'],'A' : [int(first),int(two),int(three),int(four)], 'B' : [int(five),int(six),int(seven),int(eight)]})
+ 
+
+
+df['total'] = df['A'] + df['B']
+df['A_percent'] = round(df['A'] / df['total'] * 100, 1)
+df['B_percent'] = round(df['B']/ df['total']*100, 1)
+
+
+fig, ax = plt.subplots(figsize=(10,8))
+
+# bar 그리기
+ax.barh(df['MBTI'], -df['A'], color = 'r')
+ax.barh(df['MBTI'], df['B'], color = 'b')
+
+# 역순으로 표시
+plt.gca().invert_yaxis()
+
+plt.yticks(df['MBTI'])
+
+plt.xticks([-100,-50,0,50,100],('100','50','0','50','100'))
+
+plt.ylabel('MBTI')
+plt.xlabel('PERCENT')
+
+#plt.xlim([-100,100])
+#택스트 지정
+
+ax.text(-85, df['MBTI'][0],'E '+ str(df['A_percent'][0]) + '%', fontsize = 20,  color = 'black', fontweight='bold')
+ax.text(60, df['MBTI'][0], 'I '+str(df['B_percent'][0]) + '%', fontsize = 20,  color = 'black', fontweight='bold')
+
+ax.text(-85, df['MBTI'][1],'S '+ str(df['A_percent'][1]) + '%', fontsize = 20, color = 'black', fontweight='bold')
+ax.text(60, df['MBTI'][1], 'N '+str(df['B_percent'][1]) + '%', fontsize = 20,  color = 'black', fontweight='bold')
+
+ax.text(-85, df['MBTI'][2],'T '+ str(df['A_percent'][2]) + '%', fontsize = 20,  color = 'black', fontweight='bold')
+ax.text(60, df['MBTI'][2], 'F '+str(df['B_percent'][2]) + '%', fontsize = 20,  color = 'black', fontweight='bold')
+
+ax.text(-85, df['MBTI'][3],'J '+ str(df['A_percent'][3]) + '%', fontsize = 20,  color = 'black', fontweight='bold')
+ax.text(60, df['MBTI'][3], 'P '+str(df['B_percent'][3]) + '%', fontsize = 20,  color = 'black', fontweight='bold')
+
+
+fig
+    </py-script>
+
+  </body>
+</html>

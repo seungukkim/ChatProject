@@ -164,6 +164,16 @@ public class RegisterController {
 	}
 	
 	
-
+	// mbtiTest 페이지
+		@GetMapping("/register/mbtiTest")
+		public String mbtiTest() throws Exception {
+			return "register/mbtiTest";
+		}
+		
+	// mbtiResult 페이지
+		@GetMapping("/register/mbtiResult")
+		public String mbtiResult() throws Exception {
+			return "register/mbtiResult";
+		}
 
 }
