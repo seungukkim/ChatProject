@@ -75,17 +75,6 @@ body {
   opacity: 0.75;
 }
 
-.card:nth-of-type(2) > .front{
-  background-image: url("../../img/card.png");
-}
-
-.card:nth-of-type(3) > .front{
-  background-image: url("../../img/card1.png");
-}
-
-.card:nth-of-type(4)  > .front{
-  background-image: url("../../img/card2.png");
-}
 
 .front:hover {
   transform: translate(0,-5%);
