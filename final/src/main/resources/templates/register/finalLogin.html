@@ -162,6 +162,12 @@
 </body>
 <script th:inline="javascript">
 	/*<![CDATA[*/
+	let master_piece = window.sessionStorage.getItem("master_piece");
+	console.log(master_piece);
+	if(master_piece!=null){
+		$('#registerMbti').val(master_piece).prop("selected",true);
+	}
+	
 	let idConfig = 0;
 	let nickConfig =0;
 	// 회원가입
@@ -376,7 +382,8 @@
 	function mbtiTest(){
 		
 		/* window.open('/register/mbtiTest','_blank','fullscreen');  */
-		window.open('/register/mbtiTest','_blank'); // 뒤에 fullscreen 지우는 것도 괜찮다
+		
+		location.href = '/register/mbtiTest';
 	}
 	
 

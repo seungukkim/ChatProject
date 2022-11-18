@@ -19,15 +19,13 @@ public class ChatController {
    ChatHandler chathandler;
 
    @GetMapping("/chat/chat")
-   public String method2(HttpServletRequest request,Model model) throws Exception{
+   public String method2(HttpServletRequest request) throws Exception{
       HttpSession session=request.getSession();
       if(session.getAttribute("info")!=null) {
          //session에 저장된 info값이 존재한다면 해당 코드를 실행한다.
-         int count=chathandler.getCount();
          
-          model.addAttribute("count",count);
-          System.out.println("컨트롤러 화면리턴 직전 /chat/chat " + count+"명입니당");
-            
+         
+
             return "/chat/chat";
       }
       else {

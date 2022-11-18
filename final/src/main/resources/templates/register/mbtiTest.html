@@ -9,7 +9,7 @@
 <body>
 	<h1>MBTI 검사지</h1>
 <form id="mbtiForm" method="post">
-	문제 1
+	#1 가식적인 사람은 불쾌하다.
 	<br>
 	<input name="one" type="checkbox" value="1"
 	onclick="doOpenCheck1(this);">1
@@ -23,7 +23,7 @@
 	<br>
 	<br>
 	
-	문제 2
+	#2 당신은 남들을 도와주려고 하고, 그러느라 자신에게 필요한 것은 잊어버리기도 한다.
 	<br>
 	<input name="two" type="checkbox" value="1"
 		onclick="doOpenCheck2(this);">1
@@ -37,7 +37,7 @@
 	<br>
 	<br>
 	
-	문제 3
+	#3 당신은 남들을 도와준 것이 인정받지 못하면 실망한다.
 	<br>
 	<input name="three" type="checkbox" value="1"
 		onclick="doOpenCheck3(this);">1
@@ -51,7 +51,7 @@
 	<br>
 	<br>
 	
-	문제 4
+	#4 당신은 직설적이고 본론부터 단도직입적으로 얘기한다.
 	<br>
 	<input name="four" type="checkbox" value="1"
 		onclick="doOpenCheck4(this);">1
@@ -65,7 +65,7 @@
 	<br>
 	<br>
 	
-	문제 5
+	#5 당신은 한 주제를 깊이 탐구하고, 깊이 탐구하는 그 자체가 목적이다.
 	<br>
 	<input name="five" type="checkbox" value="1"
 		onclick="doOpenCheck5(this);">1
@@ -79,7 +79,7 @@
 	<br>
 	<br>
 	
-	문제 6
+	#6 당신은 은유를 사용해서 새로운 아이디어를 얘기한다.
 	<br>
 	<input name="six" type="checkbox" value="1"
 		onclick="doOpenCheck6(this);">1
@@ -93,7 +93,7 @@
 	<br>
 	<br>
 	
-	문제 7
+	#7 당신은 작은 디테일에 신경이 쓰이곤 한다.
 	<br>
 	<input name="seven" type="checkbox" value="1"
 		onclick="doOpenCheck7(this);">1
@@ -107,7 +107,7 @@
 	<br>
 	<br>
 	
-	문제 8
+	#8 당신은 다른 외부의 기준과는 상관없는 자신만의 내면의 도덕적인 규칙이 있다.
 	<br>
 	<input name="eight" type="checkbox" value="1"
 		onclick="doOpenCheck8(this);">1
@@ -209,24 +209,49 @@
 			let six = $("input[name='six']:checked").val();
 			let seven = $("input[name='seven']:checked").val();
 			let eight = $("input[name='eight']:checked").val();
-			console.log(first);
-			console.log(two);
-			console.log(three);
-			console.log(four);
-			console.log(five);
-			console.log(six);
-			console.log(seven);
-			console.log(eight);
-			localStorage.setItem("first",first);
-			localStorage.setItem("two",two);
-			localStorage.setItem("three",three);
-			localStorage.setItem("four",four);
-			localStorage.setItem("five",five);
-			localStorage.setItem("six",six);
-			localStorage.setItem("seven",seven);
-			localStorage.setItem("eight",eight);
+			let first_piece;
+			let second_piece;
+			let third_piece;
+			let fourth_piece;
+			let master_piece;
+			sessionStorage.setItem("first",first);
+			sessionStorage.setItem("two",two);
+			sessionStorage.setItem("three",three);
+			sessionStorage.setItem("four",four);
+			sessionStorage.setItem("five",five);
+			sessionStorage.setItem("six",six);
+			sessionStorage.setItem("seven",seven);
+			sessionStorage.setItem("eight",eight);
+			if(first + two <3){
+				first_piece="I";
+			}
+			else{
+				first_piece = "E";
+			}
+			if(three + four <3){
+				second_piece="S";
+			}
+			else{
+				second_piece="N";
+			}
+			if(five + six<3){
+				third_piece = "F";
+			}
+			else{
+				third_piece = "T"
+			}
+			if(seven + eight<3){
+				fourth_piece = "P";
+			}
+			else{
+				fourth_piece = "J";
+			}
 			
-			location.href = '/register/mbtiResult' 
+			master_piece=first_piece+second_piece+third_piece+fourth_piece;
+			sessionStorage.setItem("master_piece",master_piece); // 최종 결과물
+			console.log(master_piece);
+			
+			location.href = '/register/mbtiResult' ;
 		}
 	</script>
 </body>

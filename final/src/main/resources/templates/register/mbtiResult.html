@@ -15,36 +15,30 @@
   <body>
     <h1>검사 결과</h1>
     <div id="plot"></div>
-    
+    <button type="button" class="btn mt-4" onclick="goBack();">확인</button>
         <script>
-     	first = window.localStorage.getItem('first');
-     	two = window.localStorage.getItem('two');
-     	three = window.localStorage.getItem('three');
-     	four = window.localStorage.getItem('four');
-     	five = window.localStorage.getItem('five');
-     	six = window.localStorage.getItem('six');
-     	seven = window.localStorage.getItem('seven');
-     	eight = window.localStorage.getItem('eight');     	     	
-    	console.log(first);
-    	console.log(two);
-    	console.log(three);
-    	console.log(four);
-    	console.log(five);
-    	console.log(six);
-    	console.log(seven);
-    	console.log(eight);
+     	first = window.sessionStorage.getItem('first');
+     	two = window.sessionStorage.getItem('two');
+     	three = window.sessionStorage.getItem('three');
+     	four = window.sessionStorage.getItem('four');
+     	five = window.sessionStorage.getItem('five');
+     	six = window.sessionStorage.getItem('six');
+     	seven = window.sessionStorage.getItem('seven');
+     	eight = window.sessionStorage.getItem('eight');       	
+     	master_piece = window.sessionStorage.getItem("master_piece");
     </script>
     <py-script output="plot">
-from js import first,two,three,four,five,six,seven,eight,console
+from js import first,two,three,four,five,six,seven,eight,master_piece,console
 
 console.log(first)
 console.log(two)
+console.log(master_piece);
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
 fig=plt.figure()
-df = pd.DataFrame({'MBTI' :['E&I','S&N','T&F','J&P'],'A' : [int(first),int(two),int(three),int(four)], 'B' : [int(five),int(six),int(seven),int(eight)]})
+df = pd.DataFrame({'MBTI' :['E&I','S&N','T&F','J&P'],'A' : [int(first)*10,int(two)*10,int(three)*10,int(four)*10], 'B' : [int(five)*10,int(six)*10,int(seven)*10,int(eight)*10]})
  
 
 
@@ -87,6 +81,10 @@ ax.text(60, df['MBTI'][3], 'P '+str(df['B_percent'][3]) + '%', fontsize = 20,  c
 
 fig
     </py-script>
-
+<script>
+	function goBack(){
+		location.href = '/register/finalLogin' ;
+	}
+</script>
   </body>
 </html>
