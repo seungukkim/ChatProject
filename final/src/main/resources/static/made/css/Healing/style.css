@@ -39,21 +39,21 @@ body {
 /* 카드 3개 만들기 */
 .card {
   position: relative;
-  width: 20vw;
-  height: 48vh;
+  width: 17.5vw;
+  aspect-ratio: 1 / 1.5;
   top: 28vh;
-  left: 15vw;
+  left: 16vw;
   display: inline-block;
   border-radius: 30px;
   perspective: 1000px;
 }
 
 .card:nth-of-type(3) {
-  left: 20vw;
+  left: 23.5vw;
 }
 
 .card:nth-of-type(4) {
-  left: 25vw;
+  left: 31vw;
 }
 
 .front {
