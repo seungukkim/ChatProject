@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @RequiredArgsConstructor
 public class ResttimeController {
 
-    private final ResttimeService ResttimeService;
+    private final ResttimeService resttimeService;
 
     // 게시글 작성 페이지
     @GetMapping("/resttime/resttime")

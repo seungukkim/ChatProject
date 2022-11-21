@@ -1,5 +1,8 @@
 package com.study.domain.resttime;
 
-public interface ResttimeMapper {
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
+public interface ResttimeMapper {
+	
 }
