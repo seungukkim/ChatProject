@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@SessionAttributes("info")
+@SessionAttributes("info") // 로그인시 저장한 값을 불러오는데 사용
 @RequiredArgsConstructor
 public class RegisterController {
 	private final RegisterService registerService;
@@ -62,17 +62,7 @@ public class RegisterController {
 		return "redirect:/register/finalLogin";
 	}
 
-	// 로그인 이후 들어갈 화면
-	@GetMapping("/register/secondMain")
-	public String secondMain() throws Exception {
-		return "register/secondMain";
-	}
-
-	@GetMapping("/register/first")
-	public String openRegisterpage2() throws Exception {
-		return "register/first";
-	}
-
+	//마이페이지
 	@GetMapping("/register/mypage")
 	public String openmypage() throws Exception {
 
@@ -91,22 +81,6 @@ public class RegisterController {
 	public String rename() throws Exception {
 		return "register/rename";
 	}
-
-	// 회원가입페이지
-	@GetMapping("/register/register")
-	public String openRegisterpage() {
-		// 어차피 그냥 회원가입 페이지니까 아무것도 받을 필요가 없지
-		return "register/register";
-	}
-
-	// 로그인 페이지
-	@GetMapping("/register/login")
-	public String openLoginpage() {
-		// 그냥 로그인 페이지로 갔을 때
-		return "register/login";
-	}
-
-
 
 	// 아이디중복검사용
 	@PostMapping("/register/checkid")

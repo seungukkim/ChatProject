@@ -94,7 +94,10 @@ public class PostService {
     public List<PostResponse> findallComment(final Long id) {
         return postMapper.findallComment(id);
     }
-    
+    /**
+     * 댓글 삭제
+     * @return postmapper.commentDelete를 통해 얻어온 값을 반환
+     */
     @Transactional
     public int commentDelete(final PostRequest params) {
     	int result = postMapper.commentDelete(params);

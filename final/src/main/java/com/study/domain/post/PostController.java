@@ -49,18 +49,6 @@ public class PostController {
         MessageDto message = new MessageDto("게시글 생성이 완료되었습니다.", "/post/list", RequestMethod.GET, null);
         return showMessageAndRedirect(message, model);
     }
-    // 게시글 리스트 페이지
-	
-	
-	
-	/*
-	 * @GetMapping("/post/list.do") public String openPostList(Model model) {
-	 * List<PostResponse> posts = postService.findAllPost();
-	 * model.addAttribute("posts", posts); return "post/list";
-	 * 
-	 * 
-	 * }
-	 */
 
     // 게시글 리스트 페이지
     @GetMapping("/post/list")
@@ -69,16 +57,8 @@ public class PostController {
         model.addAttribute("response", response);     
         return "post/list";
     }
+	  	  
 	  
-	  
-	  
-	  @GetMapping("/register/hihi") public void
-	  asdfsdf(@SessionAttribute(name="info",required=false)RegisterResponse info,Model model) { 
-		  model.addAttribute("info",info); }
-	 
-	 
-	 
-    
     // 게시글 상세 페이지
     @GetMapping("/post/view")
     public String openPostView(@RequestParam final Long id, Model model) {
@@ -102,10 +82,10 @@ public class PostController {
         return showMessageAndRedirect(message, model);
     }
     
-    
+    //로그아웃
     @GetMapping("/post/logout")
     	public String logout(HttpSession session) {
-    		session.invalidate();
+    		session.invalidate(); //session.invalidate()를 통해 session안에 있던 정보 삭제
     		return "register/login";
     }
     
@@ -127,22 +107,21 @@ public class PostController {
     }
     
     
- 	//댓글 추가용도
+ 	//댓글 추가
  	@PostMapping("/post/comment")
  	@ResponseBody
  	public int commentRegister(final PostRequest params) {
-
  		int cnt = postService.commentRegister(params); // postService에 있는 commentRegister 함수를 실행
- 		System.out.println(cnt);
+ 		System.out.println(cnt); //제대로 쿼리를 통해 값을 받아오고 있는지 확인
  		return cnt;
  	}
  	
- 	//댓글 삭제용도
+ 	//댓글 삭제
  	@PostMapping("/post/commentDelete")
  	@ResponseBody
  	public int commentDelete(final PostRequest params) {
  		System.out.println("컨트롤러 실행완료");
- 		int cnt = postService.commentDelete(params);
+ 		int cnt = postService.commentDelete(params); 
  		return cnt;
  	}
  	
