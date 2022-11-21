@@ -16,17 +16,18 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ChatHandler extends TextWebSocketHandler{
-    private static List<WebSocketSession> list = new ArrayList<>();
+    static List<WebSocketSession> list = new ArrayList<>();
     
        @Override
        protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-    	   int count = list.size();
-    	   System.out.println("사이즈:" + count);
+    	 
            String payload = message.getPayload();
            
-           System.out.println("payload: " +list.size());
+           TextMessage newMessage = new TextMessage(payload+":"+list.size());
+           
+           
            for (WebSocketSession sess : list) {   //리스트는 소켓세션들을 담고있는 배열
-               sess.sendMessage(message); // 이걸 바꾼다
+               sess.sendMessage(newMessage); // 이걸 바꾼다
               
            }
        }

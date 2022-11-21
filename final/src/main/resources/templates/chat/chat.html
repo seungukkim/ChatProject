@@ -12,7 +12,8 @@
 
 <th:block layout:fragment="title">
    <h1 id="totalNumParent" class="page-title">      
-       
+   	 <span id="totalNum" th:text="|${count}명이 채팅에 참여하고 있습니다|"></span>
+       <!-- 문자열에 변수 함께 사용-->     
    </h1>
 </th:block>
 
@@ -78,7 +79,7 @@
         })
         
         //websocket 생성
-        const websocket = new WebSocket('ws://58.72.151.126:8090/ws/chat');
+        const websocket = new WebSocket('ws://localhost:8080/ws/chat');
         //선생님포트포워딩 : 58.72.151.126:8099을 192.168.0.87:8080 로
         //여기에는 일단 ip주소를 넣어줌
         websocket.onmessage = onMessage; // 소켓이 메세지를 받을 때
@@ -120,17 +121,26 @@
             console.log(data);
             var sessionId = null;
             var message = null;
-            var arr = data.split(/\:/);
+            var arr = data.split(/\:/);   //콜론을 기준으로 배열의 요소 분리
             // 현재 세션에 로그인 한 사람
             var cur_session = username;
-            
+            //arr 은 메세지가 없이 입장, 퇴장일때는 크기가 2[유저명메세지, 인원수], 메세지가 있을때는 크기가3[유저명, 메세지, 인원수]
             sessionId = arr[0].trim();   //배열[0]은 'ooo님이 입장하셨습니다.' 이 말자체를 나중에 현재 이름과 비교함. 즉, 이말이 나왔으면 틀린세션이됨
-            if(arr[1] === undefined) {   //배열[1]은 메세지 문자열
-                message = '';
-            	
-            } else {
-                message = arr[1].trim();
-            }
+            if(arr.length == 2){
+                pNum = arr[1];
+                 message = '';
+             }
+             else if (arr.length == 3){
+                pNum = arr[2];
+                 if(arr[1] === undefined) {   //배열[1]은 메세지 문자열
+                     message = '';
+                 } else {
+                     message = arr[1].trim();
+                 }
+             }
+
+            $("#totalNum").text(pNum+'명이 채팅에 참여하고 있습니다');
+
             
             console.log("sessionID: " + sessionId);      //글쓴사람
             console.log("cur_session: " + cur_session);   //브라우저에 로그인된사람
