@@ -222,35 +222,40 @@
 			sessionStorage.setItem("six",six);
 			sessionStorage.setItem("seven",seven);
 			sessionStorage.setItem("eight",eight);
-			if(first + two <3){
+			
+			if(parseInt(first) + parseInt(two) <=4){
 				first_piece="I";
 			}
 			else{
 				first_piece = "E";
 			}
-			if(three + four <3){
+			if(parseInt(three) + parseInt(four) <=4){
 				second_piece="S";
 			}
 			else{
 				second_piece="N";
 			}
-			if(five + six<3){
+			if(parseInt(five) + parseInt(six)<=4){
 				third_piece = "F";
 			}
 			else{
 				third_piece = "T"
 			}
-			if(seven + eight<3){
+			if(parseInt(seven) + parseInt(eight)<=4){
 				fourth_piece = "P";
 			}
 			else{
 				fourth_piece = "J";
 			}
+			console.log(first_piece);
+			console.log(second_piece);
+			console.log(third_piece);
+			console.log(fourth_piece);
 			
 			master_piece=first_piece+second_piece+third_piece+fourth_piece;
 			sessionStorage.setItem("master_piece",master_piece); // 최종 결과물
 			console.log(master_piece);
-			
+			alert("잠깐 스톱");
 			location.href = '/register/mbtiResult' ;
 		}
 	</script>
