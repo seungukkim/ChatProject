@@ -79,7 +79,7 @@
         })
         
         //websocket 생성
-        const websocket = new WebSocket('ws://58.72.151.126:8090/ws/chat');
+        const websocket = new WebSocket('ws://15.164.102.145:80/ws/chat');
         //선생님포트포워딩 : 58.72.151.126:8099을 192.168.0.87:8080 로
         //여기에는 일단 ip주소를 넣어줌
         websocket.onmessage = onMessage; // 소켓이 메세지를 받을 때
@@ -150,7 +150,8 @@
                console.log("글쓴유저와 로그인유저 같음");
                $('#totalNum').val('그대로라구');
                 var str = "<div class='col-12'>";
-                str += "<div class='alert alert-primary' style='word-break:break-all;''>";
+                str += "<div class='alert alert-primary' style='word-break:break-all;text-align:right;'>";
+                /* 내가 쓰는 글은 우측정렬되도록 style = 'text-align:right;' */
                     if(message === '') {
                     str += "<b>" + sessionId
                 } else {
