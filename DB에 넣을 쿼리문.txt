@@ -32,8 +32,12 @@ CREATE TABLE tb_post (
     PRIMARY KEY (id)
 ) COMMENT '게시글';
 
+
+
 create table mbti_resttime(
-	isfp		varchar(300)	Not Null Comment 'ISFP 휴식방법',
-	infp		varchar(300)	Not Null Comment 'INFP 휴식방법',
-	entj		varchar(300)	Not Null Comment 'ENTJ 휴식방법'
-) COMMENT 'MBTI 별 휴식방법 DB';
+	MBTI varchar(10) not null,
+	method varchar(300) not null
+);
+select * from mbti_resttime mr ;
+insert into mbti_resttime values
+('ISFP','isfp 의 휴식방법');

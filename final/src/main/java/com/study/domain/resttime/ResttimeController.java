@@ -16,18 +16,12 @@ public class ResttimeController {
 
     private final ResttimeService resttimeService;
 
-    // 게시글 작성 페이지
+
     @GetMapping("/resttime/resttime")
-    public String openPostWrite(Model model) {
-        return "resttime/resttime";
-    }
-    
-    @PostMapping("/register/main")
-    @ResponseBody
     public String findUserMbti(final ResttimeRequest params) {
     	String mbti = resttimeService.findUserMbti(params);
     	System.out.println(mbti);
     	return mbti;
     }
-
+    
 }

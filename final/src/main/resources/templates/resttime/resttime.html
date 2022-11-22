@@ -139,7 +139,9 @@
 
   <div class="social-menu">
     <ul>
-      <li><a href="#" onclick="location.href='/mbti/html/index.html'" target="blank"><i></i></a></li>
+      <li><a href="#" onclick="location.href='/mbti/html/index.html'" target="blank"><i>
+      <button onclick="getRest();">이거</button>
+      </i></a></li>
       <li><a href="#" onclick="location.href='/mbti/html/chatting.html'" target="blank"><i></i></a></li>
       <li><a href="#" onclick="location.href='/mbti/html/Healing.html'" target="blank"><i></i></a></li>
       <li><a href="#" onclick="location.href='/mbti/html/BulletinBoard.html'" target="blank"><i></i></a></li>
@@ -151,17 +153,19 @@
 
 <script src="/made/js/resttime/resttime.js"></script>
 <script th:inline="javascript">
-	function checkId() {
 	
-		let mbti = $('#findByuserMbti').val(); //id값이 "userId"인 입력란의 값을 저장
-		console.log(mbti);
 	
+	function getRest(){
+		let mbti = '[(${info.userMbti})]'; 
+		alert(mbti);
+		
+		
 		/* ajax로 구현 */
 		$.ajax({
-			url : '/register/main', //Controller에서 인식할 주소
+			url : '/resttime/resttime', //Controller에서 인식할 주소
 			type : 'post', //POST 방식으로 전달
 			data : {
-				userMbti : mbti
+				findUserMbti : mbti
 			},
 			success : function(outcome) {//성공하면 해당 함수를 실행한다.
 				console.log(outcome); // 받아온 값이 무엇인지 확인(값을 제대로 받고 있는지 확인용)

@@ -17,13 +17,13 @@
 
 
 	<!-- MBTI 조회 -->
-    <select id="findByuserMbti" parameterType="Integer" resultType="com.study.domain.resttime.ResttimeMapper">
+    <select id="findUserMbti" parameterType="String" resultType="com.study.domain.resttime.ResttimeMapper">
         SELECT
-            count(*)
+            method
         FROM
-            tb_user2
+            mbti_resttime
         WHERE
-            user_mbti=#{userMbti}
+            MBTI=#{userMbti}
     </select>
     
 </mapper>
