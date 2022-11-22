@@ -12,8 +12,8 @@ import lombok.RequiredArgsConstructor;
 public class ResttimeService {
 	private final ResttimeMapper resttimeMapper;
 	
-			//아이디 중복 검사용
-			public int idconfig(final RegisterRequest params) {
-				return resttimeMapper.mbtiCheck(params);
+			// 유저의 MBTI 확인
+			public String findUserMbti(final ResttimeRequest params) {
+				return resttimeMapper.findUserMbti(params);
 			}
 }

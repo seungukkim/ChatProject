@@ -150,4 +150,23 @@
 
 
 <script src="/made/js/resttime/resttime.js"></script>
+<script th:inline="javascript">
+	function checkId() {
+	
+		let mbti = $('#findByuserMbti').val(); //id값이 "userId"인 입력란의 값을 저장
+		console.log(mbti);
+	
+		/* ajax로 구현 */
+		$.ajax({
+			url : '/register/main', //Controller에서 인식할 주소
+			type : 'post', //POST 방식으로 전달
+			data : {
+				userMbti : mbti
+			},
+			success : function(outcome) {//성공하면 해당 함수를 실행한다.
+				console.log(outcome); // 받아온 값이 무엇인지 확인(값을 제대로 받고 있는지 확인용)
+				
+		}});
+	}
+</script>
 </html>

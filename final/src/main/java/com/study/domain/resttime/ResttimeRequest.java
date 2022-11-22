@@ -9,6 +9,6 @@ import lombok.ToString;
 @ToString
 public class ResttimeRequest {
 	
-	private String registerMbti;
+	private String userMbti;
 	
 }
