@@ -62,15 +62,13 @@
                    params.append("name",this.roomId);
                 
                    const response1= await axios.post("/chatroom/eraseit", params)	//해당채팅방 db가 아닌 서비스에서 관리하는 rooms에서 제거
-                   window.location.href="/chatroom/room"
+                   /* window.location.href="/chatroom/room" */
                }
                catch{
-
                }
-
             }
             else{
-                window.location.href="/chatroom/room"
+                /* window.location.href="/chatroom/room" */
             }
         }
         catch{
