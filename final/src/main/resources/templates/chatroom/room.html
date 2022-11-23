@@ -92,6 +92,7 @@
 			<script src="/webjars/vue/2.5.16/dist/vue.min.js"></script>
 			<script src="/webjars/axios/0.17.1/dist/axios.min.js"></script>
 			<script>
+			
 			   window.onpageshow = function(event) {
 			       if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
 			    	 	
@@ -148,10 +149,9 @@
             findAllRoom: function() {
                 axios.get('/chatroom/rooms').then(response => { this.chatrooms = response.data; });
             },
-
             enterRoom: function(roomId,roomMaker) {
             	
-                var sender = '[(${info.userId})]';
+                var sender = '[(${info.userName})]';
                 if(sender !== "") {
                     localStorage.setItem('wschatroom.sender',sender);
                     localStorage.setItem('wschatroom.roomId',roomId);

@@ -26,7 +26,7 @@
 <th:block layout:fragment="title">
 	<h1 class="page-title">		
 		<span v-text=localStorage.getItem('wschatroom.roomName')>
-			채팅방
+			
 		</span>
 	</h1>
 </th:block>
@@ -38,16 +38,33 @@
 
 		<ul class="list-group">
 		
+		
+		
+		
+		
+		
+		
 		<!-- v-for문을 그냥 사용하여 채팅을 하면 새로운 채팅이 위에 나타난다. 이를 해결하기 위해 v-for문을 역순으로 출력되게 해야하는데
 		이때 출력하고자 하는 배열에.slice().reverse()를 붙이면 정상적으로 출력이 된다. -->
 		<!-- 여기서 만약에 방 만든 사람과 채팅을 입력하는 사람이 같다면 오른쪽 그게 아니라면 왼쪽 -->
-			<li th:if="${info?.userId=='kevin'}"style="text-align:right;"class="list-group-item" v-for="message in messages.slice().reverse()" >
-				{{message.sender}} : {{message.message}}
+			
+		
+			
+			
+ 			<li class="list-group-item" v-for="message in messages.slice().reverse()" >
+				<p v-if="message.sender==username" style="text-align:right;">
+					{{message.sender}} : {{message.message}}
+				</p>  
+				
+				<p v-else style="text-align:left;">
+					{{message.sender}} : {{message.message}}
+				</p> 
+				 
+				
 			</li>
 			
-			<li th:if="!${info?.userId=='kevin'}"class="list-group-item" v-for="message in messages.slice().reverse()" >
-				{{message.sender}} : {{message.message}}
-			</li>
+
+		
 
 		</ul>
 		
@@ -79,6 +96,10 @@
 	    
 </body>
 
+<script th:inline="javascript">
+
+</script>
+
 <th:block layout:fragment="script">
 			<!-- JavaScript -->
 			<script src="/webjars/vue/2.5.16/dist/vue.min.js"></script>
@@ -86,10 +107,14 @@
 			<script src="/webjars/sockjs-client/1.1.2/sockjs.min.js"></script>
 			<script src="/webjars/stomp-websocket/2.3.3-1/stomp.min.js"></script>
 
-			<script>
-    //alert(document.title);
-    // websocket & stomp initialize
+	<script th:inline="javascript">
 
+    // websocket & stomp initialize
+    /*<![CDATA[*/
+   /* 타임리프 형식으로 session info의 값을 가져오는 문법. 뒤의 null은 값이 없을 때 null을 넣어준다는 의미 */
+   	var userName = /*[[${info.userName}]]*/null;
+   	
+   	
 
     var sock = new SockJS("/ws/chatroom");
     var ws = Stomp.over(sock);
@@ -101,10 +126,10 @@
             roomId: '',
             room: {},
             sender: '',
-            message: '',
-            messages: [],
-            chatrooms: []
-            
+            message: '',   
+            username: userName,
+            chatrooms: [],
+            messages:  []  
         },
         created() {
             this.roomId = localStorage.getItem('wschatroom.roomId');
@@ -223,7 +248,7 @@
         });
     }
     connect();
-    
+    /*<![CDATA[*/
 
     
   

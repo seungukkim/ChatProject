@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="ko" xmlns:v-on="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="layout/basic">
 <head>
 <title>채팅방</title>
@@ -14,50 +15,31 @@
 
 </head>
 
-
-
-
-
 <body>
 
-<th:block layout:fragment="title">
-	<h1 class="page-title">		
-		<span v-text=localStorage.getItem('wschatroom.roomName')>
-			채팅방
-		</span>
-	</h1>
-</th:block>
+	<th:block layout:fragment="title">
+		<h1 class="page-title">
+			<span v-text=localStorage.getItem( 'wschatroom.roomName')>
+				채팅방생성 </span>
+		</h1>
+	</th:block>
 
 	<!-- 위에는 파란색 대가리 부분을 의미한다!     -->
-<th:block layout:fragment="content">
-	<div id="wrapper">
+	<th:block layout:fragment="content">
 		<div id="app">
-			<div class="row row-inline-block small-spacing">
-				<div class="col-xs-12">
-					<div class="box-content">
-						<div class="clearfix">
-							<h4 class="box-title pull-left"></h4>
-							<th:block layout:fragment="search"></th:block>
-						</div>
-						<th:block layout:fragment="paging">
-							<div class="input-group">
-								<input type="text" class="form-control" v-model="room_name"
-									v-on:keyup.enter="createRoom">
-								<!-- 방 개설하는 데 필수적 요소 -->
-								<button class="btn btn-primary" type="button"
-									@click="createRoom">채팅방 개설</button>
-							</div>
-						</th:block>
-					</div>
-
-					
+			<th:block layout:fragment="paging">
+				<div class="input-group">
+					<input type="text" class="form-control" v-model="room_name"
+						v-on:keyup.enter="createRoom">
+					<!-- 방 개설하는 데 필수적 요소 -->
+					<button class="btn btn-primary" type="button" @click="createRoom">채팅방
+						개설</button>
 				</div>
-			</div>
+			</th:block>
 		</div>
-	</div>
 	</th:block>
-	</body>
-	<th:block layout:fragment="script">
+</body>
+<th:block layout:fragment="script">
 	<!-- JavaScript -->
 	<script src="/webjars/vue/2.5.16/dist/vue.min.js"></script>
 	<script src="/webjars/axios/0.17.1/dist/axios.min.js"></script>
@@ -101,8 +83,7 @@
         el: '#app',
         data: {
             room_name : '',
-            chatrooms: [
-            ]
+            chatrooms: []
         },
         created() {
             this.findAllRoom();
@@ -122,7 +103,7 @@
                     params.append("name",this.room_name);
                     
                     //여기는 실험용
-                    params.append("maker",'[(${info.userId})]');
+                    params.append("maker",'[(${info.userName})]');
                     
                     //
 
@@ -136,7 +117,7 @@
                                 
                               		//들어갈 때 닉네임을 입력하는 부분
                                 	
-                                	var sender = '[(${info.userId})]';
+                                	var sender = '[(${info.userName})]';
                               		//이게 룸아이디다!!
                                 	var roomId=response.data.roomId;
                                 	
