@@ -17,11 +17,20 @@ public class ResttimeController {
     private final ResttimeService resttimeService;
 
 
+    @PostMapping("/resttime/mbti")
+    @ResponseBody
+    public String userMbti(final ResttimeRequest params) {
+    	System.out.println("resttime/resttime 컨트롤러 진입. 넘어온 파라미터 : "+params);
+    	
+    	String method = resttimeService.userMbti(params); //유저의 mbti를 통해 휴식방법을 db로부터 가져오기
+    	System.out.println(method);
+    	return method;
+    }
+    
     @GetMapping("/resttime/resttime")
-    public String findUserMbti(final ResttimeRequest params) {
-    	String mbti = resttimeService.findUserMbti(params);
-    	System.out.println(mbti);
-    	return mbti;
+    public void restTime() {
+    	String caffee = "아메리카노";
+    	
     }
     
 }

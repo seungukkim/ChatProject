@@ -15,15 +15,20 @@
         , update_date
     </sql>
 
+	<!-- mbti_resttime 테이블 전체 컬럼 -->
+	<sql id="restmethodColumn">
+        MBTI,
+        method
+    </sql>
 
-	<!-- MBTI 조회 -->
-    <select id="findUserMbti" parameterType="String" resultType="com.study.domain.resttime.ResttimeMapper">
+	<!-- MBTI 휴식방법 조회 -->
+    <select id="userMbti" parameterType="String" resultType="com.study.domain.resttime.ResttimeResponse">
         SELECT
             method
         FROM
             mbti_resttime
         WHERE
-            MBTI=#{userMbti}
+            MBTI=#{value}
     </select>
     
 </mapper>

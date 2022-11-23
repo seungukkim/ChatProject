@@ -12,8 +12,8 @@ import lombok.RequiredArgsConstructor;
 public class ResttimeService {
 	private final ResttimeMapper resttimeMapper;
 	
-			// 유저의 MBTI 확인
-			public String findUserMbti(final ResttimeRequest params) {
-				return resttimeMapper.findUserMbti(params);
+			// resttimeMapper에서 휴식방법 가져오기
+			public String userMbti(final ResttimeRequest params) {
+				return resttimeMapper.userMbti(params);
 			}
 }
