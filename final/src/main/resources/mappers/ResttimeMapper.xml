@@ -3,18 +3,6 @@
 
 <mapper namespace="com.study.domain.resttime.ResttimeMapper">
 
-  <!-- tb_user 테이블 전체 컬럼 -->
-    <sql id="registerColumns">
-         user_id
-        , user_pw
-        , user_name
-        , user_mbti
-        , user_email
-        , user_auth
-        , append_date
-        , update_date
-    </sql>
-
 	<!-- mbti_resttime 테이블 전체 컬럼 -->
 	<sql id="restmethodColumn">
         MBTI,
@@ -28,7 +16,7 @@
         FROM
             mbti_resttime
         WHERE
-            MBTI=#{value}
+            MBTI=#{userMbti}
     </select>
     
 </mapper>
