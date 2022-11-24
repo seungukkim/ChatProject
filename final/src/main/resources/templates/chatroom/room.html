@@ -147,6 +147,7 @@
         },
         methods: {
             findAllRoom: function() {
+            	//생성되어 있는 모든 방 목록을 가져오는 함수
                 axios.get('/chatroom/rooms').then(response => { this.chatrooms = response.data; });
             },
             enterRoom: function(roomId,roomMaker) {

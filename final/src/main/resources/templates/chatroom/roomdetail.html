@@ -115,9 +115,9 @@
    	var userName = /*[[${info.userName}]]*/null;
    	
    	
-
+	let count=0;
     var sock = new SockJS("/ws/chatroom");
-    var ws = Stomp.over(sock);
+    var ws = Stomp.over(sock); //SockJS를 내부에 들고 있는 ws를 내어준다.
     var reconnect = 0;
     // vue.js
     var vm = new Vue({
@@ -141,16 +141,20 @@
         },
         methods: {
         	findAllRoom: function() {
+        		//현존하는 모든 방을 찾는 함수
                 axios.get('/chatroom/rooms').then(response => { this.chatrooms = response.data; });
             },
             findRoom: function() {
+            	//특정 방에 입장할 때 쓰는 함수
                 axios.get('/chatroom/room/'+this.roomId).then(response => { this.room = response.data; });
             },
             sendMessage: function() {
+            	//메시지를 전송할 때 쓰는 함수
                 ws.send("/app/chatroom/message", {}, JSON.stringify({type:'TALK', roomId:this.roomId, sender:this.sender, message:this.message}));
                 this.message = '';
             },
             recvMessage: function(recv) {
+            	
                 this.messages.unshift({"type":recv.type,"sender":recv.type=='ENTER'?'[알림]':recv.sender,"message":recv.message})
             },
             //이게 내가 만들고 있는 것() 
@@ -229,13 +233,20 @@
     
 
     function connect() {
+    	//처음 방이 생성되었을 때 실행
         // pub/sub event
-        ws.connect({}, function(frame) {
-            ws.subscribe("/topic/chatroom/room/"+vm.$data.roomId, function(message) {
+        ws.connect({}, function(frame) { //connection이 맺어지면 실행
+        	count+=1;
+        	console.log("현재 인원은"+count+"명이다");
+        	
+            ws.subscribe("/topic/chatroom/room/"+vm.$data.roomId, function(message) {//subscribe(path,callback)으로 메세지를 받을 수 있다.
+            	
                 var recv = JSON.parse(message.body);
                 vm.recvMessage(recv);
             });
-            ws.send("/app/chatroom/message", {}, JSON.stringify({type:'ENTER', roomId:vm.$data.roomId, sender:vm.$data.sender}));
+            ws.send("/app/chatroom/message", {}, JSON.stringify({type:'ENTER', roomId:vm.$data.roomId, sender:vm.$data.sender})
+            		
+            );
         }, function(error) {
             if(reconnect++ <= 5) {
                 setTimeout(function() {
@@ -247,7 +258,10 @@
             }
         });
     }
+ 
     connect();
+    
+    
     /*<![CDATA[*/
 
     

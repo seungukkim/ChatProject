@@ -98,9 +98,8 @@
                     return;
                 } else {
                     var params = new URLSearchParams();
-                    params.append("name",this.room_name);
-                    
-                    //여기는 실험용
+                    //name과 maker를 controller를 통해서 받을 수 있다.
+                    params.append("name",this.room_name);         
                     params.append("maker",'[(${info.userName})]');
                     
                     //
