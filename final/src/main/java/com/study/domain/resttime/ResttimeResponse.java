@@ -4,5 +4,5 @@ import lombok.Getter;
 
 @Getter
 public class ResttimeResponse {
-	private String userMbti;
+	private String getRestAsMbti;
 }

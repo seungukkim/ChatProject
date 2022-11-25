@@ -154,7 +154,7 @@ body {
   z-index: -1;
 }
 
-.resttime > img{
+.resttime > #restImg{
   background-color: #DB76A6;
   position: absolute;
   width: 45%;

@@ -8,7 +8,5 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ResttimeRequest {
-	
 	private String userMbti;
-	private String method;
 }

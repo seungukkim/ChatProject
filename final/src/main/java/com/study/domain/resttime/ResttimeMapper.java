@@ -6,10 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface ResttimeMapper {
 	
 	
-	/**
-     * 유저의 MBTI 체크
-     * @param params - 회원 정보
-     */
-	String userMbti(ResttimeRequest params);
+	/* List<String> restAsMbti */
+	String getRestAsMbti (ResttimeRequest params);
 	
 }

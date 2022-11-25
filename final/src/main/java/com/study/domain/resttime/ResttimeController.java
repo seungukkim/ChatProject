@@ -1,5 +1,8 @@
 package com.study.domain.resttime;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,19 +20,20 @@ public class ResttimeController {
     private final ResttimeService resttimeService;
 
 
-    @PostMapping("/resttime/mbti")
+    @PostMapping("/resttime/resttime/")
     @ResponseBody
-    public String userMbti(final ResttimeRequest params) {
+    public String getRestAsMbti(final ResttimeRequest params, HttpServletRequest	request) {
     	System.out.println("resttime/resttime 컨트롤러 진입. 넘어온 파라미터 : "+params);
     	
-    	String method = resttimeService.userMbti(params); //유저의 mbti를 통해 휴식방법을 db로부터 가져오기
+    	
+    	String method = resttimeService.getRestAsMbti(params); //유저의 mbti를 통해 휴식방법을 db로부터 가져오기
     	System.out.println(method);
     	return method;
     }
     
     @GetMapping("/resttime/resttime")
     public void restTime() {
-    	String caffee = "아메리카노";
+    	String coffee = "아메리카노";
     	
     }
     

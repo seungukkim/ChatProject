@@ -39,5 +39,31 @@ create table mbti_resttime(
 	method varchar(300) not null
 );
 select * from mbti_resttime mr ;
+select * from tb_user2;
 insert into mbti_resttime values
-('ISFP','isfp 의 휴식방법');
+('ISFP','isfp 의 휴식방법'),
+('ISFJ','isfj 의 휴식방법'),
+('ISTP','istp 의 휴식방법'),
+('ISTJ','istj 의 휴식방법'),
+('INFP','infp 의 휴식방법'),
+('INFJ','infj 의 휴식방법'),
+('INTP','intp 의 휴식방법'),
+('INTJ','intj 의 휴식방법'),
+('ESFP','esfp 의 휴식방법'),
+('ESFJ','esfj 의 휴식방법'),
+('ESTP','estp 의 휴식방법'),
+('ESTJ','estj 의 휴식방법'),
+('ENFP','enfp 의 휴식방법'),
+('ENFJ','enfj 의 휴식방법'),
+('ENTP','entp 의 휴식방법'),
+('ENTJ','entj 의 휴식방법')
+;
+
+delete from mbti_resttime ;
+
+SELECT
+            method
+        FROM
+            mbti_resttime
+        WHERE
+            MBTI='ENTJ';

@@ -10,7 +10,7 @@
     </sql>
 
 	<!-- MBTI 휴식방법 조회 -->
-    <select id="userMbti" parameterType="String" resultType="com.study.domain.resttime.ResttimeResponse">
+    <select id="getRestAsMbti" parameterType="com.study.domain.resttime.ResttimeRequest" resultType="String">
         SELECT
             method
         FROM
