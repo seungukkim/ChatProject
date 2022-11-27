@@ -2,6 +2,7 @@ package com.study.domain.chatroom;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,10 @@ import lombok.RequiredArgsConstructor;
 
 public class ChatRoomController {
 	 private final ChatService chatService;
-
+	 
+	 @Autowired
+	 StompHandler stomphandler;
+	 
 
 	    // 채팅 리스트 화면
 	    @GetMapping("chatroom/room")
@@ -29,7 +33,8 @@ public class ChatRoomController {
 	    // 모든 채팅방 목록 반환
 	    @GetMapping("chatroom/rooms")
 	    @ResponseBody
-	    public List<ChatRoom> room() throws Exception{
+	    public List<ChatRoom> room(Model model) throws Exception{
+	    	
 	        return chatService.findAllRoom();
 	    }
 	    
@@ -50,8 +55,22 @@ public class ChatRoomController {
 	    // 채팅방 입장 화면
 	    @GetMapping("chatroom/room/enter/{roomId}")
 	    public String roomDetail(Model model, @PathVariable String roomId) throws Exception{
-	    	
-	    	chatService.updateParticipant(roomId);
+	    	//chatrooms에 있는 participant를 갱신해줘야한다.
+	    	//System.out.println("주소를 출력합니당");
+	    	//System.out.println("/topic/chatroom/room/"+roomId);
+			
+	    	System.out.println("/topic/chatroom/room/"+roomId);
+	    	if(stomphandler.getCount().get("/topic/chatroom/room/"+roomId)==null) {
+	    		System.out.println("값이 없다");
+	    		System.out.println(stomphandler.hello.get("hello"));
+	    		System.out.println(stomphandler.test);
+	    		
+	    	}
+	    	else {
+	    		int test= stomphandler.getCount().get("/topic/chatroom/room/"+roomId);
+				System.out.println(test);
+	    		
+	    	}
 	        model.addAttribute("roomId", roomId);
 	        return "/chatroom/roomdetail";
 	    }
@@ -70,6 +89,7 @@ public class ChatRoomController {
 	    @GetMapping("chatroom/erase")
 	    public String erase() throws Exception{
 	    	chatService.deleteRoom();
+	    	
 	    	return "/chatroom/room";
 	    }
 	    
@@ -84,15 +104,15 @@ public class ChatRoomController {
 	    
 	    
 	    //나갈 때 어디로 연결될 것인지 + 인원 삭제
-	    @GetMapping("chatroom/room/exit/{roomId}")
-	    @ResponseBody
-	    public int getOut(@PathVariable String roomId) throws Exception{
+	   // @GetMapping("chatroom/room/exit/{roomId}")
+	   // @ResponseBody
+	   // public void getOut(@PathVariable String roomId) throws Exception{
 	    	//나가니까 인원 -1해야겠지?	    	
-	        System.out.println("여기까지는 됨1");
-	        int b = chatService.minusParticipant(roomId);
-	        return b;
+	      //  System.out.println("여기까지는 됨1");
+	
+	    
 	      
-	    }
+	   // }
 	    
 
 

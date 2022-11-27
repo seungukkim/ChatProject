@@ -30,6 +30,7 @@ public class ChatService {
     public List<ChatRoom> findAllRoom() {
         //채팅방 최근 생성 순으로 반환
         List<ChatRoom> result = new ArrayList<>(chatRooms.values());
+        
         Collections.reverse(result);
 
         return result;
@@ -42,8 +43,9 @@ public class ChatService {
 
     //채팅방 생성
     public ChatRoom createRoom(String name,String maker) {
-        ChatRoom chatRoom = ChatRoom.create(name,maker);     
-        chatRooms.put(chatRoom.getRoomId(), chatRoom);
+        ChatRoom chatRoom = ChatRoom.create(name,maker);
+        
+        chatRooms.put(chatRoom.getRoomId(), chatRoom); // 이 부분에서 보면 chatRoom.getRoomId()를 쓰고 있다.
         return chatRoom;
     }
     //채팅방 전체 삭제(테스트용)
@@ -57,20 +59,5 @@ public class ChatService {
     	
     }
     
-    //입장인원 추가
-    public void updateParticipant(String roomId) {
-    	int a= chatRooms.get(roomId).getParticipant();    	  	
-    	a+=1;
-    	chatRooms.get(roomId).setParticipant(a);    	      
-    	
-    }
-    
-    //입장인원 없애기
-    public int minusParticipant(String roomId) {
-    	int a= chatRooms.get(roomId).getParticipant();   		
-    	a-=1;
-    	chatRooms.get(roomId).setParticipant(a);
-    	return a;
-    }
 
 }

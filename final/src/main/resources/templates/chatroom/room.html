@@ -47,7 +47,9 @@
 										<th>제목</th>
 										<th>작성자</th>
 										<th>등록일</th>
-										<th>참여인원</th>
+										
+										<th>찐참여인원</th>
+										
 									</tr>
 								</thead>
 
@@ -58,7 +60,9 @@
 										<th>{{item.roomName}}</th>
 										<th>{{item.roomMaker}}</th>
 										<th>{{item.createdDate}}</th>
+										
 										<th>{{item.participant}}</th>
+										
 									</tr>
 								</tbody>
 							</table>
@@ -109,8 +113,7 @@
 		                                              
 		                                axios.post("/chatroom/eraseit", params)               
 		                                .then(
-		                                        response => {
-		                                                                                                     	                                                               
+		                                        response => {		                                                                                                     	                                                               
 		                                                window.location.href="/chatroom/room"                           
 		                                        }
 		                                    )
@@ -129,18 +132,14 @@
 			       else{
 			        
 			       }
-			   }
-			
-			
-			
-			
+			   }					
 			
     var vm = new Vue({
         el: '#app',
         data: {
             room_name : '',
-            chatrooms: [
-            ]
+            chatrooms: [] //이곳의 chatrooms가 list를 생성할 때 쓰이는 chatrooms이다.
+    
         },
         created() {
             this.findAllRoom();
@@ -148,7 +147,7 @@
         methods: {
             findAllRoom: function() {
             	//생성되어 있는 모든 방 목록을 가져오는 함수
-                axios.get('/chatroom/rooms').then(response => { this.chatrooms = response.data; });
+                axios.get('/chatroom/rooms').then(response => { this.chatrooms = response.data; }); //controller의 chatrooms/rooms 를 통해 모든 방을 가져온다.
             },
             enterRoom: function(roomId,roomMaker) {
             	
