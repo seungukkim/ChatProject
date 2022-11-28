@@ -29,28 +29,32 @@ public class StompHandler implements ChannelInterceptor{
 	public Message<?> preSend(Message<?> message, MessageChannel channel) {
 		StompHeaderAccessor accessor = StompHeaderAccessor.wrap(message);
 		StompCommand command = accessor.getCommand();
+		System.out.println("핸들러의 preSend 호출됨");
 		
-		hello.put("hello", 10); // 실험용도
-		test=100;
-		if(command.compareTo(StompCommand.SUBSCRIBE) == 0) { 
+		String destination = accessor.getDestination();
+
+		
+		if(command.compareTo(StompCommand.SUBSCRIBE) == 0) {
 			//websocket 연결 요청
-			String destination = accessor.getDestination();
-			
+						
 			if(count.get(destination)==null) {
+				System.out.println("데스티네이션이 null임");
 				//처음 만들어진 방이라면 인원수에 1을 넣는다.
 				count.put(destination, 1);
-				commonString=destination;
+				hello.put("hello", 10); // 실험용도
+				test=100;
 			}
 			else {
+				System.out.println("데스티네이션이 null이 아님");
 				//그렇지 않다면 현재 인원수 값을 구하고 1을 더한다.
 				int a= count.get(destination)+1;
+				System.out.println("최초의 방이 아님.  현재 바꿀인원수 : "+a);
 				count.replace(destination, a);
-				commonString=destination;
 			}
-			System.out.println(count.get(destination));
+			System.out.println("현재 인원수는:"+count.get(destination));
 			System.out.println("구독 주소: "+destination);
 			System.out.println(message);		
-			System.out.println(hello.get("hello")); //10이 제대로 들어갔음을 확인할 수 있다.
+			System.out.println("test용도 :"+hello.get("hello")); //10이 제대로 들어갔음을 확인할 수 있다.
 		}
 		else if(command.compareTo(StompCommand.CONNECT) == 0) {
 			//이게 제일 처음으로 실행됨.
@@ -59,16 +63,17 @@ public class StompHandler implements ChannelInterceptor{
 
 		}
 		else if(command.compareTo(StompCommand.DISCONNECT) == 0) {
-		
-			int a= count.get(commonString)-1;
-			count.replace(commonString, a);
+			int a= count.get(destination)-1;
+			count.replace(destination, a);
 			
-			System.out.println(count.get(commonString));
 			System.out.println("사용자 연결 해제");
-			
-
+		}
+		else {
+			System.out.println("핸들러의 else");
 			
 		}
+		System.out.println("리턴할 메세지의 페이로드 : ");
+		System.out.println(message.getPayload());
 		return message;
 	}
 

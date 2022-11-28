@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -17,8 +18,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 public class ChatService {
+	@Autowired
+	StompHandler stomphandler;
 	
-	private Map<String, ChatRoom> chatRooms;
+	private Map<String, ChatRoomDto> chatRooms;
 
     @PostConstruct
     //의존관게 주입완료되면 실행되는 코드
@@ -27,9 +30,9 @@ public class ChatService {
     }
 
     //채팅방 불러오기
-    public List<ChatRoom> findAllRoom() {
+    public List<ChatRoomDto> findAllRoom() {
         //채팅방 최근 생성 순으로 반환
-        List<ChatRoom> result = new ArrayList<>(chatRooms.values());
+        List<ChatRoomDto> result = new ArrayList<>(chatRooms.values());
         
         Collections.reverse(result);
 
@@ -37,13 +40,13 @@ public class ChatService {
     }
 
     //채팅방 하나 불러오기
-    public ChatRoom findById(String roomId) {
+    public ChatRoomDto findById(String roomId) {
         return chatRooms.get(roomId);
     }
 
     //채팅방 생성
-    public ChatRoom createRoom(String name,String maker) {
-        ChatRoom chatRoom = ChatRoom.create(name,maker);
+    public ChatRoomDto createRoom(String name,String maker) {
+        ChatRoomDto chatRoom = ChatRoomDto.create(name,maker);
         
         chatRooms.put(chatRoom.getRoomId(), chatRoom); // 이 부분에서 보면 chatRoom.getRoomId()를 쓰고 있다.
         return chatRoom;
@@ -59,5 +62,10 @@ public class ChatService {
     	
     }
     
-
+    //채팅방 하나 불러오기
+    public void updatePeople(String roomId) {
+        System.out.println(stomphandler.getHello().get("hello"));
+        System.out.println(stomphandler.getCount().get("/topic/chatroom/room/"+roomId));
+        System.out.println(stomphandler.getTest());
+    }
 }

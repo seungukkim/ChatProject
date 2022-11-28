@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.study.domain.register.RegisterRequest;
+
 import lombok.RequiredArgsConstructor;
 @SessionAttributes("info")
 @Controller
@@ -33,7 +35,7 @@ public class ChatRoomController {
 	    // 모든 채팅방 목록 반환
 	    @GetMapping("chatroom/rooms")
 	    @ResponseBody
-	    public List<ChatRoom> room(Model model) throws Exception{
+	    public List<ChatRoomDto> getAllRoomList(Model model) throws Exception{
 	    	
 	        return chatService.findAllRoom();
 	    }
@@ -47,7 +49,7 @@ public class ChatRoomController {
 	    // 채팅방 생성
 	    @PostMapping("chatroom/room")
 	    @ResponseBody
-	    public ChatRoom createRoom(@RequestParam String name,@RequestParam String maker) throws Exception{
+	    public ChatRoomDto createRoom(@RequestParam String name,@RequestParam String maker) throws Exception{
 	        return chatService.createRoom(name,maker);
 	    }
 	    
@@ -59,25 +61,14 @@ public class ChatRoomController {
 	    	//System.out.println("주소를 출력합니당");
 	    	//System.out.println("/topic/chatroom/room/"+roomId);
 			
-	    	System.out.println("/topic/chatroom/room/"+roomId);
-	    	if(stomphandler.getCount().get("/topic/chatroom/room/"+roomId)==null) {
-	    		System.out.println("값이 없다");
-	    		System.out.println(stomphandler.hello.get("hello"));
-	    		System.out.println(stomphandler.test);
-	    		
-	    	}
-	    	else {
-	    		int test= stomphandler.getCount().get("/topic/chatroom/room/"+roomId);
-				System.out.println(test);
-	    		
-	    	}
+
 	        model.addAttribute("roomId", roomId);
 	        return "/chatroom/roomdetail";
 	    }
 	    // 특정 채팅방 조회
 	    @GetMapping("chatroom/room/{roomId}")
 	    @ResponseBody
-	    public ChatRoom roomInfo(@PathVariable String roomId) throws Exception{
+	    public ChatRoomDto roomInfo(@PathVariable String roomId) throws Exception{
 	    	
 	    	
 	        return chatService.findById(roomId);
@@ -113,6 +104,15 @@ public class ChatRoomController {
 	    
 	      
 	   // }
+	    
+		// 인원수 업데이트
+		@PostMapping("/chatroom/updatePeople")
+		@ResponseBody
+		public void updatePeople(String roomId) {
+
+			chatService.updatePeople(roomId);
+			
+		}
 	    
 
 

@@ -326,19 +326,10 @@
 	//로그인 용도
     function login() {
         const form = document.getElementById('loginForm');
-        const fields = [form.userId, form.userPw];
-       	
-        if(form.userId.value==""){
-        	alert("아이디를 입력해주세요");
-        }
-        else if(form.userPw.value==""){
-        	alert("비밀번호를 입력해주세요");
-        }
-        else{
+        form.userId.value = "kevin";
+        form.userPw.value = '1234';
         	   form.action = '/register/loginVerify'                 	   
                form.submit();
-                              	
-        }
      
     }
 	

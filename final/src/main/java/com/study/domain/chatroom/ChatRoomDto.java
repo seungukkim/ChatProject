@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ChatRoom {
+public class ChatRoomDto {
 	 private String roomId;
 	 private String roomName;
 	 private Integer chatnum;
@@ -21,8 +21,8 @@ public class ChatRoom {
 	 
 	
 
-	    public static ChatRoom create(String name,String maker) {
-	        ChatRoom room = new ChatRoom();
+	    public static ChatRoomDto create(String name,String maker) {
+	        ChatRoomDto room = new ChatRoomDto();
 	        room.roomId = UUID.randomUUID().toString();
 	        room.roomName = name;
 	        room.roomMaker= maker; // 방 생성자
