@@ -18,8 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 public class ChatService {
-	@Autowired
-	StompHandler stomphandler;
+
 	
 	private Map<String, ChatRoomDto> chatRooms;
 
@@ -62,10 +61,8 @@ public class ChatService {
     	
     }
     
-    //채팅방 하나 불러오기
+    //테스트용
     public void updatePeople(String roomId) {
-        System.out.println(stomphandler.getHello().get("hello"));
-        System.out.println(stomphandler.getCount().get("/topic/chatroom/room/"+roomId));
-        System.out.println(stomphandler.getTest());
+     System.out.println("hi");
     }
 }

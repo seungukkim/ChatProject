@@ -9,6 +9,8 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 
 import com.study.domain.chatroom.StompHandler;
 
+import lombok.RequiredArgsConstructor;
+@RequiredArgsConstructor
 @Configuration
 @EnableWebSocketMessageBroker
 

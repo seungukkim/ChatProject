@@ -114,4 +114,17 @@
             user_id=#{userId}
     </update>
     
+    
+    
+    
+          <!-- 회원 가입 할 때 닉네임 중복 조회 -->
+    <select id="checkName_change" resultType="Integer">
+    	SELECT
+    		count(*)
+    	FROM
+    		tb_user2
+    	WHERE
+    		user_name=#{userName}  
+    </select>
+    
 </mapper>

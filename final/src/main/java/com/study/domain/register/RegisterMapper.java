@@ -44,4 +44,8 @@ public interface RegisterMapper {
 	//닉네임 바꾸기 구현
 	int changename(RegisterRequest params);
 	
+	
+	
+	//닉네임 바꾸기에서 중복되는 닉네임이 있는지 확인
+	int checkName_change(RegisterRequest params);
 }
