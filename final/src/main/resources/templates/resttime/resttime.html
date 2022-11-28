@@ -16,6 +16,7 @@
       background: radial-gradient(220% 105% at top center, #1b2947 10%, #75517d 40%, #e96f92 65%, #f7f7b6);
       background-attachment: fixed;
       overflow: hidden;
+      color:white;
     }
 
     @keyframes rotate {
@@ -182,7 +183,9 @@
     	<div id="text">
     
     	</div>
-    <img src="../img/back-button.png" id="toBack" alt="">
+    <a href="/resttime/resttime">
+    	<img src="/made/img/icon-back.png" id="toBack" alt="">
+    </a>
   </div>
 
 
@@ -304,26 +307,31 @@ function click(event) {
       },500)
     },2300)
     
+    getRest();
+    
     function getRest(){
 		let mbti = [[ ${info.userMbti} ]]; 
-		alert(mbti);
+		const randomNum = Math.floor(Math.random()*3+1); 
+		console.log(randomNum);
 		
 		/* ajax로 구현 */
 		$.ajax({
 			url : '/resttime/resttime/', //Controller에서 인식할 주소
 			type :'post', //POST 방식으로 전달
 			data : {
-				userMbti : mbti
+				userMbti : mbti,
+				randomNum : randomNum
+				
 			},
 			success : function(a) {//성공하면 해당 함수를 실행한다.
 				/* console.log(a); */ // 받아온 값이 무엇인지 확인(값을 제대로 받고 있는지 확인용)
 				document.getElementById("text").innerHTML = a;
 				console.log(document.getElementById("text").innerHTML = a);
-				document.getElementById("restImg").src = "/made/img/"+mbti+".jpg";
+				document.getElementById("restImg").src = "/made/img/"+mbti+randomNum+".jpg";
 		}});
 		
 	}
-    getRest();
+    
     
 }
 /*]]>*/

@@ -33,7 +33,6 @@ public class ResttimeController {
     
     @GetMapping("/resttime/resttime")
     public void restTime() {
-    	String coffee = "아메리카노";
     	
     }
     

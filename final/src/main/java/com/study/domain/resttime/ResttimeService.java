@@ -16,4 +16,6 @@ public class ResttimeService {
 			public String getRestAsMbti(final ResttimeRequest params) {
 				return resttimeMapper.getRestAsMbti(params);
 			}
+			
+			
 }

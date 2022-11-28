@@ -5,18 +5,19 @@
 
 	<!-- mbti_resttime 테이블 전체 컬럼 -->
 	<sql id="restmethodColumn">
-        MBTI,
-        method
+        mbti,
+        how_to_rest,
+        random_num
     </sql>
 
 	<!-- MBTI 휴식방법 조회 -->
     <select id="getRestAsMbti" parameterType="com.study.domain.resttime.ResttimeRequest" resultType="String">
         SELECT
-            method
+            how_to_rest
         FROM
             mbti_resttime
         WHERE
-            MBTI=#{userMbti}
+            mbti=#{userMbti} and random_num = #{randomNum};
     </select>
     
 </mapper>

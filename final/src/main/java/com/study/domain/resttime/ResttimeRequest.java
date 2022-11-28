@@ -9,4 +9,5 @@ import lombok.ToString;
 @ToString
 public class ResttimeRequest {
 	private String userMbti;
+	private Integer randomNum;
 }
