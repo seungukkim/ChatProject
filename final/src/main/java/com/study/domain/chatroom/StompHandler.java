@@ -17,10 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class StompHandler implements ChannelInterceptor{
 	
 	
-	/*
-	 * private HashMap<String, Integer> count=new HashMap<String,Integer>(); public
-	 * HashMap<String, Integer> hello = new HashMap<String,Integer>();
-	 */
+	private final ChatService chatService;
 
 	
 	@Override
@@ -30,17 +27,15 @@ public class StompHandler implements ChannelInterceptor{
 		System.out.println("핸들러의 preSend 호출됨");
 		
 		String destination = accessor.getDestination();
-		
+		String rememberId;
 		
 		if(command.compareTo(StompCommand.SUBSCRIBE) == 0) {
 			//websocket 연결 요청
 			//Chatservice상에서 1을 추가하는 행위를 한번 해보자 
 			String[] array = destination.split("/");
-			for(int i=0;i<array.length;i++) {
-				System.out.println(array[i]);
-			}
-			
-			
+			System.out.println(array[4]); //roomId값
+			rememberId=array[4];
+			chatService.plusPeople(array[4]); // 인원수를 증가
 			
 			System.out.println("구독 주소: "+destination);
 			System.out.println(message);		
@@ -53,7 +48,8 @@ public class StompHandler implements ChannelInterceptor{
 
 		}
 		else if(command.compareTo(StompCommand.DISCONNECT) == 0) {
-
+			
+			chatService.minusPeople(rememberId); // 인원수를 감소
 			
 			System.out.println("사용자 연결 해제");
 		}

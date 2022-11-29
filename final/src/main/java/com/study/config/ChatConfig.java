@@ -13,8 +13,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Configuration
 @EnableWebSocketMessageBroker
-
 public class ChatConfig implements WebSocketMessageBrokerConfigurer{
+	
+	private final StompHandler stompHandler;
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws/chatroom").setAllowedOriginPatterns("*").withSockJS();
@@ -30,7 +31,7 @@ public class ChatConfig implements WebSocketMessageBrokerConfigurer{
     }
 	@Override
     public void configureClientInboundChannel(ChannelRegistration registration) {
-        registration.interceptors(new StompHandler());
+        registration.interceptors(stompHandler);
     }
 
 }

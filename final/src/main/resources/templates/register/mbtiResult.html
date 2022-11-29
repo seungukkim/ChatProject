@@ -50,18 +50,13 @@
     <py-script output="plot">
 from js import first,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen,fourteen,fifteen,sixteen,seventeen,eightteen,nineteen,twenty,twenty_one,twenty_two,twenty_three,twenty_four,twenty_five,twenty_six,twenty_seven,twenty_eight,master_piece,console
 
-console.log(first)
-console.log(two)
-console.log(master_piece);
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
 fig=plt.figure()
-df = pd.DataFrame({'MBTI' :['E&I','S&N','T&F','J&P'],'A' : [int(first)*10,int(two)*10,int(three)*10,int(four)*10,int(five)*10,int(six)*10,int(seven)*10,int(eight)*10,int(nine)*10,int(ten)*10,int(eleven)*10,int(twelve)*10,int(thirteen)*10,int(fourteen)*10], 'B' : [int(fifteen)*10,int(sixteen)*10,int(seventeen)*10,int(eightteen)*10,int(nineteen)*10,int(twenty)*10,int(twenty_one)*10,int(twenty_two)*10,int(twenty_three)*10,int(twenty_four)*10,int(twenty_five)*10,int(twenty_six)*10,int(twenty_seven)*10,int(twenty_eight)*10]})
- 
-
-
+df = pd.DataFrame({'MBTI' :['E&I','S&N','T&F','J&P'],'A' : [int(first)+int(two)+int(three)+int(four)+int(five)+int(six)+int(seven),int(eight)+int(nine)+int(ten)+int(eleven)+int(twelve)+int(thirteen)+int(fourteen),int(fifteen)+int(sixteen)+int(seventeen)+int(eightteen)+int(nineteen)+int(twenty)+int(twenty_one),int(twenty_two)+int(twenty_three)+int(twenty_four)+int(twenty_five)+int(twenty_six)+int(twenty_seven)+int(twenty_eight)], 'B' : [35-(int(first)+int(two)+int(three)+int(four)+int(five)+int(six)+int(seven)),35-(int(eight)+int(nine)+int(ten)+int(eleven)+int(twelve)+int(thirteen)+int(fourteen)),35-(int(fifteen)+int(sixteen)+int(seventeen)+int(eightteen)+int(nineteen)+int(twenty)+int(twenty_one)),35-(int(twenty_two)+int(twenty_three)+int(twenty_four)+int(twenty_five)+int(twenty_six)+int(twenty_seven)+int(twenty_eight))]})
 df['total'] = df['A'] + df['B']
 df['A_percent'] = round(df['A'] / df['total'] * 100, 1)
 df['B_percent'] = round(df['B']/ df['total']*100, 1)

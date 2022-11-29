@@ -61,8 +61,17 @@ public class ChatService {
     	
     }
     
-    //테스트용
-    public void updatePeople(String roomId) {
-     System.out.println("hi");
+    //들어왔을 때 인원수를 증가시키는 서비스
+    public void plusPeople(String roomId) {
+     	int participants= chatRooms.get(roomId).getParticipant();
+     	participants+=1;
+     	chatRooms.get(roomId).setParticipant(participants);     	
+    }
+    
+    //나갈 때 인원수를 감소시키는 서비스
+    public void minusPeople(String roomId) {
+    	int participants = chatRooms.get(roomId).getParticipant();
+    	participants-=1;
+    	chatRooms.get(roomId).setParticipant(participants);
     }
 }

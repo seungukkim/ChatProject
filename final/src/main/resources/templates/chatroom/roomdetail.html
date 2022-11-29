@@ -109,8 +109,7 @@
             this.roomId = localStorage.getItem('wschatroom.roomId');
             this.sender = localStorage.getItem('wschatroom.sender');
             this.roomName = localStorage.getItem('wschatroom.roomName');
-            this.roomMaker = localStorage.getItem('wschatroom.roomMaker');
-           	
+            this.roomMaker = localStorage.getItem('wschatroom.roomMaker');      	
             this.findRoom();
         },
         methods: {
@@ -211,30 +210,13 @@
         // pub/sub event
         
         ws.connect({}, function(frame) { //connection이 맺어지면 실행
-        	count+=1;
-        	console.log("현재 인원은"+count+"명이다");
-        	//alert("hello");	
+        	
+        	
+        		
             ws.subscribe("/topic/chatroom/room/"+vm.$data.roomId, function(message) {//subscribe(path,callback)으로 메세지를 받을 수 있다. 이 시점에서 subscribe가 된다.
-            	alert("hello");
+            	
                 var recv = JSON.parse(message.body);
                 vm.recvMessage(recv);
-                //여기서부터는 내가 짜는 코드(목표는 인원수 업데이트)
-                roomId = localStorage.getItem('wschatroom.roomId');
-                console.log("roomId를 출력합니다.:"+roomId);
-                $.ajax({
-        			url : '/chatroom/updatePeople', //Controller에서 인식할 주소
-        			type : 'post', //POST 방식으로 전달
-        			data : {
-        				roomId : roomId
-        			},
-        			success : function(outcome) {//성공하면 해당 함수를 실행한다.
-        				alert("업데이트 완료");
-        			},
-        			error : function() {
-        				alert("에러입니다");
-        			}
-        		});
-                
             });
             ws.send("/app/chatroom/message", {}, JSON.stringify({type:'ENTER', roomId:vm.$data.roomId, sender:vm.$data.sender})
             		

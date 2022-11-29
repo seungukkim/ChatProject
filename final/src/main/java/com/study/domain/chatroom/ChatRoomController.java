@@ -105,14 +105,7 @@ public class ChatRoomController {
 	      
 	   // }
 	    
-		// 인원수 업데이트
-		@PostMapping("/chatroom/updatePeople")
-		@ResponseBody
-		public void updatePeople(String roomId) {
 
-			chatService.updatePeople(roomId);
-			
-		}
 	    
 
 

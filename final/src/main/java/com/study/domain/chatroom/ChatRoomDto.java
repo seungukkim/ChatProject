@@ -31,7 +31,7 @@ public class ChatRoomDto {
 	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	        String formatDateTime = now.format(formatter);	        
 	        room.createdDate=formatDateTime;	        
-	        room.participant=1; // 방을 만드는 시점에서는 참여자를 0으로 한다.
+	        room.participant=0; // 방을 만드는 시점에서는 참여자를 0으로 한다.
 	        
 	        
 	        
