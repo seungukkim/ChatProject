@@ -147,7 +147,7 @@ body {
   width: 60vw;
   height: 60vh;
   top: 22vh;
-  left: 20vw;
+  left: 21vw;
   right: 20vw;
   border-radius: 30px;
   opacity: 0;
@@ -173,20 +173,22 @@ body {
 }
 
 .resttime #text {
+  color: black;
   font-family: 'RIDIBatang';
   font-size: 20px;
-  background-color: #FAC0DB;
   display: inline-block;
   position: absolute;
   width: 40%;
-  height: 45%;
+  height: 85%;
   top: 15%;
   left: 55%;
 }
 
 #toBack {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 35px;
   background-color: transparent;
-  top: 0;
+  top: 1vh;
+  left: 3vw;
+  position: relative;
 }

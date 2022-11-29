@@ -299,7 +299,7 @@ function click(event) {
 				
 			},
 			success : function(a) {//성공하면 해당 함수를 실행한다.
-				/* console.log(a); */ // 받아온 값이 무엇인지 확인(값을 제대로 받고 있는지 확인용)
+				console.log("가져온 문장 = "+a); // 받아온 값이 무엇인지 확인(값을 제대로 받고 있는지 확인용)
 				document.getElementById("text").innerHTML = a;
 				console.log(document.getElementById("text").innerHTML = a);
 				document.getElementById("restImg").src = "/made/img/"+mbti+randomNum+".jpg";
