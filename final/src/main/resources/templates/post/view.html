@@ -152,69 +152,79 @@
                 location.href = '/post/write' + location.search;
             }
             
-          
+          //댓글 작성
     		function commentRegister() {
     			
     			let commentId = [[ ${post.id} ]];
     			let commentWriter = '[(${info.userName})]'; 
     			let comment = $('#comment').val(); //id값이 "comment"인 입력란의 값을 저장
+    			var returnValue = confirm("댓글을 작성하시겠습니까?"); // 댓글 삭제 여부 다시 물어보기
+    			
+    			if(returnValue==true){
+        			$.ajax({
+        				url : '/post/comment  ', //Controller에서 인식할 주소
+        				type : 'post', //POST 방식으로 전달
+        				data : {
+        					commentId : commentId,
+        					commentWriter : commentWriter,
+        					comment : comment
+        				},
+        				success : function(outcome) {//성공하면 해당 함수를 실행한다.
+        					console.log(outcome); // 받아온 값이 무엇인지 확인(값을 제대로 받고 있는지 확인용)
+        					if (outcome == 1) { // 내가 받아온 값이 1이라면, 즉 db에 이미 해당 아이디가 존재한다면
+        						window.location.reload();
+        					} else {
+        						alert("댓글 등록 실패.");
+        						
+        					}
+        				},
+        				error : function() {
+        					alert("에러입니다");
+        				}
+        			});
+    				
+    				
+    			}
+    			
 
-    			/* ajax로 구현 */
-    			$.ajax({
-    				url : '/post/comment  ', //Controller에서 인식할 주소
-    				type : 'post', //POST 방식으로 전달
-    				data : {
-    					commentId : commentId,
-    					commentWriter : commentWriter,
-    					comment : comment
-    				},
-    				success : function(outcome) {//성공하면 해당 함수를 실행한다.
-    					console.log(outcome); // 받아온 값이 무엇인지 확인(값을 제대로 받고 있는지 확인용)
-    					if (outcome == 1) { // 내가 받아온 값이 1이라면, 즉 db에 이미 해당 아이디가 존재한다면
-    						window.location.reload();
-    					} else {
-    						alert("댓글 등록 실패.");
-    						
-    					}
-    				},
-    				error : function() {
-    					alert("에러입니다");
-    				}
-    			});
     		}
 	
-    		
-         /*   const commentDelete = (commentDate)=>{
-        	   
-        	   console.log(commentDate);
-           } */
+
             
 		
            //댓글 삭제용도
            function commentDelete(id,commentIdentifier){
         	   console.log(id);
         	   console.log(commentIdentifier);
-        	   $.ajax({
-   				url : '/post/commentDelete', //Controller에서 인식할 주소
-   				type : 'post', //POST 방식으로 전달
-   				data : {
-   					commentId : id, // 글번호
-   					commentIdentifier : commentIdentifier // 댓글의 고유번호를 의미한다.
-   				},
-   				success : function(outcome) {//성공하면 해당 함수를 실행한다.
-   					console.log(outcome); // 받아온 값이 무엇인지 확인(값을 제대로 받고 있는지 확인용)
-   					if (outcome == 1) { // 내가 받아온 값이 1이라면, 즉 db에 이미 해당 아이디가 존재한다면
-   						alert("댓글 삭제 성공");
-   						window.location.reload();
-   					} else {
-   						alert("댓글 삭제 실패.");
-   						
-   					}
-   				},
-   				error : function() {
-   					alert("에러입니다");
-   				}
-   			});
+        	   var returnValue = confirm("정말로 삭제하시겠습니까?"); // 댓글 삭제 여부 다시 물어보기
+        	   if(returnValue==false){
+        		   
+        	   }
+        	   else{
+        		   $.ajax({
+          				url : '/post/commentDelete', //Controller에서 인식할 주소
+          				type : 'post', //POST 방식으로 전달
+          				data : {
+          					commentId : id, // 글번호
+          					commentIdentifier : commentIdentifier // 댓글의 고유번호를 의미한다.
+          				},
+          				success : function(outcome) {//성공하면 해당 함수를 실행한다.
+          					console.log(outcome); // 받아온 값이 무엇인지 확인(값을 제대로 받고 있는지 확인용)
+          					if (outcome == 1) { // 내가 받아온 값이 1이라면, 즉 db에 이미 해당 아이디가 존재한다면
+          						alert("댓글 삭제 성공");
+          						window.location.reload();
+          					} else {
+          						alert("댓글 삭제 실패.");
+          						
+          					}
+          				},
+          				error : function() {
+          					alert("에러입니다");
+          				}
+          			});
+        		   
+        	   }
+        	   
            }
            
 

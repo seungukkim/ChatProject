@@ -183,7 +183,7 @@
                             }
                             else{
                             	//남아 있는 사람이 있기에 그냥 나간다.
-                            	alert("나만 조용히 나갑니다");
+                            	//alert("나만 조용히 나갑니다");
                             	window.location.href="/chatroom/room"    
                             }
                                                           
@@ -210,8 +210,8 @@
     	//처음 방이 생성되었을 때 실행
         // pub/sub event
         ws.connect({}, function(frame) { //connection이 맺어지면 실행
-        	count+=1;
-        	console.log("현재 인원은"+count+"명이다");
+        	//count+=1;
+        	//console.log("현재 인원은"+count+"명이다");
         	
             ws.subscribe("/topic/chatroom/room/"+vm.$data.roomId, function(message) {//subscribe(path,callback)으로 메세지를 받을 수 있다.
             	
