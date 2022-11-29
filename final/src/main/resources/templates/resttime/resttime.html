@@ -16,6 +16,7 @@
       background: radial-gradient(220% 105% at top center, #1b2947 10%, #75517d 40%, #e96f92 65%, #f7f7b6);
       background-attachment: fixed;
       overflow: hidden;
+      color:white;
     }
 
     @keyframes rotate {
@@ -58,10 +59,11 @@
   <div class="stars">
 
   </div>
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-  <th:block th:if="${info.userMbti  == 'ISFP'}">
-	  <div class="card">
+  
+  
+  <!-- ISFP, ENFJ, INTJ 일때 보여질 카드 -->
+  <th:block th:if="${info.userMbti  == 'ISFP'} or ${info.userMbti  =='ENFJ'} or ${info.userMbti  =='INTJ'}">
+	  <div class="card" >
 	    <div class="front"  style='background-image: url("http://localhost:8080/made/img/card.png");'></div>
 	    <div class="back"></div>
 	  </div>
@@ -69,14 +71,15 @@
 	    <div class="front" style='background-image: url("http://localhost:8080/made/img/card1.png");'></div>
 	    <div class="back"></div>
 	  </div>
-	  <div class="card">
+	  <div class="card" >
 	    <div class="front" style='background-image: url("http://localhost:8080/made/img/card2.png");'></div>
 	    <div class="back"></div>
 	  </div>
   </th:block>
-  <!-- <th:block>
-	  <div th:if="${info.userMbti == 'ESFP' } or ${info.userMbti  == 'ENTJ'}">
-	  	<div class="card">
+  
+  <!-- ESFP, ENTJ, INFP 일때 보여질 카드 -->
+  <th:block th:if="${info.userMbti == 'ESFP'} or ${info.userMbti  == 'ENTJ'} or ${info.userMbti  == 'INFP'}">
+	  <div class="card">
 	    <div class="front"  style='background-image: url("http://localhost:8080/made/img/card3.png");'></div>
 	    <div class="back"></div>
 	  </div>
@@ -88,65 +91,237 @@
 	    <div class="front" style='background-image: url("http://localhost:8080/made/img/card5.png");'></div>
 	    <div class="back"></div>
 	  </div>
+  </th:block>
+  
+  <!-- ISFJ, ESFJ, INFJ 일때 보여질 카드 -->
+    <th:block th:if="${info.userMbti == 'ISFJ'} or ${info.userMbti  == 'ESFJ'} or ${info.userMbti  == 'INFJ'}">
+	  <div class="card">
+	    <div class="front"  style='background-image: url("http://localhost:8080/made/img/card6.png");'></div>
+	    <div class="back"></div>
 	  </div>
-  </th:block> -->
-
+	  <div class="card" >
+	    <div class="front" style='background-image: url("http://localhost:8080/made/img/card7.png");'></div>
+	    <div class="back"></div>
+	  </div>
+	  <div class="card">
+	    <div class="front" style='background-image: url("http://localhost:8080/made/img/card8.png");'></div>
+	    <div class="back"></div>
+	  </div>
+  </th:block>
+  
+  <!-- ISTP, ISTJ, ESTJ, ENTP,  일때 보여질 카드 -->
+    <th:block th:if="${info.userMbti == 'ISTP'} or ${info.userMbti  == 'ISTJ'} or ${info.userMbti  == 'ESTJ'} or ${info.userMbti  == 'ENTP'}">
+	  <div class="card">
+	    <div class="front"  style='background-image: url("http://localhost:8080/made/img/card9.png");'></div>
+	    <div class="back"></div>
+	  </div>
+	  <div class="card" >
+	    <div class="front" style='background-image: url("http://localhost:8080/made/img/card10.png");'></div>
+	    <div class="back"></div>
+	  </div>
+	  <div class="card">
+	    <div class="front" style='background-image: url("http://localhost:8080/made/img/card11.png");'></div>
+	    <div class="back"></div>
+	  </div>
+  </th:block>
+  
+  <!-- INTP, ESTP, ENFP,  일때 보여질 카드 -->
+    <th:block th:if="${info.userMbti == 'INTP'} or ${info.userMbti  == 'ESTP'} or ${info.userMbti  == 'ENFP'}">
+	  <div class="card">
+	    <div class="front"  style='background-image: url("http://localhost:8080/made/img/card12.png");'></div>
+	    <div class="back"></div>
+	  </div>
+	  <div class="card" >
+	    <div class="front" style='background-image: url("http://localhost:8080/made/img/card13.png");'></div>
+	    <div class="back"></div>
+	  </div>
+	  <div class="card">
+	    <div class="front" style='background-image: url("http://localhost:8080/made/img/card14.png");'></div>
+	    <div class="back"></div>
+	  </div>
+  </th:block>
+  
   <div class="header">
     <div id="header-time">
 
     </div>
     <div class="header-logo">
-      <img src="/made/img/KakaoTalk_20221102_003617932.png" alt="Logo" width="100px" height="80px">
+    	<a href="/register/finalLogin">
+      		<img src="/made/img/KakaoTalk_20221102_003617932.png" alt="Logo" width="100px" height="80px">
+      	</a>
     </div>
-    <button class="close">
-      <div class="top_menu">
-        <span class="menu">menu</span>
-      </div>
-      <div class="hamburger">
-        <input type="checkbox">
-        <div class="hamburgerlines">
-          <span class="lines line1">
 
-          </span>
-          <span class="lines line2">
-
-          </span>
-          <span class="lines line3">
-
-          </span>
-        </div>
-        <ul class="menu-items">
-          <li>내 정보</li>
-          <li>MBTI 검사</li>
-          <li>쇼핑몰</li>
-          <li>내 게시물</li>
-          <li><a href="#" onclick="location.href='../html/login.html'">Log Out</a></li>
-        </ul>
-      </div>
-    </button>
   </div>
 
   <div class="resttime">
-    <img src="" alt="이미지">
-    <div id="text">
-      수면 30분 전 집안을 어둡게, 그리고 누워서 음악을 감상하시는 건 어떠세요?
-      잠을 잘기 전에 빛을 100% 차단하는 암막 커튼 치고 잔잔한 클래식 음악을 들으면서 수면을 취하시는 건 어떠시나요?
-    </div>
-    <img src="../img/back-button.png" id="toBack" alt="">
+    <img src="" id="restImg"alt="이미지">
+    	<div id="text">
+    
+    	</div>
+    <a href="/resttime/resttime">
+    	<img src="/made/img/icon-back.png" id="toBack" alt="">
+    </a>
   </div>
 
 
   <div class="social-menu">
-    <ul>
-      <li><a href="#" onclick="location.href='/mbti/html/index.html'" target="blank"><i></i></a></li>
-      <li><a href="#" onclick="location.href='/mbti/html/chatting.html'" target="blank"><i></i></a></li>
-      <li><a href="#" onclick="location.href='/mbti/html/Healing.html'" target="blank"><i></i></a></li>
-      <li><a href="#" onclick="location.href='/mbti/html/BulletinBoard.html'" target="blank"><i></i></a></li>
+	<ul>
+      <li><a href="#" onclick="location.href='/mbti/html/index.html'" target="blank"></a></li>
+      <li><a href="#" onclick="location.href='/mbti/html/chatting.html'" target="blank"></a></li>
+      <li><a href="#" onclick="location.href='/mbti/html/Healing.html'" target="blank"></a></li>
+      <li><a href="#" onclick="location.href='/mbti/html/BulletinBoard.html'" target="blank"></a></li>
     </ul>
   </div>
 </body>
 
+<script th:src="@{/scripts/jquery.min.js}"></script>
+<!-- <script th:src="@{/made/js/resttime/resttime.js}"></script> -->
+<script th:inline="javascript">
+/*<![CDATA[*/
+
+$(document).ready(function () {
+  var stars = 800;
+  var $stars = $(".stars");
+  var r = 800;
+  for (var i = 0; i < stars; i++) {
+    var $star = $("<div/>").addClass("star");
+    $stars.append($star);
+  }
+  $(".star").each(function () {
+    var cur = $(this);
+    var s = 0.2 + (Math.random() * 1);
+    var curR = r + (Math.random() * 300);
+    cur.css({
+      transformOrigin: "0 0 " + curR + "px",
+      transform: " translate3d(0,0,-" + curR + "px) rotateY(" + (Math.random() * 360) + "deg) rotateX(" + (Math.random() * -50) + "deg) scale(" + s + "," + s + ")"
+
+    })
+  })
+})
+
+function Clock (){
+    var today = new Date();
+
+    var year = today.getFullYear();
+    var month = ('0' + (today.getMonth() + 1)).slice(-2);
+    var day = ('0' + today.getDate()).slice(-2);
+    var hours = ('0' + today.getHours()).slice(-2); 
+    var minutes = ('0' + today.getMinutes()).slice(-2);
+    var seconds = ('0' + today.getSeconds()).slice(-2); 
+
+    var dateString = year + '-' + month  + '-' + day;
+    var timeString = hours + ':' + minutes  + ':' + seconds;
+    document.getElementById("header-time").innerHTML = dateString + " | " + timeString;
+}
+Clock();
+setInterval(Clock, 1000);
+
+let card = document.querySelectorAll('.card');
+let toBack = document.querySelector('#toBack');
+let front = document.querySelectorAll('.front');
+let back = document.querySelectorAll('.back');
+let resttime = document.querySelector(".resttime");
+let text = document.getElementById("#text");
+
+card.forEach(element => {
+  element.addEventListener('click', click);
+});
+
+// var arrayRemove = (arr, value) => {
+//   return arr.filter((ele) => {
+//       console.log('ele',ele);
+//       return ele != value;
+//   });
+// };
 
 
-<script src="/made/js/resttime/resttime.js"></script>
+function delay(){
+  back1.style.animationName = 'test1';
+}
+
+function click(event) {
+  
+  front.forEach(element => {
+    element.style.transform = "rotateY(180deg)";
+  });
+  let elem = event.currentTarget.lastElementChild;
+
+  // 카드가 앞면일때 뒤집기
+  if (elem.style.transform == "rotateY(360deg)") {
+    elem.style.transform = "rotateY(180deg)";
+  } else {
+    elem.style.transform = "rotateY(360deg)";
+  }
+    
+  let restLeft =  $(resttime).width()/2  - $(card).width()/2;
+  let restleft = restLeft - $(elem).offset().left;
+
+    setTimeout(function() { 
+      // $(elem).offset({}, 800);
+      if (event.currentTarget == card[0]){
+        $(elem).animate({
+          top: "-6vh",
+          left:restLeft,
+          width: '60vw', 
+          height: '60vh'
+        },1200)
+      }else{
+        $(elem).animate({
+          top: "-6vh",
+          left:restleft,
+          width: '60vw', 
+          height: '60vh'
+        },1200)
+      }
+    },800)
+    
+    setTimeout(function(){
+      resttime.style.zIndex = '1';
+      $(resttime).animate({
+        opacity: 1
+      },500)
+    },2300)
+    
+    getRest();
+    
+    function getRest(){
+		let mbti = [[ ${info.userMbti} ]]; 
+		const randomNum = Math.floor(Math.random()*3+1); 
+		console.log(randomNum);
+		
+		/* ajax로 구현 */
+		$.ajax({
+			url : '/resttime/resttime/', //Controller에서 인식할 주소
+			type :'post', //POST 방식으로 전달
+			data : {
+				userMbti : mbti,
+				randomNum : randomNum
+				
+			},
+			success : function(a) {//성공하면 해당 함수를 실행한다.
+				/* console.log(a); */ // 받아온 값이 무엇인지 확인(값을 제대로 받고 있는지 확인용)
+				document.getElementById("text").innerHTML = a;
+				console.log(document.getElementById("text").innerHTML = a);
+				document.getElementById("restImg").src = "/made/img/"+mbti+randomNum+".jpg";
+		}});
+		
+	}
+    
+    
+}
+/*]]>*/
+// 주어.행동()
+// 행동(목적어)
+// 행동(); 
+// 안에서 누구에게 행동할건지를 정의해줘야하니까 하드코딩이 되는거고
+
+// 부모 객체의 자식들 배열 가져옴
+// 클릭한 요소는 위에서 가져옴
+// 배열에서 클릭한 요소 빼고, 배열의 요소들을 dom에서 제거
+
+// 1. 클릭했을때 클릭한 객체 가져오는 함수 연동
+// 1. 클릭한 객체 가져오는 함수 구현
+
+</script>
+
 </html>

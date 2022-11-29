@@ -49,7 +49,7 @@ public class StompHandler implements ChannelInterceptor{
 		}
 		else if(command.compareTo(StompCommand.DISCONNECT) == 0) {
 			
-			chatService.minusPeople(rememberId); // 인원수를 감소
+			//chatService.minusPeople(rememberId); // 인원수를 감소
 			
 			System.out.println("사용자 연결 해제");
 		}
