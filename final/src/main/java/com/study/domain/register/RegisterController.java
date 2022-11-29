@@ -138,16 +138,23 @@ public class RegisterController {
 	}
 	
 	
-	// mbtiTest 페이지
+	//mbtiTest 페이지
 		@GetMapping("/register/mbtiTest")
 		public String mbtiTest() throws Exception {
 			return "register/mbtiTest";
 		}
 		
-	// mbtiResult 페이지
+	//mbtiResult 페이지
 		@GetMapping("/register/mbtiResult")
 		public String mbtiResult() throws Exception {
 			return "register/mbtiResult";
+		}
+	// 닉네임 변경 시 닉네임 중복 검사용도
+		@PostMapping("/register/checkName_change")
+		@ResponseBody
+		public int checkName_change(final RegisterRequest params) {
+			int cnt = registerService.checkName_change(params);
+			return cnt;
 		}
 
 }
