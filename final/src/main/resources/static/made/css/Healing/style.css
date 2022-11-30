@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Gaegu&display=swap');
+
 body {
   background: radial-gradient(200% 100% at bottom center, #f7f7b6, #e96f92, #75517d, #1b2947);
   background: radial-gradient(220% 105% at top center, #1b2947 10%, #75517d 40%, #e96f92 65%, #f7f7b6);
@@ -147,7 +149,7 @@ body {
   width: 60vw;
   height: 60vh;
   top: 22vh;
-  left: 20vw;
+  left: 21vw;
   right: 20vw;
   border-radius: 30px;
   opacity: 0;
@@ -172,21 +174,35 @@ body {
   font-style: normal;
 }
 
+.resttime #title{
+  color: black;
+  font-family: 'Gaegu', cursive;
+  font-size: 38px;
+  display: inline-block;
+  position: absolute;
+  width: 40%;
+  height: 35%;
+  top: 12.5%;
+  left: 55%;
+}
+
 .resttime #text {
-  font-family: 'RIDIBatang';
-  font-size: 20px;
-  background-color: #FAC0DB;
+  color: black;
+  font-family: 'Gaegu', cursive;
+  font-size: 25px;
   display: inline-block;
   position: absolute;
   width: 40%;
   height: 45%;
-  top: 15%;
+  top: 50%;
   left: 55%;
 }
 
 #toBack {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 35px;
   background-color: transparent;
-  top: 0;
+  top: 1vh;
+  left: 3vw;
+  position: relative;
 }
