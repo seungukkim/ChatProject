@@ -11,6 +11,8 @@
 }
 
 .header-logo{
+	width: 100px;
+	height: 80px;
     top: 40px;
     right: 46.5%;
     position: fixed;
@@ -199,10 +201,6 @@ table th {
 
 /* 테이블 영역에 있는 img만 적용시키는 방법 배우기 */
 
-img {
-    width: 90px;
-    height: 90px;
-}
 /* ---------------------------------------------- */
 
 .view,

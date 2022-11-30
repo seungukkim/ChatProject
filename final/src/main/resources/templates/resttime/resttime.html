@@ -60,7 +60,6 @@
 
   </div>
   
-  
   <!-- ISFP, ENFJ, INTJ 일때 보여질 카드 -->
   <th:block th:if="${info.userMbti  == 'ISFP'} or ${info.userMbti  =='ENFJ'} or ${info.userMbti  =='INTJ'}">
 	  <div class="card" >
@@ -147,7 +146,7 @@
     </div>
     <div class="header-logo">
     	<a href="/register/finalLogin">
-      		<img src="/made/img/KakaoTalk_20221102_003617932.png" alt="Logo" width="100px" height="80px">
+      		<img src="/made/img/main.png" alt="Logo" width="100px" height="80px">
       	</a>
     </div>
 
@@ -155,6 +154,9 @@
 
   <div class="resttime">
     <img src="" id="restImg"alt="이미지">
+    	<div id="title">
+    	
+    	</div>
     	<div id="text">
     
     	</div>
@@ -298,12 +300,20 @@ function click(event) {
 				randomNum : randomNum
 				
 			},
-			success : function(a) {//성공하면 해당 함수를 실행한다.
-				/* console.log(a); */ // 받아온 값이 무엇인지 확인(값을 제대로 받고 있는지 확인용)
-				document.getElementById("text").innerHTML = a;
-				console.log(document.getElementById("text").innerHTML = a);
+			success : function(howRest) {//성공하면 해당 함수를 실행한다.
+				var splitText = howRest.split('/');
+				var TitleAsHowRest = splitText[0];
+				var TextAsHowRest = splitText[1];
+				console.log("자른 문장 = " + TitleAsHowRest);
+				console.log("본문 문장 = " + TextAsHowRest);
+				/* console.log("가져온 문장 = "+a); */  // 받아온 값이 무엇인지 확인(값을 제대로 받고 있는지 확인용)
+				document.getElementById("title").innerHTML = TitleAsHowRest;
+				document.getElementById("text").innerHTML = TextAsHowRest;
 				document.getElementById("restImg").src = "/made/img/"+mbti+randomNum+".jpg";
-		}});
+			},
+			error: function (request, status, error) {
+				alert("code: " + request.status + "message: " + request.responseText+ "error: " + error);
+		    }});
 		
 	}
     

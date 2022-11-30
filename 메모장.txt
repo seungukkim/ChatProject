@@ -1,0 +1,8 @@
+로고 이미지 main. 으로 이름 변경함
+finallogin 이미지 경로 수정
+room.html 수정
+makeroom.html수정
+roomdetail.html수정
+수정
+수정
+수정
