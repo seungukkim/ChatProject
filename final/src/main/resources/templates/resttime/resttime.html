@@ -59,18 +59,11 @@
   <div class="stars">
 
   </div>
-<<<<<<< HEAD
-  
-  
+
+   
   <!-- ISFP, ENFJ, INTJ 일때 보여질 카드 -->
   <th:block th:if="${info.userMbti  == 'ISFP'} or ${info.userMbti  =='ENFJ'} or ${info.userMbti  =='INTJ'}">
 	  <div class="card" >
-=======
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-  <th:block th:if="${info.userMbti  == 'ISFP'}">
-	  <div class="card">
->>>>>>> origin/css수정
 	    <div class="front"  style='background-image: url("http://localhost:8080/made/img/card.png");'></div>
 	    <div class="back"></div>
 	  </div>
@@ -78,25 +71,15 @@
 	    <div class="front" style='background-image: url("http://localhost:8080/made/img/card1.png");'></div>
 	    <div class="back"></div>
 	  </div>
-<<<<<<< HEAD
 	  <div class="card" >
-=======
-	  <div class="card">
->>>>>>> origin/css수정
 	    <div class="front" style='background-image: url("http://localhost:8080/made/img/card2.png");'></div>
 	    <div class="back"></div>
 	  </div>
   </th:block>
-<<<<<<< HEAD
   
   <!-- ESFP, ENTJ, INFP 일때 보여질 카드 -->
   <th:block th:if="${info.userMbti == 'ESFP'} or ${info.userMbti  == 'ENTJ'} or ${info.userMbti  == 'INFP'}">
 	  <div class="card">
-=======
-  <!-- <th:block>
-	  <div th:if="${info.userMbti == 'ESFP' } or ${info.userMbti  == 'ENTJ'}">
-	  	<div class="card">
->>>>>>> origin/css수정
 	    <div class="front"  style='background-image: url("http://localhost:8080/made/img/card3.png");'></div>
 	    <div class="back"></div>
 	  </div>
@@ -108,7 +91,6 @@
 	    <div class="front" style='background-image: url("http://localhost:8080/made/img/card5.png");'></div>
 	    <div class="back"></div>
 	  </div>
-<<<<<<< HEAD
   </th:block>
   
   <!-- ISFJ, ESFJ, INFJ 일때 보여질 카드 -->
@@ -159,18 +141,13 @@
 	  </div>
   </th:block>
   
-=======
-	  </div>
-  </th:block> -->
-
->>>>>>> origin/css수정
   <div class="header">
     <div id="header-time">
 
     </div>
     <div class="header-logo">
     	<a href="/register/finalLogin">
-      		<img src="/made/img/KakaoTalk_20221102_003617932.png" alt="Logo" width="100px" height="80px">
+      		<img src="/made/img/main.png" alt="Logo" width="100px" height="80px">
       	</a>
     </div>
 
@@ -334,7 +311,10 @@ function click(event) {
 				document.getElementById("title").innerHTML = TitleAsHowRest;
 				document.getElementById("text").innerHTML = TextAsHowRest;
 				document.getElementById("restImg").src = "/made/img/"+mbti+randomNum+".jpg";
-		}});
+			},
+			error: function (request, status, error) {
+				alert("code: " + request.status + "message: " + request.responseText+ "error: " + error);
+		    }});
 		
 	}
     

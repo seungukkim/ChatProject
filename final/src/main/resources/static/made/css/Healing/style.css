@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Gaegu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@500&display=swap');
 
 body {
   background: radial-gradient(200% 100% at bottom center, #f7f7b6, #e96f92, #75517d, #1b2947);
@@ -144,9 +145,9 @@ body {
 /* ---------------- */
 /* 휴식방법 상자 */
 .resttime{
-  background-color: #eeccbb;
+  background-color: #fdd8c5;
   position: fixed;
-  width: 60vw;
+  width: 60.4vw;
   height: 60vh;
   top: 22vh;
   left: 21vw;
@@ -176,7 +177,7 @@ body {
 
 .resttime #title{
   color: black;
-  font-family: 'Gaegu', cursive;
+  font-family: 'Hahmlet', serif;
   font-size: 38px;
   display: inline-block;
   position: absolute;
