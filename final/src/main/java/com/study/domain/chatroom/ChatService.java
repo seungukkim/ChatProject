@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -17,8 +18,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 public class ChatService {
+
 	
-	private Map<String, ChatRoom> chatRooms;
+	private Map<String, ChatRoomDto> chatRooms;
 
     @PostConstruct
     //의존관게 주입완료되면 실행되는 코드
@@ -27,23 +29,25 @@ public class ChatService {
     }
 
     //채팅방 불러오기
-    public List<ChatRoom> findAllRoom() {
+    public List<ChatRoomDto> findAllRoom() {
         //채팅방 최근 생성 순으로 반환
-        List<ChatRoom> result = new ArrayList<>(chatRooms.values());
+        List<ChatRoomDto> result = new ArrayList<>(chatRooms.values());
+        
         Collections.reverse(result);
 
         return result;
     }
 
     //채팅방 하나 불러오기
-    public ChatRoom findById(String roomId) {
+    public ChatRoomDto findById(String roomId) {
         return chatRooms.get(roomId);
     }
 
     //채팅방 생성
-    public ChatRoom createRoom(String name,String maker) {
-        ChatRoom chatRoom = ChatRoom.create(name,maker);     
-        chatRooms.put(chatRoom.getRoomId(), chatRoom);
+    public ChatRoomDto createRoom(String name,String maker) {
+        ChatRoomDto chatRoom = ChatRoomDto.create(name,maker);
+        
+        chatRooms.put(chatRoom.getRoomId(), chatRoom); // 이 부분에서 보면 chatRoom.getRoomId()를 쓰고 있다.
         return chatRoom;
     }
     //채팅방 전체 삭제(테스트용)
@@ -57,20 +61,17 @@ public class ChatService {
     	
     }
     
-    //입장인원 추가
-    public void updateParticipant(String roomId) {
-    	int a= chatRooms.get(roomId).getParticipant();    	  	
-    	a+=1;
-    	chatRooms.get(roomId).setParticipant(a);    	      
-    	
+    //들어왔을 때 인원수를 증가시키는 서비스
+    public void plusPeople(String roomId) {
+     	int participants= chatRooms.get(roomId).getParticipant();
+     	participants+=1;
+     	chatRooms.get(roomId).setParticipant(participants);     	
     }
     
-    //입장인원 없애기
-    public int minusParticipant(String roomId) {
-    	int a= chatRooms.get(roomId).getParticipant();   		
-    	a-=1;
-    	chatRooms.get(roomId).setParticipant(a);
-    	return a;
+    //나갈 때 인원수를 감소시키는 서비스
+    public void minusPeople(String roomId) {
+    	int participants = chatRooms.get(roomId).getParticipant();
+    	participants-=1;
+    	chatRooms.get(roomId).setParticipant(participants);
     }
-
 }

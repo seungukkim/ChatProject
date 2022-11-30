@@ -49,18 +49,22 @@
 										<th>제목</th>
 										<th>작성자</th>
 										<th>등록일</th>
-										<th>참여인원</th>
+										
+										<th>찐참여인원</th>
+										
 									</tr>
 								</thead>
 
 								<tbody>
-									<tr v-for="item in chatrooms" v-bind:key="item.roomId"
-										v-on:click="enterRoom(item.roomId,item.roomMaker)">
+									<tr v-for="room in chatrooms" v-bind:key="room.roomId"
+										v-on:click="enterRoom(room.roomId, room.roomMaker)">
 
-										<th>{{item.roomName}}</th>
-										<th>{{item.roomMaker}}</th>
-										<th>{{item.createdDate}}</th>
-										<th>{{item.participant}}</th>
+										<th>{{room.roomName}}</th>
+										<th>{{room.roomMaker}}</th>
+										<th>{{room.createdDate}}</th>
+										
+										<th>{{room.participant}}</th>
+										
 									</tr>
 								</tbody>
 							</table>
@@ -94,6 +98,7 @@
 			<script src="/webjars/vue/2.5.16/dist/vue.min.js"></script>
 			<script src="/webjars/axios/0.17.1/dist/axios.min.js"></script>
 			<script>
+			
 			   window.onpageshow = function(event) {
 			       if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
 			    	 	
@@ -110,8 +115,7 @@
 		                                              
 		                                axios.post("/chatroom/eraseit", params)               
 		                                .then(
-		                                        response => {
-		                                                                                                     	                                                               
+		                                        response => {		                                                                                                     	                                                               
 		                                                window.location.href="/chatroom/room"                           
 		                                        }
 		                                    )
@@ -130,30 +134,26 @@
 			       else{
 			        
 			       }
-			   }
-			
-			
-			
-			
+			   }					
 			
     var vm = new Vue({
         el: '#app',
         data: {
             room_name : '',
-            chatrooms: [
-            ]
+            chatrooms: [] //이곳의 chatrooms가 list를 생성할 때 쓰이는 chatrooms이다.
+    
         },
         created() {
             this.findAllRoom();
         },
         methods: {
             findAllRoom: function() {
-                axios.get('/chatroom/rooms').then(response => { this.chatrooms = response.data; });
+            	//생성되어 있는 모든 방 목록을 가져오는 함수
+                axios.get('/chatroom/rooms').then(response => { this.chatrooms = response.data; }); //controller의 chatrooms/rooms 를 통해 모든 방을 가져온다.
             },
-
             enterRoom: function(roomId,roomMaker) {
             	
-                var sender = '[(${info.userId})]';
+                var sender = '[(${info.userName})]';
                 if(sender !== "") {
                     localStorage.setItem('wschatroom.sender',sender);
                     localStorage.setItem('wschatroom.roomId',roomId);

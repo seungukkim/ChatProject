@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
@@ -20,4 +21,28 @@
             mbti=#{userMbti} and random_num = #{randomNum};
     </select>
     
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.domain.resttime.ResttimeMapper">
+
+	<!-- mbti_resttime 테이블 전체 컬럼 -->
+	<sql id="restmethodColumn">
+        mbti,
+        method
+        random_num
+    </sql>
+
+	<!-- MBTI 휴식방법 조회 -->
+    <select id="getRestAsMbti" parameterType="com.study.domain.resttime.ResttimeRequest" resultType="String">
+        SELECT
+            method
+        FROM
+            mbti_resttime
+        WHERE
+            mbti=#{userMbti} and random_num = #{randomNum};
+    </select>
+    
+>>>>>>> origin/work_new
 </mapper>

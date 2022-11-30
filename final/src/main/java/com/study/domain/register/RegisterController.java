@@ -36,10 +36,15 @@ public class RegisterController {
 			session.setAttribute("info", info);
 			return "redirect:/register/main";
 		}
-
-		return "redirect:/register/loginfail";
-
+		else {
+			
+			return "redirect:/register/loginFail";
+			
+		}			
 	}
+	//로그인 실패
+	
+	
 
 	// 로그아웃 구현 (session에 있는 값을 삭제한다)
 	@GetMapping("/register/logout")
@@ -149,5 +154,16 @@ public class RegisterController {
 		public String mbtiResult() throws Exception {
 			return "register/mbtiResult";
 		}
-
+		
+		
+		
+		
+		// 닉네임 변경 시 닉네임 중복 검사용도
+		@PostMapping("/register/checkName_change")
+		@ResponseBody
+		public int checkName_change(final RegisterRequest params) {
+			int cnt = registerService.checkName_change(params);
+			
+			return cnt;
+		}
 }

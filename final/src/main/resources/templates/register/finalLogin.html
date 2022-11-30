@@ -59,9 +59,7 @@
 														placeholder="비밀번호" id="userPw" autocomplete="off" onkeyup="enterkey()">
 													<i class="input-icon uil uil-lock-alt"></i>
 												</div>
-
-
-												<button type="button" class="btn mt-4" onclick="login();">로그인</button>
+												<button type="button" class="btn mt-4"  onclick="login();">로그인</button>
 												<p class="mb-0 mt-4 text-center">
 													<a href="#0" class="link">비밀번호를 잊으셨나요?</a>
 												</p>
@@ -168,7 +166,6 @@
 	if(master_piece!=null){
 		$('#registerMbti').val(master_piece).prop("selected",true);
 	}
-	
 	let idConfig = 0;
 	let nickConfig =0;
 	
@@ -201,7 +198,6 @@
 			alert("닉네임을 입력해주세요");
 			form.registerName.focus();
 			return false;
-
 		}
 		if (idConfig == 0) {
 			alert("아이디 중복검사를 해주세요");
@@ -218,29 +214,19 @@
 			form.registerMbti.focus();
 			return false;
 		}
-		
-		
-
 		alert("회원가입완료");
 		//넘어갈 때는 name 으로 넘어간다! ㅋㅋㅋ
 		form.action = '/register/save'
 		form.submit();
 	}
-
 	function check(re, what, message) {
 		if (re.test(what.value)) {
-
 			return true;
 		}
 		alert(message);
 		what.value = "";
 		what.focus();
-	}
-	
-	
-	
-	
-	
+	}	
 	
 	//회원가입 ajax로 구현(미완성)
 	function register1() {
@@ -311,13 +297,10 @@
 			}
 		});
 	}
-
 	//아이디 중복 확인을 위한 코드
 	function checkId() {
-
 		let id = $('#registerId').val(); //id값이 "userId"인 입력란의 값을 저장
 		console.log(id);
-
 		/* ajax로 구현 */
 		$.ajax({
 			url : '/register/checkid', //Controller에서 인식할 주소
@@ -343,7 +326,6 @@
 	//로그인 용도
     function login() {
         const form = document.getElementById('loginForm');
-        const fields = [form.userId, form.userPw];
        	
         if(form.userId.value==""){
         	alert("아이디를 입력해주세요");

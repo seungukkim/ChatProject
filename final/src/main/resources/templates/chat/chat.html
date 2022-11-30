@@ -175,7 +175,7 @@
         })
         
         //websocket 생성
-        const websocket = new WebSocket('ws://3.34.185.217:8080/ws/chat');
+        const websocket = new WebSocket('ws://localhost:8080/ws/chat');
         //선생님포트포워딩 : 58.72.151.126:8099을 192.168.0.87:8080 로
         //여기에는 일단 ip주소를 넣어줌
         websocket.onmessage = onMessage; // 소켓이 메세지를 받을 때
