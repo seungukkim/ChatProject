@@ -12,18 +12,10 @@ import lombok.RequiredArgsConstructor;
 public class ResttimeService {
 	private final ResttimeMapper resttimeMapper;
 	
-<<<<<<< HEAD
 			// resttimeMapper에서 휴식방법 가져오기
 			public String getRestAsMbti(final ResttimeRequest params) {
 				return resttimeMapper.getRestAsMbti(params);
 			}
 			
 			
-=======
-	// resttimeMapper에서 휴식방법 가져오기
-	public String getRestAsMbti(final ResttimeRequest params) {
-		return resttimeMapper.getRestAsMbti(params);
-	}
-
->>>>>>> origin/work_new
 }
