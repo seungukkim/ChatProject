@@ -1,4 +1,3 @@
-
 .text {
     position: absolute;
     pointer-events: none;
@@ -81,12 +80,6 @@
     right: 85px;
     height: 20px;
     width: 65px; 
-}
-
-.aaa{
-    overflow: hidden;
-    width: 100%; 
-    height: 1200px;
 }
 
 .menu {
