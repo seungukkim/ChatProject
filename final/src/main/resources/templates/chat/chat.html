@@ -49,35 +49,7 @@
 	            <img src="/made/img/main.png" alt="Logo" width="100px" height="80px">
 	        </a>
 	        </div>
-        <button class="close">
-            <div class="top_menu">
-                <span class="menu">menu</span>
-            </div>
-            <div class="hamburger">
-                <input type="checkbox">
-                <div class="hamburgerlines">
-                    <span class="lines line1">
-        
-                    </span>
-                    <span class="lines line2">
-        
-                    </span>
-                    <span class="lines line3">
-        
-                    </span>
-                </div>
-                <ul class="menu-items">
-                    <li>내 정보</li>
-                    <li>MBTI 검사</li>
-                    <li>쇼핑몰</li>
-                    <li>내 게시물</li>
-                    <li><a href="#" onclick="location.href='../html/login.html'">Log Out</a></li>
-                    </ul>
-                </div>
-        </button>
     </div>
-
-
     <div class="social-menu">
         <ul>
             <li><a href="#" onclick="location.href='\chat/chat.html'" target="blank"><i></i></a></li>
@@ -229,7 +201,7 @@
             if (sessionId == cur_session) {
                console.log("글쓴유저와 로그인유저 같음");
                $('#totalNum').val('그대로라구');
-                var str = "<div class='col-12'>";
+                var str = "<div class='col-12' style='background-color:gray;'>";
                 str += "<div class='alert alert-primary' style='word-break:break-all;text-align:right;'>";
                 /* 내가 쓰는 글은 우측정렬되도록 style = 'text-align:right;' */
                     if(message === '') {
