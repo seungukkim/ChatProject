@@ -33,6 +33,7 @@
 
 <th:block layout:fragment="content">
 	<div class="container" id="app" v-cloak>
+		<div class="list-main">
 		<ul class="list-group">				
 		<!-- v-for문을 그냥 사용하여 채팅을 하면 새로운 채팅이 위에 나타난다. 이를 해결하기 위해 v-for문을 역순으로 출력되게 해야하는데
 		이때 출력하고자 하는 배열에.slice().reverse()를 붙이면 정상적으로 출력이 된다. -->
@@ -46,6 +47,9 @@
 				</p> 			 				
 			</li>
 		</ul>	
+	</div>
+	
+
 		<div>		
 		<div class="input-group">
 

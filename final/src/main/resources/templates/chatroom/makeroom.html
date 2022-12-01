@@ -30,31 +30,19 @@
 
 	<!-- 위에는 파란색 대가리 부분을 의미한다!     -->
 <th:block layout:fragment="content">
-	<div id="wrapper">
-		<div id="app">
-			<div class="row row-inline-block small-spacing">
-				<div class="col-xs-12">
-					<div class="box-content">
-						<div class="clearfix">
-							<h4 class="box-title pull-left"></h4>
-							<th:block layout:fragment="search"></th:block>
-						</div>
-						<th:block layout:fragment="paging">
-							<div class="input-group">
-								<input type="text" class="form-control" v-model="room_name"
-									v-on:keyup.enter="createRoom">
-								<!-- 방 개설하는 데 필수적 요소 -->
-								<button class="btn btn-primary" type="button"
-									@click="createRoom">채팅방 개설</button>
-							</div>
-						</th:block>
-					</div>
 
-					
+		<div id="app">
+			<th:block layout:fragment="paging">
+				<div class="input-group">
+					<input type="text" class="form-control" v-model="room_name"
+						v-on:keyup.enter="createRoom">
+					<!-- 방 개설하는 데 필수적 요소 -->
+					<button class="btn btn-primary" type="button"
+					@click="createRoom">채팅방 개설</button>
 				</div>
-			</div>
+			</th:block>
 		</div>
-	</div>
+
 	</th:block>
 	</body>
 	<th:block layout:fragment="script">
