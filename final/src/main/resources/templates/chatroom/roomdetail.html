@@ -39,7 +39,7 @@
 		이때 출력하고자 하는 배열에.slice().reverse()를 붙이면 정상적으로 출력이 된다. -->
 		<!-- 여기서 만약에 방 만든 사람과 채팅을 입력하는 사람이 같다면 오른쪽 그게 아니라면 왼쪽 -->						
  			<li class="list-group-item" v-for="message in messages.slice().reverse()" >
-				<p v-if="message.sender==username" style="text-align:right;font-size:17px;color:white;">
+				<p v-if="message.sender==username" style="text-align:right;font-size:17px;color:black;">
 					{{message.sender}} : {{message.message}}
 				</p>  			
 				<p v-else style="text-align:left; font-size:17px; color:gray;">
