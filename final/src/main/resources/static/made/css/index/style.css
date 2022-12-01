@@ -225,11 +225,11 @@ button {
 @-webkit-keyframes scale-out-credits {
   0% {
     opacity: 1;
-    transform: scale(1) rotate(-17deg);
+    transform: scale(1) rotate(163deg);
   }
   50% {
     opacity: 0.85;
-    transform: translateX(-50px) translateY(50px) scale(1.2) rotate(27deg);
+    transform: translateX(-50px) translateY(50px) scale(1.2) rotate(153deg);
   }
   100% {
     opacity: 0;
@@ -239,11 +239,11 @@ button {
 @keyframes scale-out-credits {
   0% {
     opacity: 1;
-    transform: scale(1) rotate(-17deg);
+    transform: scale(1) rotate(163deg);
   }
   50% {
     opacity: 0.85;
-    transform: translateX(-50px) translateY(50px) scale(1.2) rotate(-27deg);
+    transform: translateX(-50px) translateY(50px) scale(1.2) rotate(153deg);
   }
   100% {
     opacity: 0;
@@ -315,24 +315,29 @@ button {
 }
 
 .main-chat {
-  width: auto;
-  height: auto;
-  position: absolute;
-  display: inline-block;
-  background-color: #4D648D;
-  top: 9vh;
-  left: 41vw;
-  margin-left: -450px;
-  padding-left: 10px;
-  padding-right: 140px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  border-radius: 100px;
-  -webkit-animation: move1 1.5s;
-          animation: move1 1.5s;
-  -webkit-animation-timing-function: cubic-bezier(1, 0.8, 0.8);
-          animation-timing-function: cubic-bezier(1, 0.8, 0.8);
+	width: 390px;
+    height: 240px;
+    position: absolute;
+    display: inline-block;
+    background-color: #4D648D;
+    top: 3vh;
+    left: 44vw;
+    margin-left: -450px;
+    border-radius: 100px;
+    -webkit-animation: move1 1.5s;
+    animation: move1 1.5s;
+    -webkit-animation-timing-function: cubic-bezier(1, 0.8, 0.8);
+    animation-timing-function: cubic-bezier(1, 0.8, 0.8);
 }
+
+.main-chat > .main-font{
+    width: auto;
+    position: absolute;
+    left: 13%;
+    top: 22%;
+    font-size: 100px;
+}
+
 .main-chat:hover {
   transform: scale(1.15) rotate(-10deg);
   transition: 0.2s;
@@ -343,8 +348,8 @@ button {
 }
 
 .main-resttime {
-  width: auto;
-  height: auto;
+  width: 325px;
+  height: 230px;
   font-size: 60px;
   line-height: 1.4;
   position: absolute;
@@ -354,9 +359,7 @@ button {
   top: 5vh;
   left: 41vw;
   padding-left: 45px;
-  padding-right: 120px;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 25px;
   border-radius: 70px;
   opacity: 0;
   -webkit-animation: move2 1.5s;
@@ -366,6 +369,13 @@ button {
   -webkit-animation-delay: 0.2s;
   animation-delay: 0.2s;
 }
+
+.main-resttime > .main-font{
+    width: auto;
+    position: absolute;
+    font-size: 65px;
+}
+
 .main-resttime:hover {
   transform: scale(1.15) rotate(27deg);
   transition: 0.2s;
@@ -376,16 +386,17 @@ button {
 }
 
 .main-credits {
+  width: 300px;
+  height: 300px;
   font-size: 44px;
   position: absolute;
-  transform: rotate(-17deg);
+  transform: rotate(163deg);
   background-color: #fe9c3e;
   top: 5vh;
-  left: 39vw;
+  left: 41vw;
   margin-top: 250px;
   margin-left: -325px;
   padding: 30px 105px 115px 60px ;
-  border-radius: 100%;
   align-items: center;
   opacity: 0;
   -webkit-animation: move3 1.5s;
@@ -395,12 +406,38 @@ button {
   -webkit-animation-delay: 0.3s;
           animation-delay: 0.3s;
 }
-.main-credits:hover {
-  transform: scale(1.1) rotate(-27deg);
-  transition: 0.2s;
+
+.main-credits > span{
+	/*transform: rotate(163deg);*/
+  transform: rotate(180deg);
 }
+  
+
+.main-credits > .main-font{
+    width: auto;
+    position: absolute;
+    font-size: 50px;
+}
+
+.main-credits:hover {
+  width:310px;
+  height:165px;
+  border-radius : 150px 150px 0px 0px;
+  box-shadow : -1px -35px 0px 0px #fe9c3e;
+  /*수평거리, 수직거리, 흐릿함, 확산정도, 색상*/
+  top : 10vh;
+  left : 41vw;
+  
+  transition: 0.2s;
+  background-color: transparent;
+}
+
 .main-credits:not(:hover) {
-  transform: scale(1) rotate(-17deg);
+  width:300px;
+  height:160px;
+  border-radius : 150px 150px 0px 0px;
+  top : 10vh;
+  left : 41vw;
   transition: 0.2s;
 }
 
@@ -431,6 +468,8 @@ button {
   transform: scale(1);
   transition: 0.2s;
 }
+
+
 
 .right-layer {
   position: absolute;
