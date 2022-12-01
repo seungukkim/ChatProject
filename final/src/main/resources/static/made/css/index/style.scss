@@ -2,6 +2,7 @@
 @import url('https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Rock+Salt&display=swap');
 @import url("hover-min.css");
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@600&display=swap');
 html {
   box-sizing: border-box;
 }
@@ -248,12 +249,13 @@ button{
   position: relative;
   left: 10%;
   top: 160px;
-  font-family: 'Playfair Display', serif;
-  font-family: 'Rock Salt', cursive;
+  font-family: 'Alexandria', sans-serif;
   font-size: 80px;
+  text-align:center;
 }
 
 .main-chat {
+  font-family: 'Alexandria', sans-serif;
   width: auto;
   height: auto;
   position: absolute;
