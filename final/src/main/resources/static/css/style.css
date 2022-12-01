@@ -1256,7 +1256,10 @@ Version 1.0
 .ui-accordion .ui-accordion-header {
   outline: none;
 }
-
+.list-main{
+	overflow-y: auto;
+    height: 450px;
+}
 .list-group-item,
 .list-group-item:first-child,
 .list-group-item:last-child {
@@ -1264,6 +1267,7 @@ Version 1.0
     margin-bottom: 20px;
     border: 1px solid transparent;
     border-radius: 4px;
+    color: #333;
 }
 .table-purchases a {
   color: #ccc;
