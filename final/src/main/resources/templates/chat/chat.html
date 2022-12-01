@@ -50,8 +50,14 @@
 	        </a>
 	        </div>
     </div>
-<th:block layout:fragment="title">
 
+
+
+<th:block layout:fragment="title">
+   <h1 id="totalNumParent" class="page-title">      
+   	 <span id="totalNum" th:text="|${count}명이 채팅에 참여하고 있습니다|" style="color:white;"></span>
+       <!-- 문자열에 변수 함께 사용-->     
+   </h1>
 </th:block>
 
 
@@ -65,11 +71,6 @@
                 <div class="row my-5">
                     <div class="col text-center">
                         <strong class="fs-3 fw-bold">채팅이 시작되었습니다.</strong>
-                        
-                           <h1 id="totalNumParent" class="page-title">      
-   	 						<span id="totalNum" th:text="|${count}명이 채팅에 참여하고 있습니다|" style="color:white;"></span>
-       						<!-- 문자열에 변수 함께 사용-->     
-   								</h1>
                     </div>
                 </div>
                 <!-- 내용 -->
