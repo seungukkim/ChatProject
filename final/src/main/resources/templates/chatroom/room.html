@@ -11,19 +11,19 @@
 <link rel="stylesheet" th:href="@{/css/style2.css}" />
 <link rel="stylesheet"
 	th:href="@{/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css}" />
-
+<style>
+[v-cloak] {
+	display: none;
+}
+</style>
 </head>
-
-
-
-
 
 <body>
 
 	<div class="fixed-navbar">
 		<div>
 			<th:block layout:fragment="title">
-			MBTI 채팅방
+		
 			</th:block>
 		</div>
 	</div>
@@ -31,18 +31,14 @@
 	<!-- 위에는 파란색 대가리 부분을 의미한다!     -->
 
 	<div id="wrapper">
-		<div class="main-content" id="app">
 			<div class="row row-inline-block small-spacing">
 				<div class="col-xs-12">
 					<div class="box-content">
 						<div class="clearfix">
 							<h4 class="box-title pull-left"></h4>
-
-							<th:block layout:fragment="search"></th:block>
 						</div>
-
 						<th:block layout:fragment="content">
-							<table class="table table-hover">
+							<table class="table table-hover" >
 								<thead>
 									<tr>
 
@@ -50,12 +46,12 @@
 										<th>작성자</th>
 										<th>등록일</th>
 										
-										<th>찐참여인원</th>
+										<th>참여인원</th>
 										
 									</tr>
 								</thead>
 
-								<tbody>
+								<tbody id="app" v-cloak>
 									<tr v-for="room in chatrooms" v-bind:key="room.roomId"
 										v-on:click="enterRoom(room.roomId, room.roomMaker)">
 
@@ -86,14 +82,14 @@
 
 					<footer class="footer">
 						<ul class="list-inline">
-							<li>여기는 혹시 모르니까 남겨놓자!</li>
+							<li></li>
 						</ul>
 					</footer>
-				</div>
+		
 			</div>
 
-
-
+</body>
+<th:block layout:fragment="script">
 			<!-- JavaScript -->
 			<script src="/webjars/vue/2.5.16/dist/vue.min.js"></script>
 			<script src="/webjars/axios/0.17.1/dist/axios.min.js"></script>
@@ -165,7 +161,8 @@
         }
     });
 </script>
-</body>
+</th:block>
+
 </html>
 
 
