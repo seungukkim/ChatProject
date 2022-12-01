@@ -29,7 +29,7 @@
 		<div id="header-time"></div>
 
 		<div class="header-logo">
-			<img src="/made/img/KakaoTalk_20221102_003617932.png" alt="Logo"
+			<img src="/made/img/main.png" alt="Logo"
 				width="100px" height="80px">
 		</div>
 
@@ -56,11 +56,15 @@
 	<!-- 여기서부터는 본문이라 생각 -->
 	<div th:if="${info?.userId}">
 		<div class="main">
-			<div class="main-chat">CHAT</div>
-			<div class="main-resttime">
-				REST <br>TIME
+			<div class="main-chat">
+				<span class="main-font">CHAT</span> 
 			</div>
-			<div class="main-credits">CHAT <br> ROOM</div>
+			<div class="main-resttime">
+				<span>REST <br> TIME</span> 
+			</div>
+			<div class="main-credits">
+				<span>CHAT <br> ROOM</span>
+			</div>
 			<div class="main-noticeBoard">
 				Notice<br>Board
 			</div>
