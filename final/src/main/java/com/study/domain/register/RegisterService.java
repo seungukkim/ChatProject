@@ -62,9 +62,9 @@ public class RegisterService {
 		}
 		
 		//닉네임 변경 시 닉네임 중복 검사용도
-				public int checkName_change(final RegisterRequest params) {
-					return registerMapper.checkName_change(params);
-				}
+		public int checkName_change(final RegisterRequest params) {
+			return registerMapper.checkName_change(params);
+		}
 	   
 	
 }
