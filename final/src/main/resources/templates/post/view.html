@@ -91,12 +91,12 @@
 				</div>				
 				<ul class="notice-list">
                         <li th:if="${not #lists.isEmpty( commentPost )}" th:each ="row :${commentPost}">
-                            <span th:text="${row.commentWriter}"class="name"></span>
-                            <span th:text="${row.comment}" class="desc"></span>
-                            <span th:text="${row.commentDate}" class="time"></span>
-                            <span th:text="${row.commentIdentifier}" ></span>
+                            <span th:text="${row.commentWriter}"class="name" style='color:red;></span>
+                            <span th:text="${row.comment}" class="desc" style='color:red;></span>
+                            <span th:text="${row.commentDate}" class="time" style='color:red;'></span>
+                            <!-- <span th:text="${row.commentIdentifier}" ></span> -->
                             
-                            <button  th:if="${(row.commentWriter)==(info.userName)}" type="button" class="btn btn-xs btn-circle" th:onclick="commentDelete([[ ${post.id} ]],[[${row.commentIdentifier}]]);"><i class="fa fa-close" aria-hidden="true"></i></button>
+                            <button th:if="${(row.commentWriter)==(info.userName)}" type="button" class="btn btn-xs btn-circle" th:onclick="commentDelete([[ ${post.id} ]],[[${row.commentIdentifier}]]);"><i class="fa fa-close" aria-hidden="true"></i></button>
                         </li>
                         
                         
