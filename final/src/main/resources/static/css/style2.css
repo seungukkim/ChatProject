@@ -17,6 +17,7 @@ Version 2.0
 1. Globally Applied Styles
 */
 
+
 input,
 button,
 a {
@@ -29,7 +30,7 @@ a {
 a {
   text-decoration: none !important;
   outline: none;
-  color: white;
+  color: #3d3d3d;
 }
 a:hover,
 a:active,
@@ -199,6 +200,7 @@ label {
   -moz-transform: skew(45deg);
   -o-transform: skew(45deg);
   -ms-transform: skew(45deg);
+
 }
 .light-effect:hover:after {
   left: 100%;
@@ -790,18 +792,6 @@ Version 1.0
   opacity: 0.5;
   transform: translateX(-50%);
 }
-
-.main-content2 {
-  top: 20%;
-  position: fixed;
-  z-index: 10;
-  justify-content: center;
-  align-items: center;
-  left: 50%;
-  opacity: 0.5;
-  transform: translateX(-50%);
-  width:600px;
-}
 /*---------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------
 2. Structure
@@ -1207,9 +1197,12 @@ Version 1.0
 .page-title {
   display: inline-block;
   margin: 0px;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 75px;
   font-weight: 500;
+  position: fixed;
+  top: 13%;
+  
 }
 /*---------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------
@@ -1256,14 +1249,13 @@ Version 1.0
 .ui-accordion .ui-accordion-header {
   outline: none;
 }
-
 .list-group-item,
 .list-group-item:first-child,
 .list-group-item:last-child {
 	padding: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border: 1px solid transparent;
-    border-radius: 4px;
+    border-radius: 2px;
 }
 .table-purchases a {
   color: #ccc;
@@ -1395,12 +1387,11 @@ textarea.form-control {
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
 }
-
-
 #button_send{
+	
 	float:right;
-	margin-top:20px;
-
+	margin-top:10px;
+	
 }
 
 @media screen and (min-width: 768px) {
@@ -1631,11 +1622,11 @@ textarea.form-control {
 }
 
 /* 채팅 전체 화면(나가기, 보내기 버튼까지 포함) 조정 */
-#chatlist{
-	overflow-y:auto;
-	max-height: 450px;
-}
 
+.container{
+    position: fixed;
+	width: 80%
+}
 
 #msgArea.row{
 	overflow-y: auto;

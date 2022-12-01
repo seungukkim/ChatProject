@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
 @import url("https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css");
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display&family=Rock+Salt&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@600&display=swap');
 @import url("hover-min.css");
 html {
   box-sizing: border-box;
@@ -309,8 +310,7 @@ button {
   position: relative;
   left: 10%;
   top: 160px;
-  font-family: "Playfair Display", serif;
-  font-family: "Rock Salt", cursive;
+  font-family: 'Alexandria', sans-serif;
   font-size: 80px;
 }
 
@@ -320,10 +320,10 @@ button {
   position: absolute;
   display: inline-block;
   background-color: #4D648D;
-  top: 5vh;
+  top: 9vh;
   left: 41vw;
   margin-left: -450px;
-  padding-left: 45px;
+  padding-left: 10px;
   padding-right: 140px;
   padding-top: 20px;
   padding-bottom: 20px;

@@ -1,3 +1,5 @@
+  /*<![CDATA[*/
+
 $(document).ready(function () {
   var stars = 800;
   var $stars = $(".stars");
@@ -57,6 +59,24 @@ function delay(){
 }
 
 function click(event) {
+	
+  function getRest(){
+		let mbti = [[ ${info.userMbti} ]]; 
+		alert(mbti);
+		
+		/* ajax로 구현 */
+		$.ajax({
+			url : '/resttime/resttime/', //Controller에서 인식할 주소
+			type :'post', //POST 방식으로 전달
+			data : {
+				userMbti : mbti
+			},
+			success : function() {//성공하면 해당 함수를 실행한다.
+				/* console.log(a); */ // 받아온 값이 무엇인지 확인(값을 제대로 받고 있는지 확인용)
+				console.log();
+		}});
+	}
+  getRest();
   console.log(event);
   console.log('event.currentTarget',event.currentTarget);
   console.log('card',card);
@@ -104,6 +124,7 @@ function click(event) {
     },2300)
     
 }
+/*]]>*/
 // 주어.행동()
 // 행동(목적어)
 // 행동(); 
