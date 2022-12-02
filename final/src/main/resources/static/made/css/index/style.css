@@ -409,6 +409,9 @@ button {
 
 .main-credits > span{
 	/*transform: rotate(163deg);*/
+	width: auto;
+    position: absolute;
+    font-size: 50px;
   transform: rotate(180deg);
 }
   
