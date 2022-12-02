@@ -84,6 +84,33 @@
               }
 
         }      
+        
+        function deleteit(){
+        	let id = '[(${info.userId})]';
+            let pw = $('#userPw').val(); 
+            console.log(id);
+			console.log(pw);
+            $.ajax({
+                url:'/register/delete', //Controller에서 인식할 주소
+                type:'post', //POST 방식으로 전달
+                data:{userId:id,userPw:pw},
+                success:function(outcome){//성공하면 해당 함수를 실행한다.
+                    console.log(outcome); // 받아온 값이 무엇인지 확인(값을 제대로 받고 있는지 확인용)
+                    if(outcome == 1){ // 내가 받아온 값이 1이라면, 즉 db에 이미 해당 아이디가 존재한다면
+                        alert("삭제 성공");
+                    	window.location="/register/logout";
+                    }else{
+                   	
+                  	  	alert("삭제실패1");           
+                  	  
+                    }
+                },
+                error:function(){
+                    alert("삭제실패2");
+                }
+            });
+           	
+        }
         /*]]>*/
         
         </script>
