@@ -20,7 +20,7 @@ public class RegisterRequest {
     
     private String userId;        // 로그인 아이디
     private String userPw;      // 로그인 비밀번호
-    private String userName;
-    private String userEmail;
-    private String userMbti;
+    private String userName;    //로그인 닉네임
+    private String userEmail;	//로그인 이메일
+    private String userMbti;	//로그인 mbti
 }
